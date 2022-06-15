@@ -1,0 +1,51 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:security/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["security", "prettier", "sort-imports-es6-autofix"],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "ecmaVersion": 2021
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true
+      }
+    ],
+    "react/jsx-filename-extension": "off",
+    "import/prefer-default-export": "off",
+    "no-console": "off",
+    "func-names": "off",
+    "no-underscore-dangle": "off",
+    "consistent-return": "off",
+    "jest/expect-expect": "off",
+    "security/detect-object-injection": "off",
+    "no-param-reassign": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
+    "comma-dangle": "off",
+    "space-before-function-paren": "off",
+    "multiline-ternary": "off",
+    "no-use-before-define": "off",
+    "semi": [2, "always"],
+    "camelcase": "off",
+    "@typescript-eslint/no-use-before-define": ["error"],
+    "sort-imports-es6-autofix/sort-imports-es6": [
+      2,
+      {
+        "ignoreCase": false,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+      }
+    ]
+  }
+}
