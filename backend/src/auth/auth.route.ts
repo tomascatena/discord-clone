@@ -1,3 +1,4 @@
+import { loginUser, registerUser } from './auth.controller';
 import express from 'express';
 
 const router = express.Router();
@@ -7,12 +8,8 @@ const router = express.Router();
  * @desc Register a new user
  * @access Private
  */
-router.post('/register', (req, res) => {
-  res.send('Register route');
-});
+router.post('/register', registerUser);
 
-router.post('/login', (req, res) => {
-  res.send('Login route');
-});
+router.post('/login', loginUser);
 
 export default router;
