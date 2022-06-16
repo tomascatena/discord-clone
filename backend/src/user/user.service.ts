@@ -2,6 +2,10 @@ import { ApiError } from '@utils/ApiError';
 import User, { IUser } from './user.model';
 import httpStatus from 'http-status-codes';
 
+const getUserByEmail = async (email: string) => {
+  return User.findOne({ email });
+};
+
 const createUser = async (userBody: Partial<IUser>) => {
   if (await User.isEmailTaken(userBody.email!)) {
     throw new ApiError({
@@ -18,4 +22,5 @@ const createUser = async (userBody: Partial<IUser>) => {
 
 export default {
   createUser,
+  getUserByEmail,
 };

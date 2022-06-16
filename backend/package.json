@@ -34,6 +34,7 @@
     "mongoose": "^6.3.8",
     "morgan": "^1.10.0",
     "pm2": "^5.1.2",
+    "validator": "^13.7.0",
     "winston": "^3.7.2",
     "winston-daily-rotate-file": "^4.7.1",
     "xss-clean": "^0.1.1"
@@ -48,6 +49,7 @@
     "@types/joi": "^17.2.3",
     "@types/jsonwebtoken": "^8.5.8",
     "@types/mongoose": "^5.11.97",
+    "@types/validator": "^13.7.3",
     "@typescript-eslint/eslint-plugin": "5.11.0",
     "@typescript-eslint/parser": "5.11.0",
     "eslint": "8.8.0",

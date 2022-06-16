@@ -1,7 +1,7 @@
 import { createValidator } from 'express-joi-validation';
 import httpStatus from 'http-status-codes';
 
-export const validator = createValidator({
+export const joiValidator = createValidator({
   statusCode: httpStatus.BAD_REQUEST,
 
   // This options forces validation to pass any errors the express
