@@ -10,25 +10,27 @@ import userService from './user.service';
  * @desc     Register new user
  * @access   Public
  */
-export const registerUser = catchAsync(
-  async (req: RequestWithBody, res: Response) => {
-    const { username, email, password } = req.body;
+const registerUser = catchAsync(async (req: RequestWithBody, res: Response) => {
+  const { username, email, password } = req.body;
 
-    const user = await userService.createUser({
-      username,
-      email,
-      password,
-    });
+  const user = await userService.createUser({
+    username,
+    email,
+    password,
+  });
 
-    const tokens = await tokenService.generateAuthTokens(user._id);
+  const tokens = await tokenService.generateAuthTokens(user._id);
 
-    return res.status(httpStatus.CREATED).json({
-      message: 'New user successfully registered',
-      tokens,
-      user: {
-        username: user?.username,
-        email: user?.email,
-      },
-    });
-  }
-);
+  return res.status(httpStatus.CREATED).json({
+    message: 'New user successfully registered',
+    tokens,
+    user: {
+      username: user?.username,
+      email: user?.email,
+    },
+  });
+});
+
+export default {
+  registerUser,
+};

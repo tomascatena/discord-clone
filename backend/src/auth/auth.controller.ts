@@ -10,21 +10,23 @@ import tokenService from '@token/token.service';
  * @desc     Authenticate user & get token
  * @access   Private
  */
-export const loginUser = catchAsync(
-  async (req: RequestWithBody, res: Response) => {
-    const { email, password } = req.body;
+const loginUser = catchAsync(async (req: RequestWithBody, res: Response) => {
+  const { email, password } = req.body;
 
-    const user = await authService.loginWithEmailAndPassword(email!, password!);
+  const user = await authService.loginWithEmailAndPassword(email!, password!);
 
-    const tokens = await tokenService.generateAuthTokens(user._id);
+  const tokens = await tokenService.generateAuthTokens(user._id);
 
-    res.status(httpStatus.OK).json({
-      message: 'Successfully logged in',
-      tokens,
-      user: {
-        username: user?.username,
-        _id: user?._id,
-      },
-    });
-  }
-);
+  res.status(httpStatus.OK).json({
+    message: 'Successfully logged in',
+    tokens,
+    user: {
+      username: user?.username,
+      _id: user?._id,
+    },
+  });
+});
+
+export default {
+  loginUser,
+};

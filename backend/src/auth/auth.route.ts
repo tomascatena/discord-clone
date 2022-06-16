@@ -1,7 +1,7 @@
 import { joiValidator } from '@middleware/joiValidator';
-import { loginSchema } from './auth.validation';
-import { loginUser } from './auth.controller';
 import { requireAuth } from '@middleware/requireAuth';
+import authController from './auth.controller';
+import authValidation from './auth.validation';
 import express, { RequestHandler } from 'express';
 
 const router = express.Router();
@@ -14,8 +14,8 @@ const router = express.Router();
 router.post(
   '/login',
   requireAuth as RequestHandler[],
-  joiValidator.body(loginSchema),
-  loginUser
+  joiValidator.body(authValidation.loginSchema),
+  authController.loginUser
 );
 
 export default router;

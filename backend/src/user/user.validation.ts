@@ -1,7 +1,7 @@
 import { env } from '@config/config';
 import Joi from 'joi';
 
-export const registerSchema = Joi.object({
+const registerSchema = Joi.object({
   username: Joi.string().min(3).max(12).trim().required(),
   email: Joi.string().email().trim().lowercase().required(),
   password: Joi.string()
@@ -15,3 +15,7 @@ export const registerSchema = Joi.object({
     .label('Confirm password')
     .options({ messages: { 'any.only': '{{#label}} does not match' } }),
 });
+
+export default {
+  registerSchema,
+};

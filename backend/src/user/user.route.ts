@@ -1,7 +1,7 @@
 import { joiValidator } from '@middleware/joiValidator';
-import { registerSchema } from './user.validation';
-import { registerUser } from './user.controller';
 import express from 'express';
+import userController from './user.controller';
+import userValidation from './user.validation';
 
 const router = express.Router();
 
@@ -10,6 +10,10 @@ const router = express.Router();
  * @desc Register a new user
  * @access Private
  */
-router.post('/register', joiValidator.body(registerSchema), registerUser);
+router.post(
+  '/register',
+  joiValidator.body(userValidation.registerSchema),
+  userController.registerUser
+);
 
 export default router;
