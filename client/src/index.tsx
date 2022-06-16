@@ -1,8 +1,8 @@
-import './index.css';
 import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
-import { store } from './app/store';
+import { store } from '@store/store';
 import App from './App';
+import CssBaseline from '@mui/material/CssBaseline';
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
 
@@ -11,6 +11,8 @@ const root = createRoot(container);
 
 root.render(
   <React.StrictMode>
+    <CssBaseline />
+
     <Provider store={store}>
       <App />
     </Provider>
