@@ -3,7 +3,7 @@ import { env } from '@config/config';
 import { exitHandler } from './exitHandler';
 import { server } from '../server';
 
-export const uncaughtException = (
+export const uncaughtExceptionHandler = (
   err: Error,
   origin: NodeJS.UncaughtExceptionOrigin
 ) => {

@@ -1,9 +1,9 @@
 import { Logger } from '@config/logger';
-import { SIGTERMHandler } from '@utils/SIGNTERMHandler';
+import { SIGTERMHandler } from '@utils/SIGTERMHandler';
 import { app } from './app';
 import { connectDB } from '@config/connectDB';
 import { env } from '@config/config';
-import { uncaughtException } from '@utils/uncaughtExceptionHandler';
+import { uncaughtExceptionHandler } from '@utils/uncaughtExceptionHandler';
 import { unhandledRejectionHandler } from '@utils/unhandledRejectionHandler';
 import http from 'http';
 
@@ -17,6 +17,6 @@ server.listen(env.PORT, () => {
 
 process.on('unhandledRejection', unhandledRejectionHandler);
 
-process.on('uncaughtException', uncaughtException);
+process.on('uncaughtException', uncaughtExceptionHandler);
 
 process.on('SIGTERM', SIGTERMHandler);

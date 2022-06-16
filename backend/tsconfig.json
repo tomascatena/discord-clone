@@ -30,11 +30,11 @@
     "paths": {
       "@config/*": ["config/*"],
       "@utils/*": ["utils/*"],
-      "@auth/*": ["auth/*"],
-      "@user/*": ["user/*"],
-      "@token/*": ["token/*"],
       "@routes/*": ["routes/*"],
       "@middleware/*": ["middleware/*"],
+      "@auth/*": ["features/auth/*"],
+      "@user/*": ["features/user/*"],
+      "@token/*": ["features/token/*"],
       "@typings": ["typings/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */

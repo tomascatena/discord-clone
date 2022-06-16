@@ -8,21 +8,24 @@ class LoggerStream {
   }
 }
 
+const getStatusColor = (statusCode: number) => {
+  let color = 0; // no color
+  if (statusCode >= 500) {
+    color = 31; // red
+  } else if (statusCode >= 400) {
+    color = 33; // yellow
+  } else if (statusCode >= 300) {
+    color = 36; // cyan
+  } else if (statusCode >= 200) {
+    color = 32; // green
+  }
+  return color;
+};
+
 morgan.token('statusColor', (req, res: Response) => {
   const status = res.headersSent ? res.statusCode : 200;
 
-  let color = 0; // no color
-  if (status >= 500) {
-    color = 31; // red
-  } else if (status >= 400) {
-    color = 33; // yellow
-  } else if (status >= 300) {
-    color = 36; // cyan
-  } else if (status >= 200) {
-    color = 32; // green
-  }
-
-  return `\x1b[${color}m${status}\x1b[0m`;
+  return `\x1b[${getStatusColor(status)}m${status}\x1b[0m`;
 });
 
 export const morganHttpLogger = morgan(
