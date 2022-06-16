@@ -1,11 +1,9 @@
-import { ExpressJoiError } from 'express-joi-validation';
-import { cleanData } from '@utils/cleanData';
 import { connectDB } from '@config/connectDB';
 import { env } from '@config/config';
+import { validatorResponseMessage } from '@middleware/validatorResponseMessage';
 import cors from 'cors';
 import express from 'express';
 import http from 'http';
-import httpStatus, { ReasonPhrases } from 'http-status-codes';
 import routes from '@routes/v1';
 
 const app = express();
@@ -24,26 +22,8 @@ app.options('*', cors);
 // v1 api routes
 app.use('/api/v1', routes);
 
-app.use(
-  (
-    err: ExpressJoiError,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction // eslint-disable-line @typescript-eslint/no-unused-vars
-  ) => {
-    if (err) {
-      cleanData(err);
-
-      return res.status(httpStatus.BAD_REQUEST).json({
-        validatorErrors: err.error?.details,
-      });
-    }
-
-    res.status(httpStatus.INTERNAL_SERVER_ERROR).json({
-      message: ReasonPhrases.INTERNAL_SERVER_ERROR,
-    });
-  }
-);
+// parse validation errors and send formatted response
+app.use(validatorResponseMessage);
 
 const server = http.createServer(app);
 

@@ -1,4 +1,4 @@
-import { cleanEnv, port, str, url } from 'envalid';
+import { cleanEnv, num, port, str, url } from 'envalid';
 import dotenv from 'dotenv';
 import path from 'path';
 
@@ -11,4 +11,6 @@ export const env = cleanEnv(process.env, {
   }),
   PORT: port({ desc: 'API Port' }),
   MONGODB_URI: url({ desc: 'Mongo DB url' }),
+  PASSWORD_MIN_LENGTH: num({ desc: 'Password minimum length' }),
+  PASSWORD_MAX_LENGTH: num({ desc: 'Password maximum length' }),
 });
