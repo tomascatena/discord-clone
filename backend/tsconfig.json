@@ -32,6 +32,7 @@
       "@utils/*": ["utils/*"],
       "@auth/*": ["auth/*"],
       "@user/*": ["user/*"],
+      "@token/*": ["token/*"],
       "@routes/*": ["routes/*"],
       "@middleware/*": ["middleware/*"],
       "@typings": ["typings/*"]

@@ -1,5 +1,5 @@
 import { Logger } from '@config/logger';
-import { SIGMTERMHandler } from '@utils/SIGNTERMHandler';
+import { SIGTERMHandler } from '@utils/SIGNTERMHandler';
 import { app } from './app';
 import { connectDB } from '@config/connectDB';
 import { env } from '@config/config';
@@ -19,4 +19,4 @@ process.on('unhandledRejection', unhandledRejectionHandler);
 
 process.on('uncaughtException', uncaughtException);
 
-process.on('SIGTERM', SIGMTERMHandler);
+process.on('SIGTERM', SIGTERMHandler);

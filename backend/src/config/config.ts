@@ -13,4 +13,11 @@ export const env = cleanEnv(process.env, {
   MONGODB_URI: url({ desc: 'Mongo DB url' }),
   PASSWORD_MIN_LENGTH: num({ desc: 'Password minimum length' }),
   PASSWORD_MAX_LENGTH: num({ desc: 'Password maximum length' }),
+  JWT_SECRET: str({ desc: 'JWT secret' }),
+  JWT_ACCESS_EXPIRATION_MINUTES: num({
+    desc: 'JWT access token expiration in minutes',
+  }),
+  JWT_REFRESH_EXPIRATION_DAYS: num({
+    desc: 'JWT refresh token expiration in days',
+  }),
 });

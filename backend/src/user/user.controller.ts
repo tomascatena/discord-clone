@@ -2,6 +2,7 @@ import { RequestWithBody } from '../typings/typings';
 import { Response } from 'express';
 import { catchAsync } from 'utils/catchAsync';
 import httpStatus from 'http-status-codes';
+import tokenService from '@token/token.service';
 import userService from './user.service';
 
 /**
@@ -19,8 +20,11 @@ export const registerUser = catchAsync(
       password,
     });
 
+    const tokens = await tokenService.generateAuthTokens(user._id);
+
     return res.status(httpStatus.CREATED).json({
       message: 'New user successfully registered',
+      tokens,
       user: {
         username: user?.username,
         email: user?.email,
