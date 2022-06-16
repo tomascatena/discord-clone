@@ -1,9 +1,11 @@
 import { Provider } from 'react-redux';
+import { ThemeProvider } from '@mui/material/styles';
 import { createRoot } from 'react-dom/client';
 import { store } from '@store/store';
 import App from './App';
 import CssBaseline from '@mui/material/CssBaseline';
 import React from 'react';
+import darkTheme from './themes/darkTheme';
 import reportWebVitals from './reportWebVitals';
 
 const container = document.getElementById('root')!;
@@ -14,7 +16,9 @@ root.render(
     <CssBaseline />
 
     <Provider store={store}>
-      <App />
+      <ThemeProvider theme={darkTheme}>
+        <App />
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>
 );
