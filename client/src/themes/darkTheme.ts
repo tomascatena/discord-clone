@@ -71,7 +71,10 @@ const darkTheme = createTheme({
       disabled: 'rgba(255, 255, 255, 0.5)',
     },
     divider: 'rgba(255, 255, 255, 0.12)',
-    background: { paper: '#121212', default: '#121212' },
+    background: {
+      paper: '#121212',
+      default: '#121212'
+    },
     action: {
       active: '#fff',
       hover: 'rgba(255, 255, 255, 0.08)',
@@ -86,7 +89,7 @@ const darkTheme = createTheme({
       activatedOpacity: 0.24,
     },
   },
-  shape: { borderRadius: 4 },
+  shape: { borderRadius: 8 },
   mixins: {
     toolbar: {
       minHeight: 56,

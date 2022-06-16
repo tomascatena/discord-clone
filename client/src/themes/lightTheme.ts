@@ -86,7 +86,7 @@ const lightTheme = createTheme({
       activatedOpacity: 0.12,
     },
   },
-  shape: { borderRadius: 4 },
+  shape: { borderRadius: 8 },
   mixins: {
     toolbar: {
       minHeight: 56,
