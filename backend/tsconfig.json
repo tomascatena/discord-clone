@@ -32,6 +32,7 @@
       "@utils/*": ["utils/*"],
       "@auth/*": ["auth/*"],
       "@routes/*": ["routes/*"],
+      "@middleware/*": ["middleware/*"],
       "@typings": ["typings/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
