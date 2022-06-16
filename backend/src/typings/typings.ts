@@ -4,9 +4,9 @@ export type Nullable<T> = T | null;
 
 export interface RequestWithBody extends Request {
   body: {
-    firstName?: string;
-    lastName?: string;
+    username?: string;
     email?: string;
     password?: string;
+    confirmPassword?: string;
   };
 }

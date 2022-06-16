@@ -13,6 +13,9 @@
   "author": "Tomás Catena",
   "license": "MIT",
   "dependencies": {
+    "@types/express-winston": "^4.0.0",
+    "@types/morgan": "^1.9.3",
+    "@types/winston": "^2.4.4",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -20,13 +23,18 @@
     "envalid": "^7.3.1",
     "express": "^4.18.1",
     "express-joi-validation": "^5.0.1",
+    "express-winston": "^4.2.0",
     "http-status-codes": "^2.2.0",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.8",
-    "pm2": "^5.1.2"
+    "morgan": "^1.10.0",
+    "pm2": "^5.1.2",
+    "winston": "^3.7.2",
+    "winston-daily-rotate-file": "^4.7.1"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/joi": "^17.2.3",

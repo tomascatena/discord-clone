@@ -1,9 +1,25 @@
 import { env } from '@config/config';
-import mongoose from 'mongoose';
+import bcryptjs from 'bcryptjs';
+import mongoose, { Model } from 'mongoose';
 
-const userSchema = new mongoose.Schema(
+export interface IUser {
+  _id: string;
+  username: string;
+  email: string;
+  password: string;
+  isPasswordMatch: (password: string) => Promise<boolean>;
+}
+
+interface IUserModel extends Model<IUser> {
+  isEmailTaken: (
+    email: string,
+    excludeUserId?: string | undefined
+  ) => Promise<boolean>;
+}
+
+const userSchema = new mongoose.Schema<IUser, IUserModel>(
   {
-    name: {
+    username: {
       type: String,
       required: true,
     },
@@ -24,4 +40,29 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-export default mongoose.model('User', userSchema);
+userSchema.statics.isEmailTaken = async function (
+  email: string,
+  excludeUserId: string | undefined = undefined
+): Promise<boolean> {
+  const user = await this.findOne({ email, _id: { $ne: excludeUserId } });
+
+  return Boolean(user);
+};
+
+userSchema.methods.isPasswordMatch = async function (password: string) {
+  return bcryptjs.compare(password, this.password);
+};
+
+userSchema.pre('save', async function (next) {
+  if (!this.isModified('password')) {
+    next();
+  }
+
+  const salt = await bcryptjs.genSalt(12);
+
+  this.password = await bcryptjs.hash(this.password, salt);
+});
+
+const User: IUserModel = mongoose.model<IUser, IUserModel>('User', userSchema);
+
+export default User;

@@ -19,20 +19,3 @@ export const loginUser = catchAsync(
     });
   }
 );
-
-/**
- * @route    POST api/v1/auth/register
- * @desc     Register new user
- * @access   Public
- */
-export const registerUser = catchAsync(
-  async (req: RequestWithBody, res: Response) => {
-    const { firstName, lastName, email, password } = req.body;
-
-    console.log(firstName, lastName, email, password);
-
-    res.status(httpStatus.OK).json({
-      message: 'Successfully registered new user',
-    });
-  }
-);
