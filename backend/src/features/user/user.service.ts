@@ -3,11 +3,31 @@ import User, { IUser } from './user.model';
 import httpStatus from 'http-status-codes';
 
 const getUserByEmail = async (email: string) => {
-  return User.findOne({ email });
+  const user = User.findOne({ email });
+
+  if (!user) {
+    throw new ApiError({
+      statusCode: httpStatus.BAD_REQUEST,
+      message: 'User does not exists',
+      isOperational: false,
+    });
+  }
+
+  return user;
 };
 
 const getUserById = async (userId: string) => {
-  return User.findById(userId).select('-password');
+  const user = User.findById(userId).select('-password');
+
+  if (!user) {
+    throw new ApiError({
+      statusCode: httpStatus.BAD_REQUEST,
+      message: 'User does not exists',
+      isOperational: false,
+    });
+  }
+
+  return user;
 };
 
 const createUser = async (userBody: Partial<IUser>) => {
