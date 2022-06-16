@@ -6,6 +6,10 @@ const getUserByEmail = async (email: string) => {
   return User.findOne({ email });
 };
 
+const getUserById = async (userId: string) => {
+  return User.findById(userId).select('-password');
+};
+
 const createUser = async (userBody: Partial<IUser>) => {
   if (await User.isEmailTaken(userBody.email!)) {
     throw new ApiError({
@@ -22,5 +26,6 @@ const createUser = async (userBody: Partial<IUser>) => {
 
 export default {
   createUser,
+  getUserById,
   getUserByEmail,
 };

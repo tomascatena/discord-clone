@@ -1,5 +1,5 @@
-import { TokenTypes, tokenTypes } from '@/config/tokens';
-import { env } from '@/config/config';
+import { TokenTypes, tokenTypes } from '@config/tokens';
+import { env } from '@config/config';
 import Token from './token.model';
 import addDays from 'date-fns/addDays';
 import addMinutes from 'date-fns/addMinutes';

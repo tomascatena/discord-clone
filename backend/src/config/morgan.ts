@@ -10,6 +10,7 @@ class LoggerStream {
 
 const getStatusColor = (statusCode: number) => {
   let color = 0; // no color
+
   if (statusCode >= 500) {
     color = 31; // red
   } else if (statusCode >= 400) {
@@ -19,6 +20,7 @@ const getStatusColor = (statusCode: number) => {
   } else if (statusCode >= 200) {
     color = 32; // green
   }
+
   return color;
 };
 
