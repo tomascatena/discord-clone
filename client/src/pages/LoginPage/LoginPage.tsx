@@ -1,16 +1,18 @@
 import { Typography } from '@mui/material';
-import AuthBox from '@components/AuthoBox/AuthBox';
+import AuthBox from '@components/AuthBox/AuthBox';
 import React from 'react';
 
 const LoginPage:React.FC = () => {
   return (
     <AuthBox>
       <Typography
-        align='center'
-        variant='h4'
+        variant='h5'
+        color='text.primary'
       >
-        Login Page
+        Welcome Back!
       </Typography>
+
+      <Typography>We are happy that you are with us!</Typography>
     </AuthBox>
   );
 };

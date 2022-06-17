@@ -1,5 +1,5 @@
 import { Typography } from '@mui/material';
-import AuthBox from '@components/AuthoBox/AuthBox';
+import AuthBox from '@components/AuthBox/AuthBox';
 import React from 'react';
 
 const RegisterPage:React.FC = () => {
