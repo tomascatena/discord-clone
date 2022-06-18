@@ -35,6 +35,7 @@
       "@auth/*": ["features/auth/*"],
       "@user/*": ["features/user/*"],
       "@token/*": ["features/token/*"],
+      "@docs": ["features/docs/*"],
       "@typings": ["typings/*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
@@ -107,7 +108,8 @@
 
     /* Completeness */
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-    "skipLibCheck": true /* Skip type checking all .d.ts files. */
+    "skipLibCheck": true /* Skip type checking all .d.ts files. */,
+    "resolveJsonModule": true
   },
   "ts-node": {
     "require": ["tsconfig-paths/register"]
