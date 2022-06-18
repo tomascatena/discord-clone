@@ -1,3 +1,5 @@
+import { StatusCodes } from 'http-status-codes';
+
 const registerUserRequestBody = {
   content: {
     'application/json': {
@@ -67,7 +69,7 @@ export const register = {
       produces: ['application/json'],
       requestBody: registerUserRequestBody,
       responses: {
-        '201': registerUserSuccessResponse,
+        [StatusCodes.CREATED]: registerUserSuccessResponse,
       },
     },
   },
