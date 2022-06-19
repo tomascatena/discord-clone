@@ -69,3 +69,33 @@ export const getSwaggerResponseBodySchema = ({
     },
   };
 };
+
+type GetSwaggerRequestBodySchemaParams = {
+  requestBody: any;
+  requiredFields?: string[];
+};
+
+/**
+ * @desc Get swagger schema for request body from request body example (Only valid for JSON bodies!)
+ * @param requestBody - Example request body
+ * @param requiredFields - Array of required fields (optional)
+ * @returns - Swagger request body schema
+ */
+export const getSwaggerRequestBodySchema = ({
+  requestBody,
+  requiredFields,
+}: GetSwaggerRequestBodySchemaParams) => {
+  const requestBodySwaggerSchema = {};
+
+  return {
+    content: {
+      'application/json': {
+        schema: {
+          type: 'object',
+          required: requiredFields || [],
+          ...iterateOverValues(requestBody, requestBodySwaggerSchema),
+        },
+      },
+    },
+  };
+};

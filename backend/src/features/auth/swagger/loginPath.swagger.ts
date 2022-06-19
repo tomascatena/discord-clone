@@ -1,26 +1,16 @@
 import { StatusCodes } from 'http-status-codes';
-import { getSwaggerResponseBodySchema } from '@utils/swagger/getSwaggerResponseBodySchema';
+import {
+  getSwaggerRequestBodySchema,
+  getSwaggerResponseBodySchema,
+} from '@utils/swagger/getSwaggerResponseBodySchema';
 
-const loginUserRequestBody = {
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        required: ['email', 'password'],
-        properties: {
-          email: {
-            type: 'string',
-            example: 'john@email.com',
-          },
-          password: {
-            type: 'string',
-            example: '123456',
-          },
-        },
-      },
-    },
+const loginUserRequestBody = getSwaggerRequestBodySchema({
+  requestBody: {
+    email: 'pelusa@gmail.com',
+    password: 'abc123',
   },
-};
+  requiredFields: ['email', 'password'],
+});
 
 const loginUserSuccessResponse = getSwaggerResponseBodySchema({
   description: 'Login existing user',
@@ -45,30 +35,10 @@ const loginUserSuccessResponse = getSwaggerResponseBodySchema({
   },
 });
 
-const getMeSuccessResponse = getSwaggerResponseBodySchema({
-  description: 'Get logged in user',
-  responseBody: {
-    message: 'Successfully authenticated user',
-    user: {
-      username: 'Pelusa',
-      email: 'pelusa@gmail.com',
-      _id: '62ab161ce8c4f0e428adeaed',
-    },
-  },
-});
-
 const loginUserErrorResponse = getSwaggerResponseBodySchema({
   description: 'Invalid email or password',
   responseBody: {
     message: 'Incorrect email or password',
-    statusCode: StatusCodes.UNAUTHORIZED,
-  },
-});
-
-const tokenExpiredErrorResponse = getSwaggerResponseBodySchema({
-  description: 'Expired token',
-  responseBody: {
-    message: 'Unauthorized',
     statusCode: StatusCodes.UNAUTHORIZED,
   },
 });
@@ -99,37 +69,11 @@ export const login = {
       description: 'Logs in existing user',
       consumes: ['application/json'],
       produces: ['application/json'],
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
       requestBody: loginUserRequestBody,
       responses: {
         [StatusCodes.OK]: loginUserSuccessResponse,
         [StatusCodes.UNAUTHORIZED]: loginUserErrorResponse,
         [StatusCodes.BAD_REQUEST]: loginUserValidationErrorResponse,
-      },
-    },
-  },
-};
-
-export const getMe = {
-  '/auth/me': {
-    get: {
-      tags: ['Auth'],
-      summary: 'Get logged in user',
-      description: 'Gets information about the currently logged in user',
-      consumes: ['application/json'],
-      produces: ['application/json'],
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
-      responses: {
-        [StatusCodes.OK]: getMeSuccessResponse,
-        [StatusCodes.UNAUTHORIZED]: tokenExpiredErrorResponse,
       },
     },
   },
