@@ -1,6 +1,10 @@
-const isArray = (value: any) => Array.isArray(value);
+import omit from 'lodash/omit';
 
-const isObject = (value: any) => {
+type GeneralObject = { [key: string]: any };
+
+const isArray = (value: GeneralObject) => Array.isArray(value);
+
+const isObject = (value: GeneralObject) => {
   return typeof value === 'object' && value !== null && !isArray(value);
 };
 
@@ -10,8 +14,8 @@ const isObject = (value: any) => {
  * @param result - Partial swagger response body schema to be updated recursively
  * @returns Swagger response body schema
  */
-const iterateOverValues = (values: any, result: any) => {
-  const responseBody: any = {};
+const iterateOverValues = (values: GeneralObject, result: GeneralObject) => {
+  const responseBody: GeneralObject = {};
 
   if (isObject(values)) {
     let properties = {};
@@ -42,7 +46,7 @@ const iterateOverValues = (values: any, result: any) => {
 };
 
 type GetSwaggerResponseBodySchemaParams = {
-  responseBody: any;
+  responseBody: GeneralObject;
   description?: string;
 };
 
@@ -63,7 +67,10 @@ export const getSwaggerResponseBodySchema = ({
       'application/json': {
         schema: {
           type: 'object',
-          ...iterateOverValues(responseBody, responseBodySwaggerSchema),
+          ...iterateOverValues(
+            omit(responseBody, ['stack']), // Stack is only for debugging purposes
+            responseBodySwaggerSchema
+          ),
         },
       },
     },
@@ -71,7 +78,7 @@ export const getSwaggerResponseBodySchema = ({
 };
 
 type GetSwaggerRequestBodySchemaParams = {
-  requestBody: any;
+  requestBody: GeneralObject;
   requiredFields?: string[];
   isRequired?: boolean;
 };
