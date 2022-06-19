@@ -5,11 +5,12 @@ import {
 } from '@utils/swagger/getSwaggerResponseBodySchema';
 
 const loginUserRequestBody = getSwaggerRequestBodySchema({
+  isRequired: true,
+  requiredFields: ['email', 'password'],
   requestBody: {
     email: 'pelusa@gmail.com',
     password: 'abc123',
   },
-  requiredFields: ['email', 'password'],
 });
 
 const successResponse = getSwaggerResponseBodySchema({
@@ -67,8 +68,6 @@ export const login = {
       tags: ['Auth'],
       summary: 'Login user',
       description: 'Logs in existing user',
-      consumes: ['application/json'],
-      produces: ['application/json'],
       requestBody: loginUserRequestBody,
       responses: {
         [StatusCodes.OK]: successResponse,

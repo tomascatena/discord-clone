@@ -5,6 +5,7 @@ import {
 } from '@utils/swagger/getSwaggerResponseBodySchema';
 
 const registerUserRequestBody = getSwaggerRequestBodySchema({
+  isRequired: true,
   requiredFields: ['username', 'email', 'password', 'confirmPassword'],
   requestBody: {
     username: 'Pelusa',

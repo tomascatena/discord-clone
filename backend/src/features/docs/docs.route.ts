@@ -23,9 +23,7 @@ const swaggerDocumentation: swaggerUi.JsonObject = {
 };
 
 const supportedSubmitMethods =
-  env.NODE_ENV === 'development'
-    ? ['get', 'put', 'post', 'delete', 'options', 'head', 'patch', 'trace']
-    : [''];
+  env.NODE_ENV === 'development' ? ['get', 'put', 'post', 'delete'] : [''];
 
 const options: swaggerUi.SwaggerOptions = {
   swaggerOptions: {
