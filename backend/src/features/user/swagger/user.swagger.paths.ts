@@ -1,4 +1,4 @@
-import { register } from './registerPath.swagger';
+import { register } from './register.swagger';
 
 export default {
   ...register,
