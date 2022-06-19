@@ -32,8 +32,6 @@ export const createSwaggerDocumentation = (postmanCollection: any) => {
         .join('/')
         .replace('api/v1/', '/');
 
-      console.log(pathUrl);
-
       paths[pathUrl] = {
         [subItem.request.method.toLowerCase()]: {
           tags,

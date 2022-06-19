@@ -3,8 +3,8 @@ import { env } from '@config/config';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 
-import fs from 'fs';
-import path from 'path';
+// import fs from 'fs';
+// import path from 'path';
 import postmanCollection from './postmanCollection.json';
 
 const router = express.Router();
@@ -20,10 +20,10 @@ const options: swaggerUi.SwaggerOptions = {
   },
 };
 
-fs.writeFileSync(
-  path.resolve(__dirname, 'swaggerDocumentation.json'),
-  JSON.stringify(createSwaggerDocumentation(postmanCollection), null, 2)
-);
+// fs.writeFileSync(
+//   path.resolve(__dirname, 'swaggerDocumentation.json'),
+//   JSON.stringify(createSwaggerDocumentation(postmanCollection), null, 2)
+// );
 
 router.use('/', swaggerUi.serve);
 
