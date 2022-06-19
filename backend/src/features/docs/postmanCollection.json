@@ -1,0 +1,1124 @@
+{
+	"info": {
+		"_postman_id": "5d209e92-268e-4642-8037-2ec2d2454ec0",
+		"name": "Discord Clone",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('TOKEN', pm.response.json().tokens.access.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						},
+						"description": "Log in an existing user with email and password."
+					},
+					"response": [
+						{
+							"name": "Login Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "616"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"268-3Uzbo9vqd3BdyU1aQWcDXJnGDns\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 12:55:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully logged in\",\n    \"tokens\": {\n        \"access\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFiMTYxY2U4YzRmMGU0MjhhZGVhZWQiLCJpYXQiOjE2NTU2NDMzMjcsImV4cCI6MTY1NTcyOTcyNywidHlwZSI6ImFjY2VzcyJ9.tKMEInU6lm7x2J7ViCAPFpGWZbJVPd7Duw-RTapz2CM\",\n            \"expires\": \"2022-06-20T12:55:27.305Z\"\n        },\n        \"refresh\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFiMTYxY2U4YzRmMGU0MjhhZGVhZWQiLCJpYXQiOjE2NTU2NDMzMjcsImV4cCI6MTY1ODIzNTMyNywidHlwZSI6InJlZnJlc2gifQ.GFcnVpwt6xn7N5DtjiYVEkKhWvuJC8qASUhL_cWhgY8\",\n            \"expires\": \"2022-07-19T12:55:27.305Z\"\n        }\n    },\n    \"user\": {\n        \"username\": \"Pelusa\",\n        \"_id\": \"62ab161ce8c4f0e428adeaed\"\n    }\n}"
+						},
+						{
+							"name": "Login Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"pelusagmail.com\",\n    \"password\": \"abc12\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "346"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"15a-tKwNM0WWik9PlwBL8fdfTpCcJFY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:47:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"validatorErrors\": [\n        {\n            \"message\": \"\\\"email\\\" must be a valid email\",\n            \"path\": [\n                \"email\"\n            ],\n            \"type\": \"string.email\",\n            \"context\": {\n                \"invalids\": [\n                    \"pelusagmail.com\"\n                ],\n                \"label\": \"email\",\n                \"key\": \"email\"\n            }\n        },\n        {\n            \"message\": \"\\\"password\\\" length must be at least 6 characters long\",\n            \"path\": [\n                \"password\"\n            ],\n            \"type\": \"string.min\",\n            \"context\": {\n                \"limit\": 6,\n                \"label\": \"password\",\n                \"key\": \"password\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "Login Invalid Credentials",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"pelusa1@gmail.com\",\n    \"password\": \"abc123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/auth/login",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "429"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1ad-Os++K7bLBZzNTqL6zWIBAiQYgWU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:47:32 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"message\": \"Incorrect email or password\",\n    \"stack\": \"Error: \\u001b[31mIncorrect email or password\\u001b[39m\\n    at /home/tomas/Projects/discord-clonde/backend/src/features/auth/auth.service.ts:9:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (/home/tomas/Projects/discord-clonde/backend/src/features/auth/auth.service.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Current User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/v1/auth/me",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"me"
+							]
+						},
+						"description": "Get logged in user information."
+					},
+					"response": [
+						{
+							"name": "User Does Not Exists",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/v1/auth/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "416"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1a0-Ja4dmMN9Zlft+VYI4Bl8zckDpXU\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:55:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"User does not exists\",\n    \"stack\": \"Error: \\u001b[31mUser does not exists\\u001b[39m\\n    at /home/tomas/Projects/discord-clonde/backend/src/features/user/user.service.ts:29:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (/home/tomas/Projects/discord-clonde/backend/src/features/user/user.service.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\"\n}"
+						},
+						{
+							"name": "Get User Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:5000/api/v1/auth/me",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "134"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"86-aEBHPl4NBliSk2mlS8Q1eV4SgKM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:56:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully authenticated user\",\n    \"user\": {\n        \"username\": \"Pelusa\",\n        \"email\": \"pelusa@gmail.com\",\n        \"_id\": \"62af38fc869541e306f517a5\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "Routes related to user authentication."
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.environment.set('TOKEN', pm.response.json().tokens.access.token)"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"Pelusa\",\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\",\n    \"confirmPassword\": \"abc123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/user/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"user",
+								"register"
+							]
+						},
+						"description": "Register a new user with username, email, password and confirmPassword."
+					},
+					"response": [
+						{
+							"name": "Register Sucess",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Pelusa\",\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\",\n    \"confirmPassword\": \"abc123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/user/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "620"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"26c-YGoZU4msu1FwcT0C1X1d8AWQ+6k\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:48:43 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"New user successfully registered\",\n    \"tokens\": {\n        \"access\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFmMzc0YjFkYjkxNjEwNThmN2I3ODgiLCJpYXQiOjE2NTU2NTAxMjMsImV4cCI6MTY1NTczNjUyMywidHlwZSI6ImFjY2VzcyJ9.ahwK-6Bm9W5ICAZj35wYj8eFFukGQheYabGzBILWGKs\",\n            \"expires\": \"2022-06-20T14:48:43.685Z\"\n        },\n        \"refresh\": {\n            \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFmMzc0YjFkYjkxNjEwNThmN2I3ODgiLCJpYXQiOjE2NTU2NTAxMjMsImV4cCI6MTY1ODI0MjEyMywidHlwZSI6InJlZnJlc2gifQ.srpzd0txLE67TE9b0cu0jIZcIny0vk1CjKRVsdw5rxQ\",\n            \"expires\": \"2022-07-19T14:48:43.685Z\"\n        }\n    },\n    \"user\": {\n        \"username\": \"Pelusa\",\n        \"email\": \"pelusa@gmail.com\"\n    }\n}"
+						},
+						{
+							"name": "Register Validation Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Pel\",\n    \"email\": \"pelusagmail.com\",\n    \"password\": \"abc12\",\n    \"confirmPassword\": \"abc13\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/user/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "704"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2c0-Q6VWRS6ebyF69WNtnrpZ+BDK+Z4\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:49:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"validatorErrors\": [\n        {\n            \"message\": \"\\\"email\\\" must be a valid email\",\n            \"path\": [\n                \"email\"\n            ],\n            \"type\": \"string.email\",\n            \"context\": {\n                \"invalids\": [\n                    \"pelusagmail.com\"\n                ],\n                \"label\": \"email\",\n                \"key\": \"email\"\n            }\n        },\n        {\n            \"message\": \"\\\"password\\\" length must be at least 6 characters long\",\n            \"path\": [\n                \"password\"\n            ],\n            \"type\": \"string.min\",\n            \"context\": {\n                \"limit\": 6,\n                \"label\": \"password\",\n                \"key\": \"password\"\n            }\n        },\n        {\n            \"message\": \"\\\"Confirm password\\\" does not match\",\n            \"path\": [\n                \"confirmPassword\"\n            ],\n            \"type\": \"any.only\",\n            \"context\": {\n                \"valids\": [\n                    {\n                        \"adjust\": null,\n                        \"in\": false,\n                        \"iterables\": null,\n                        \"map\": null,\n                        \"separator\": \".\",\n                        \"type\": \"value\",\n                        \"ancestor\": 1,\n                        \"path\": [\n                            \"password\"\n                        ],\n                        \"depth\": 1,\n                        \"key\": \"password\",\n                        \"root\": \"password\",\n                        \"display\": \"ref:password\"\n                    }\n                ],\n                \"label\": \"Confirm password\",\n                \"key\": \"confirmPassword\"\n            }\n        }\n    ]\n}"
+						},
+						{
+							"name": "Register Email Already In Use",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"username\": \"Pelusa\",\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\",\n    \"confirmPassword\": \"abc123\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/user/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "414"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19e-jFIUJJbCBq4itlnSC60dJGUtFrM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 19 Jun 2022 14:49:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 400,\n    \"message\": \"Email already taken\",\n    \"stack\": \"Error: \\u001b[31mEmail already taken\\u001b[39m\\n    at /home/tomas/Projects/discord-clonde/backend/src/features/user/user.service.ts:35:11\\n    at Generator.next (<anonymous>)\\n    at fulfilled (/home/tomas/Projects/discord-clonde/backend/src/features/user/user.service.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Routes related to user information."
+		}
+	]
+}
