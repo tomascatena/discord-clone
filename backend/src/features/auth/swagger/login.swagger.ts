@@ -12,7 +12,7 @@ const loginUserRequestBody = getSwaggerRequestBodySchema({
   requiredFields: ['email', 'password'],
 });
 
-const loginUserSuccessResponse = getSwaggerResponseBodySchema({
+const successResponse = getSwaggerResponseBodySchema({
   description: 'Login existing user',
   responseBody: {
     message: 'Successfully logged in',
@@ -35,7 +35,7 @@ const loginUserSuccessResponse = getSwaggerResponseBodySchema({
   },
 });
 
-const loginUserErrorResponse = getSwaggerResponseBodySchema({
+const unauthorizedResponse = getSwaggerResponseBodySchema({
   description: 'Invalid email or password',
   responseBody: {
     message: 'Incorrect email or password',
@@ -43,7 +43,7 @@ const loginUserErrorResponse = getSwaggerResponseBodySchema({
   },
 });
 
-const loginUserValidationErrorResponse = getSwaggerResponseBodySchema({
+const validationErrorResponse = getSwaggerResponseBodySchema({
   description: 'Validation error on email or password',
   responseBody: {
     validatorErrors: [
@@ -71,9 +71,9 @@ export const login = {
       produces: ['application/json'],
       requestBody: loginUserRequestBody,
       responses: {
-        [StatusCodes.OK]: loginUserSuccessResponse,
-        [StatusCodes.UNAUTHORIZED]: loginUserErrorResponse,
-        [StatusCodes.BAD_REQUEST]: loginUserValidationErrorResponse,
+        [StatusCodes.OK]: successResponse,
+        [StatusCodes.UNAUTHORIZED]: unauthorizedResponse,
+        [StatusCodes.BAD_REQUEST]: validationErrorResponse,
       },
     },
   },

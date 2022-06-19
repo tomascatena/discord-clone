@@ -1,5 +1,5 @@
-import { getMe } from './getMePath.swagger';
-import { login } from './loginPath.swagger';
+import { getMe } from './getMe.swagger';
+import { login } from './login.swagger';
 
 export default {
   ...login,

@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes';
 import { getSwaggerResponseBodySchema } from '@utils/swagger/getSwaggerResponseBodySchema';
 
-const getMeSuccessResponse = getSwaggerResponseBodySchema({
+const successResponse = getSwaggerResponseBodySchema({
   description: 'Get logged in user',
   responseBody: {
     message: 'Successfully authenticated user',
@@ -35,7 +35,7 @@ export const getMe = {
         },
       ],
       responses: {
-        [StatusCodes.OK]: getMeSuccessResponse,
+        [StatusCodes.OK]: successResponse,
         [StatusCodes.UNAUTHORIZED]: tokenExpiredErrorResponse,
       },
     },

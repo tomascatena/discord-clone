@@ -1,63 +1,59 @@
 import { StatusCodes } from 'http-status-codes';
+import {
+  getSwaggerRequestBodySchema,
+  getSwaggerResponseBodySchema,
+} from '@utils/swagger/getSwaggerResponseBodySchema';
 
-const registerUserRequestBody = {
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        required: ['username', 'email', 'password', 'confirmPassword'],
-        properties: {
-          username: {
-            type: 'string',
-            example: 'John Doe',
-          },
-          email: {
-            type: 'string',
-            example: 'john@email.com',
-          },
-          password: {
-            type: 'string',
-            example: '123456',
-          },
-          confirmPassword: {
-            type: 'string',
-            example: '123456',
-          },
-        },
-      },
-    },
+const registerUserRequestBody = getSwaggerRequestBodySchema({
+  requiredFields: ['username', 'email', 'password', 'confirmPassword'],
+  requestBody: {
+    username: 'Pelusa',
+    email: 'pelusa@gmail.com',
+    password: 'abc123',
+    confirmPassword: 'abc123',
   },
-};
+});
 
-const registerUserSuccessResponse = {
+const successResponse = getSwaggerResponseBodySchema({
   description: 'New user is created',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-            example: 'User successfully created',
-          },
-          user: {
-            type: 'object',
-            properties: {
-              username: {
-                type: 'string',
-                example: 'John Doe',
-              },
-              email: {
-                type: 'string',
-                example: 'john@email.com',
-              },
-            },
-          },
-        },
+  responseBody: {
+    message: 'New user successfully registered',
+    tokens: {
+      access: {
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFmMmVjZWRiNzAyYzI3ODJiNTdjNWIiLCJpYXQiOjE2NTU2NDc5NTEsImV4cCI6MTY1NTczNDM1MSwidHlwZSI6ImFjY2VzcyJ9.D4qlEBSDgx8qRSvIJ6jwUUi2HLyR45NAfb-IGAKU3OM',
+        expires: '2022-06-20T14:12:31.152Z',
+      },
+      refresh: {
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFmMmVjZWRiNzAyYzI3ODJiNTdjNWIiLCJpYXQiOjE2NTU2NDc5NTEsImV4cCI6MTY1ODIzOTk1MSwidHlwZSI6InJlZnJlc2gifQ.Zb_o97Y3NFCDzVGs8TPZEdnmDKJGfE1CLltYHh7T1U8',
+        expires: '2022-07-19T14:12:31.152Z',
       },
     },
+    user: {
+      username: 'Pelusa',
+      email: 'pelusa@gmail.com',
+    },
   },
-};
+});
+
+const validationErrorResponse = getSwaggerResponseBodySchema({
+  description: 'Validation error on email or password',
+  responseBody: {
+    validatorErrors: [
+      {
+        message: '"email" must be a valid email',
+        path: ['email'],
+        type: 'string.email',
+        context: {
+          invalids: ['pelusagmail.com'],
+          label: 'email',
+          key: 'email',
+        },
+      },
+    ],
+  },
+});
 
 export const register = {
   '/user/register': {
@@ -69,7 +65,8 @@ export const register = {
       produces: ['application/json'],
       requestBody: registerUserRequestBody,
       responses: {
-        [StatusCodes.CREATED]: registerUserSuccessResponse,
+        [StatusCodes.CREATED]: successResponse,
+        [StatusCodes.BAD_REQUEST]: validationErrorResponse,
       },
     },
   },
