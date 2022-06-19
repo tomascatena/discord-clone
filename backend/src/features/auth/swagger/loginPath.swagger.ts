@@ -1,4 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
+import { getSwaggerResponseBodySchema } from '@utils/swagger/getSwaggerResponseBodySchema';
 
 const loginUserRequestBody = {
   content: {
@@ -21,169 +22,74 @@ const loginUserRequestBody = {
   },
 };
 
-const loginUserSuccessResponse = {
+const loginUserSuccessResponse = getSwaggerResponseBodySchema({
   description: 'Login existing user',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-            example: 'Login successful',
-          },
-          user: {
-            type: 'object',
-            properties: {
-              username: {
-                type: 'string',
-                example: 'John Doe',
-              },
-              email: {
-                type: 'string',
-                example: 'john@email.com',
-              },
-            },
-          },
-        },
+  responseBody: {
+    message: 'Successfully logged in',
+    tokens: {
+      access: {
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFiMTYxY2U4YzRmMGU0MjhhZGVhZWQiLCJpYXQiOjE2NTU2NDI3MDIsImV4cCI6MTY1NTcyOTEwMiwidHlwZSI6ImFjY2VzcyJ9.bdUCfq_wrKCsw4682R_PQq3Bgt3N54xugMHQNKU3wvU',
+        expires: '2022-06-20T12:45:02.512Z',
+      },
+      refresh: {
+        token:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2MmFiMTYxY2U4YzRmMGU0MjhhZGVhZWQiLCJpYXQiOjE2NTU2NDI3MDIsImV4cCI6MTY1ODIzNDcwMiwidHlwZSI6InJlZnJlc2gifQ.ox6d4MD4SEnNZT0DVYQRWr-iCd4GmOhCZ2Gsl_wgf4g',
+        expires: '2022-07-19T12:45:02.512Z',
       },
     },
+    user: {
+      username: 'Pelusa',
+      _id: '62ab161ce8c4f0e428adeaed',
+    },
   },
-};
+});
 
-const getMeSuccessResponse = {
+const getMeSuccessResponse = getSwaggerResponseBodySchema({
   description: 'Get logged in user',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-            example: 'Login successful',
-          },
-          user: {
-            type: 'object',
-            properties: {
-              username: {
-                type: 'string',
-                example: 'John Doe',
-              },
-              email: {
-                type: 'string',
-                example: 'john@email.com',
-              },
-              _id: {
-                type: 'string',
-                example: '62ab161ce8c4f0e428adeaed',
-              },
-            },
-          },
-        },
-      },
+  responseBody: {
+    message: 'Successfully authenticated user',
+    user: {
+      username: 'Pelusa',
+      email: 'pelusa@gmail.com',
+      _id: '62ab161ce8c4f0e428adeaed',
     },
   },
-};
+});
 
-const loginUserErrorResponse = {
+const loginUserErrorResponse = getSwaggerResponseBodySchema({
   description: 'Invalid email or password',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-            example: 'Incorrect email or password',
-          },
-          statusCode: {
-            type: 'number',
-            example: StatusCodes.UNAUTHORIZED,
-          },
-        },
-      },
-    },
+  responseBody: {
+    message: 'Incorrect email or password',
+    statusCode: StatusCodes.UNAUTHORIZED,
   },
-};
+});
 
-const tokenExpiredErrorResponse = {
+const tokenExpiredErrorResponse = getSwaggerResponseBodySchema({
   description: 'Expired token',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          message: {
-            type: 'string',
-            example: 'Unauthorized',
-          },
-          statusCode: {
-            type: 'number',
-            example: StatusCodes.UNAUTHORIZED,
-          },
-        },
-      },
-    },
+  responseBody: {
+    message: 'Unauthorized',
+    statusCode: StatusCodes.UNAUTHORIZED,
   },
-};
+});
 
-const validationError = {
-  type: 'object',
-  properties: {
-    message: {
-      type: 'string',
-      example: '"email" must be a valid email',
-    },
-    path: {
-      type: 'array',
-      items: {
-        type: 'string',
-        example: 'email',
-      },
-    },
-    type: {
-      type: 'string',
-      example: 'string.email',
-    },
-    context: {
-      type: 'object',
-      properties: {
-        invalids: {
-          type: 'array',
-          items: {
-            type: 'string',
-            example: 'johngmail.com',
-          },
-        },
-        label: {
-          type: 'string',
-          example: 'email',
-        },
-        key: {
-          type: 'string',
-          example: 'email',
-        },
-      },
-    },
-  },
-};
-
-const loginUserValidationErrorResponse = {
+const loginUserValidationErrorResponse = getSwaggerResponseBodySchema({
   description: 'Validation error on email or password',
-  content: {
-    'application/json': {
-      schema: {
-        type: 'object',
-        properties: {
-          validationErrors: {
-            type: 'array',
-            items: validationError,
-          },
+  responseBody: {
+    validatorErrors: [
+      {
+        message: '"email" must be a valid email',
+        path: ['email'],
+        type: 'string.email',
+        context: {
+          invalids: ['pelusagmail.com'],
+          label: 'email',
+          key: 'email',
         },
       },
-    },
+    ],
   },
-};
+});
 
 export const login = {
   '/auth/login': {
