@@ -3,7 +3,7 @@ import User, { IUser } from './user.model';
 import httpStatus from 'http-status-codes';
 
 const getUserByEmail = async (email: string) => {
-  const user = User.findOne({ email });
+  const user = await User.findOne({ email });
 
   if (!user) {
     throw new ApiError({
@@ -17,7 +17,7 @@ const getUserByEmail = async (email: string) => {
 };
 
 const getUserById = async (userId: string) => {
-  const user = User.findById(userId).select('-password');
+  const user = await User.findById(userId).select('-password');
 
   if (!user) {
     throw new ApiError({
