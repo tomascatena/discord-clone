@@ -1,7 +1,7 @@
-import { RequestWithBody } from '../../typings/typings';
+import { RequestWithBody } from '../../../typings/typings';
 import { Response } from 'express';
 import { catchAsync } from '@utils/catchAsync';
-import authService from './auth.service';
+import authService from '../service/auth.service';
 import httpStatus from 'http-status-codes';
 import tokenService from '@token/token.service';
 import userService from '@user/user.service';

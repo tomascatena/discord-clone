@@ -1,7 +1,7 @@
 import { joiValidator } from '@middleware/joiValidator';
 import { requireAuth } from '@middleware/requireAuth';
-import authController from './auth.controller';
-import authValidation from './auth.validation';
+import authController from '../controller/auth.controller';
+import authValidation from '../validation/auth.validation';
 import express, { RequestHandler } from 'express';
 
 const router = express.Router();

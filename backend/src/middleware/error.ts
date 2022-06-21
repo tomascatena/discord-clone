@@ -1,4 +1,4 @@
-import { ApiError } from 'utils/ApiError';
+import { ApiError } from '@utils/ApiError';
 import { Logger, LoggerToFile } from '@config/logger';
 import { NextFunction, Request, Response } from 'express';
 import { env } from '@config/config';

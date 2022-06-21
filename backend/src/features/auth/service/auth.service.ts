@@ -1,4 +1,4 @@
-import { ApiError } from 'utils/ApiError';
+import { ApiError } from '@utils/ApiError';
 import httpStatus from 'http-status-codes';
 import userService from '@user/user.service';
 
