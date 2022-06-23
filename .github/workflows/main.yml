@@ -23,4 +23,4 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: cd client && npm install
-      - run: cd client && npm run build
+      - run: npm run build
