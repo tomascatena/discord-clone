@@ -12,7 +12,9 @@ export const server = http.createServer(app);
 server.listen(env.PORT, () => {
   Logger.info(`Server listening on port ${env.PORT}`);
 
-  connectDB();
+  if (env.NODE_ENV !== 'test') {
+    connectDB();
+  }
 });
 
 process.on('unhandledRejection', unhandledRejectionHandler);

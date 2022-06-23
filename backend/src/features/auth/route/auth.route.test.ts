@@ -1,10 +1,21 @@
 import 'jest';
 import { StatusCodes } from 'http-status-codes';
 import { server } from '../../../server';
+import db from '../../../../__test__/database';
 import supertest from 'supertest';
 
-afterEach(() => {
+beforeAll(async () => {
+  await db.connect();
+});
+
+afterEach(async () => {
+  await db.clearDatabase();
+
   server.close();
+});
+
+afterAll(async () => {
+  await db.closeDatabase();
 });
 
 describe('Auth routes', () => {

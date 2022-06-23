@@ -34,6 +34,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mongoose": "^6.3.8",
+    "mongodb-memory-server": "^8.7.1",
     "morgan": "^1.10.0",
     "pm2": "^5.1.2",
     "swagger-jsdoc": "^6.2.1",
