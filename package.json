@@ -1,0 +1,22 @@
+{
+  "name": "discord-clone",
+  "version": "1.0.0",
+  "author": "Tomás Catena",
+  "license": "MIT",
+  "repository": "git@github.com:tomascatena/discord-clone.git",
+  "scripts": {
+    "start": "ts-node ./backend/src/server.ts",
+    "dev-server": "npm run dev --prefix ./backend",
+    "frontend": "npm run start --prefix ./client",
+    "dev": "concurrently \"npm run dev-server\" \"npm run client\"",
+    "prepare": "husky install",
+    "lint": "npm run lint --prefix ./backend && npm run lint --prefix ./client",
+    "postinstall": "(cd client && npm install) && (cd backend && npm install)"
+  },
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "nodemon": "^2.0.18",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.7.4"
+  }
+}
