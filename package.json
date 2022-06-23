@@ -14,6 +14,7 @@
     "postinstall": "(cd client && npm install) && (cd backend && npm install)"
   },
   "devDependencies": {
+    "husky": "^8.0.1",
     "concurrently": "^7.2.2",
     "nodemon": "^2.0.18",
     "ts-node": "^10.8.1",
