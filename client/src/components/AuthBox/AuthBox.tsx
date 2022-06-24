@@ -1,4 +1,4 @@
-import { BoxWrapper, StyledBox } from './AuthBox.styled';
+import { StyledBox } from './AuthBox.styled';
 import React from 'react';
 
 type Props = {
@@ -7,11 +7,9 @@ type Props = {
 
 const AuthBox:React.FC<Props> = ({ children }) => {
   return (
-    <BoxWrapper>
-      <StyledBox>
-        {children}
-      </StyledBox>
-    </BoxWrapper>
+    <StyledBox>
+      {children}
+    </StyledBox>
   );
 };
 

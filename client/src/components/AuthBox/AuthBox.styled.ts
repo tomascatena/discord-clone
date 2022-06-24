@@ -2,15 +2,6 @@ import { Box } from '@mui/material';
 import { styled } from '@mui/system';
 import darkTheme from '@themes/darkTheme';
 
-export const BoxWrapper = styled('div')(({ theme }) => ({
-  width: '100%',
-  height: '100vh',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-  backgroundColor: theme.palette.background.paper,
-}));
-
 export const StyledBox = styled(Box)(({ theme }) => ({
   width: 700,
   height: 400,
@@ -18,6 +9,16 @@ export const StyledBox = styled(Box)(({ theme }) => ({
   borderRadius: theme.shape.borderRadius,
   display: 'flex',
   flexDirection: 'column',
-  boxShadow: darkTheme.shadows[9],
-  padding: theme.spacing(2),
+  boxShadow: darkTheme.shadows[15],
+  padding: theme.spacing(3),
+
+  [theme.breakpoints.down('md')]: {
+    width: '80%',
+    margin: theme.spacing(2),
+  },
+
+  [theme.breakpoints.down('sm')]: {
+    width: '100%',
+    margin: theme.spacing(2),
+  }
 }));
