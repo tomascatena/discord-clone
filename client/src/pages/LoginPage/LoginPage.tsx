@@ -1,10 +1,12 @@
-import { ButtonBox, LoginForm, LoginPageLayout } from './LoginPage.styled';
+import { LoginForm, LoginPageLayout } from './LoginPage.styled';
+import { ROUTES } from '@constants/frontEndRoutes';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
 import AuthBox from '@components/AuthBox/AuthBox';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomLink from '@components/CustomLink/CustomLink';
 import Joi from 'joi';
 import React from 'react';
 
@@ -20,13 +22,13 @@ const schema = Joi.object<ILoginForm>({
 
 const LoginPage:React.FC = () => {
   const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
+    mode: 'all',
+    reValidateMode: 'onChange',
+    resolver: joiResolver(schema),
     defaultValues: {
       email: '',
       password: ''
     },
-    resolver: joiResolver(schema),
-    mode: 'all',
-    reValidateMode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<ILoginForm> = data => {
@@ -80,11 +82,21 @@ const LoginPage:React.FC = () => {
             setValue={setValue}
           />
 
-          <ButtonBox>
-            <CustomButton type='submit'>
+          <CustomButton
+            type='submit'
+            sx={{
+              marginTop: '0.8rem',
+              marginBottom: '0.8rem'
+            }}
+          >
               Login
-            </CustomButton>
-          </ButtonBox>
+          </CustomButton>
+
+          <CustomLink
+            to={ROUTES.REGISTER}
+            text="Don't have an account?"
+            redirectText='Sign Up'
+          />
         </LoginForm>
       </AuthBox>
     </LoginPageLayout>

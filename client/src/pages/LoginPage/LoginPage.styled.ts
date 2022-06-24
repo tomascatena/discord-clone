@@ -15,8 +15,3 @@ export const LoginForm = styled('form')(({ theme }) => ({
   flexDirection: 'column',
   gap: theme.spacing(3)
 }));
-
-export const ButtonBox = styled('div')(({ theme }) => ({
-  marginTop: theme.spacing(2),
-  display: 'flex',
-}));

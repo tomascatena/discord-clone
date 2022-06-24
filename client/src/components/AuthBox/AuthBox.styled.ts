@@ -4,7 +4,7 @@ import darkTheme from '@themes/darkTheme';
 
 export const StyledBox = styled(Box)(({ theme }) => ({
   width: 700,
-  height: 400,
+  minHeight: 400,
   backgroundColor: theme.palette.grey[900],
   borderRadius: theme.shape.borderRadius,
   display: 'flex',
