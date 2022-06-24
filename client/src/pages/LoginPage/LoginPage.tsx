@@ -1,8 +1,9 @@
-import { Button, Typography } from '@mui/material';
-import { ButtonBox, LoginPageLayout, StyledForm } from './LoginPage.styled';
+import { ButtonBox, LoginForm, LoginPageLayout } from './LoginPage.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
 import AuthBox from '@components/AuthBox/AuthBox';
+import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '../../components/CustomInput/CustomInput';
 import Joi from 'joi';
 import React from 'react';
@@ -18,17 +19,22 @@ const schema = Joi.object<ILoginForm>({
 });
 
 const LoginPage:React.FC = () => {
-  const { handleSubmit, control, formState, getValues } = useForm<ILoginForm>({
+  const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
     defaultValues: {
       email: '',
       password: ''
     },
     resolver: joiResolver(schema),
-    mode: 'all'
+    mode: 'all',
+    reValidateMode: 'onChange',
   });
 
   const onSubmit: SubmitHandler<ILoginForm> = data => {
     console.log(data);
+
+    if (formState.isValid) {
+      console.log('Form is valid');
+    }
   };
 
   return (
@@ -37,25 +43,28 @@ const LoginPage:React.FC = () => {
         <Typography
           variant='h5'
           color='text.primary'
+          sx={{
+            marginBottom: '1rem'
+          }}
         >
           Welcome Back!
         </Typography>
 
-        <Typography color='text.primary'>We are happy that you are with us.</Typography>
-
-        <StyledForm
+        <LoginForm
           noValidate
           onSubmit={handleSubmit(onSubmit)}
         >
           <CustomInput
             name='email'
             control={control}
-            placeholder='Enter E-Mail address'
+            placeholder='Your E-Mail address'
             labelText='Email'
             type='email'
             inputValue={getValues().email}
             isTouched={formState.touchedFields.email}
             validationError={formState.errors.email}
+            shouldShowCheckIcon={false}
+            setValue={setValue}
           />
 
           <CustomInput
@@ -67,17 +76,16 @@ const LoginPage:React.FC = () => {
             inputValue={getValues().password}
             isTouched={formState.touchedFields.password}
             validationError={formState.errors.password}
+            shouldShowCheckIcon={false}
+            setValue={setValue}
           />
 
           <ButtonBox>
-            <Button
-              variant='contained'
-              type='submit'
-            >
-              Submit
-            </Button>
+            <CustomButton type='submit'>
+              Login
+            </CustomButton>
           </ButtonBox>
-        </StyledForm>
+        </LoginForm>
       </AuthBox>
     </LoginPageLayout>
   );

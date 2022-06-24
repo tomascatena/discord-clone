@@ -1,4 +1,4 @@
-import { Controller, FieldError } from 'react-hook-form';
+import { FieldError, UseFormSetValue, useController } from 'react-hook-form';
 import {
   FilledInput,
   FormControl,
@@ -25,7 +25,8 @@ type Props = {
   shouldShowCheckIcon?: boolean
   variant?: 'standard' | 'outlined' | 'filled';
   validationError?: FieldError | undefined;
-  isDisabled?: boolean
+  isDisabled?: boolean;
+  setValue?: UseFormSetValue<any>;
 }
 
 const CustomInput:React.FC<Props> = ({
@@ -39,7 +40,8 @@ const CustomInput:React.FC<Props> = ({
   variant = 'outlined',
   validationError,
   shouldShowCheckIcon = true,
-  isDisabled = false
+  isDisabled = false,
+  setValue
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -90,24 +92,41 @@ const CustomInput:React.FC<Props> = ({
     ElementType = OutlinedInput;
   }
 
+  const { field } = useController({
+    name,
+    control,
+  });
+
+  /* This is necessary to update the value of the input when is set using the autofill from the browse */
+  React.useEffect(() => {
+    if (setValue && field.value) {
+      setValue(name, field.value, {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+    }
+  }, [field.value]);
+
   return (
-    <Controller
-      name={name}
-      control={control}
-      render={({ field }) =>
-        <FormControl
-          sx={{ width: '100%', mt: 1 }}
-          color={inputColor}
-          error={Boolean(validationError)}
-        >
-          <InputLabel>{labelText}</InputLabel>
+    <FormControl
+      sx={{ width: '100%', mt: 1 }}
+      color={inputColor}
+      error={Boolean(validationError)}
+    >
+      <InputLabel>{labelText}</InputLabel>
 
-          {React.createElement(ElementType, { ...props, ...field })}
+      {React.createElement(ElementType, {
+        ...props,
+        onChange: field.onChange, // send value to hook form
+        onBlur: field.onBlur, // notify when input is touched/blur
+        value: field.value, // input value
+        name: field.name, // send down the input name
+        inputRef: field.ref, // send input ref, so we can focus on input when error appear
+      })}
 
-          {validationError && <FormHelperText>{validationError.message?.replaceAll('"', '')}</FormHelperText>}
-        </FormControl>
-      }
-    />
+      {validationError && <FormHelperText>{validationError.message?.replaceAll('"', '')}</FormHelperText>}
+    </FormControl>
   );
 };
 
