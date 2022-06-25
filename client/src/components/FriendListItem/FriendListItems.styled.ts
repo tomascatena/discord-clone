@@ -1,13 +1,6 @@
 import { Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import Avatar from '@mui/material/Avatar';
 import Badge from '@mui/material/Badge';
-
-export const StyledAvatar = styled(Avatar)({
-  width: '32px',
-  height: '32px',
-  fontSize: '1rem',
-});
 
 export const StyledSpan = styled('span')({
   marginLeft: '0.8rem',
@@ -21,6 +14,9 @@ export const StyledBadge = styled(Badge, {
   shouldForwardProp: props => !['isOnline'].includes(props as string),
 })<StyledBadgeProps>(({ theme, isOnline }) => ({
   '& .MuiBadge-badge': {
+    height: '.75rem',
+    width: '.75rem',
+    borderRadius: '50%',
     backgroundColor: isOnline ? '#44b700' : '#999',
     color: isOnline ? '#44b700' : '#666',
     boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
