@@ -1,7 +1,7 @@
 import 'jest';
 import { StatusCodes } from 'http-status-codes';
-import { server } from '../../../server';
-import db from '../../../../__test__/database';
+import { server } from '../../server';
+import db from '../../../__test__/database';
 import supertest from 'supertest';
 
 beforeAll(async () => {
