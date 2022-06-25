@@ -1,3 +1,4 @@
+import './index.css';
 import { Provider } from 'react-redux';
 import { ThemeProvider } from '@mui/material/styles';
 import { createRoot } from 'react-dom/client';

@@ -18,6 +18,8 @@
   },
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@dicebear/avatars": "^4.10.3",
+    "@dicebear/pixel-art": "^4.10.3",
     "@emotion/react": "^11.9.3",
     "@emotion/styled": "^11.9.3",
     "@hookform/resolvers": "^2.9.2",

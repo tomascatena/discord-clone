@@ -6,5 +6,8 @@ export const FriendsListContainer = styled('div')(() => ({
   display: 'flex',
   flexDirection: 'column',
   alignItems: 'center',
-  overflow: 'auto',
+  padding: '0.5rem 0.8rem',
+  overflow: 'hidden',
+  overflowY: 'auto',
+  marginBottom: '1rem',
 }));
