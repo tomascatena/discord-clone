@@ -5,7 +5,7 @@ import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
 import AuthBox from '@components/AuthBox/AuthBox';
 import CustomButton from '@components/CustomButton/CustomButton';
-import CustomInput from '../../components/CustomInput/CustomInput';
+import CustomInput from '@components/CustomInput/CustomInput';
 import CustomLink from '@components/CustomLink/CustomLink';
 import Joi from 'joi';
 import React from 'react';
@@ -45,9 +45,7 @@ const LoginPage:React.FC = () => {
         <Typography
           variant='h5'
           color='text.primary'
-          sx={{
-            marginBottom: '1rem'
-          }}
+          align='center'
         >
           Welcome Back!
         </Typography>
