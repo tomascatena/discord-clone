@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { login } from '@store/features/auth/auth.thunk';
+import { useActions } from '../../hooks/useActions';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useTypedSelector } from '@hooks/useTypedSelector';
@@ -16,8 +17,8 @@ import Joi from 'joi';
 import React from 'react';
 
 interface ILoginForm {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 const schema = Joi.object<ILoginForm>({
@@ -27,8 +28,10 @@ const schema = Joi.object<ILoginForm>({
 
 const LoginPage:React.FC = () => {
   const dispatch = useAppDispatch();
-  const { loading, isAuthenticated, error } = useTypedSelector(state => state.auth);
   const navigate = useNavigate();
+  const { setAlert } = useActions();
+  const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
+  const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
   const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
     mode: 'all',
@@ -42,7 +45,15 @@ const LoginPage:React.FC = () => {
 
   const onSubmit: SubmitHandler<ILoginForm> = data => {
     if (formState.isValid) {
-      dispatch(login(data));
+      dispatch(login(data)).then((data) => {
+        if (data.type.includes('rejected')) {
+          setAlert({
+            isOpen: true,
+            message: data.payload?.message!,
+            severity: 'error'
+          });
+        }
+      });
     }
   };
 
@@ -115,9 +126,9 @@ const LoginPage:React.FC = () => {
       </AuthBox>
 
       <CustomSnackbar
-        severity='error'
-        isOpen={Boolean(error)}
-        message={error?.message!}
+        severity={severity}
+        isOpen={isOpen}
+        message={message!}
       />
     </LoginPageLayout>
   );

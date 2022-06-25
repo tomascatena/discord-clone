@@ -12,6 +12,7 @@ import axios, { AxiosError } from 'axios';
 type RejectValue = {
   message?: string;
   errors?: ValidationError[] | null;
+  statuScode?: number;
 };
 
 export const login = createAsyncThunk<

@@ -4,6 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { register } from '@store/features/auth/auth.thunk';
+import { useActions } from '../../hooks/useActions';
 import { useAppDispatch } from '../../hooks/useAppDispatch';
 import { useNavigate } from 'react-router-dom';
 import { useTypedSelector } from '@hooks/useTypedSelector';
@@ -35,8 +36,10 @@ const schema = Joi.object<IRegisterForm>({
 
 const RegisterPage:React.FC = () => {
   const dispatch = useAppDispatch();
-  const { loading, isAuthenticated, error } = useTypedSelector(state => state.auth);
   const navigate = useNavigate();
+  const { setAlert } = useActions();
+  const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
+  const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
   const { handleSubmit, control, formState, getValues, setValue } = useForm<IRegisterForm>({
     mode: 'all',
@@ -52,7 +55,15 @@ const RegisterPage:React.FC = () => {
 
   const onSubmit: SubmitHandler<IRegisterForm> = data => {
     if (formState.isValid) {
-      dispatch(register(data));
+      dispatch(register(data)).catch((data) => {
+        if (data.type.includes('rejected')) {
+          setAlert({
+            isOpen: true,
+            message: data.payload?.message!,
+            severity: 'error'
+          });
+        }
+      });
     }
   };
 
@@ -149,9 +160,9 @@ const RegisterPage:React.FC = () => {
       </AuthBox>
 
       <CustomSnackbar
-        severity='error'
-        isOpen={Boolean(error)}
-        message={error?.message!}
+        severity={severity}
+        isOpen={isOpen}
+        message={message!}
       />
     </RegisterPageLayout>
   );

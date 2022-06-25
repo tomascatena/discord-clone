@@ -1,4 +1,6 @@
 import { Alert, Snackbar, } from '@mui/material';
+import { useActions } from '@hooks/useActions';
+import Fade from '@mui/material/Fade';
 import React from 'react';
 
 type Props = {
@@ -6,6 +8,7 @@ type Props = {
   isOpen: boolean;
   message: string;
   autoHideDuration?: number;
+  fadeTimeout?: number;
   variant?: 'filled' | 'outlined' | 'standard';
   anchorOrigin?: {
     vertical: 'top' | 'bottom';
@@ -18,30 +21,57 @@ const CustomSnackbar:React.FC<Props> = ({
   isOpen,
   message,
   autoHideDuration = 5000,
+  fadeTimeout = 1000,
   anchorOrigin = { vertical: 'top', horizontal: 'center' },
 }) => {
-  const [open, setOpen] = React.useState(isOpen);
+  const { resetAlert } = useActions();
+
+  const [showAlert, setShowAlert] = React.useState(false);
+
+  const handleClose = () => {
+    setShowAlert(false);
+
+    setTimeout(() => resetAlert(), fadeTimeout); // wait for fadeout to finish
+  };
 
   React.useEffect(() => {
-    setOpen(isOpen);
+    if (isOpen) {
+      setShowAlert(true);
+
+      const timerId = setTimeout(() => {
+        handleClose();
+      }, autoHideDuration);
+
+      return () => {
+        clearTimeout(timerId);
+      };
+    }
   }, [isOpen]);
 
   return (
-    <Snackbar
-      anchorOrigin={anchorOrigin}
-      open={open}
-      autoHideDuration={autoHideDuration}
-      onClose={() => setOpen(false)}
+    <Fade
+      appear={showAlert}
+      in={showAlert}
+      timeout={fadeTimeout}
+      unmountOnExit={true}
     >
-      <Alert
-        variant='filled'
-        onClose={() => setOpen(false)}
-        severity={severity}
-        sx={{ width: '100%' }}
+      <Snackbar
+        anchorOrigin={anchorOrigin}
+        open={showAlert}
+        autoHideDuration={autoHideDuration}
+        onClose={handleClose}
       >
-        {message}
-      </Alert>
-    </Snackbar>);
+        <Alert
+          variant='filled'
+          onClose={handleClose}
+          severity={severity}
+          sx={{ width: '100%' }}
+        >
+          {message}
+        </Alert>
+      </Snackbar>
+    </Fade>
+  );
 };
 
 export default CustomSnackbar;

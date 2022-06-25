@@ -51,6 +51,7 @@ export const authSlice = createSlice({
       })
       .addCase(login.fulfilled, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = action.payload.user;
           state.loading = false;
@@ -68,6 +69,7 @@ export const authSlice = createSlice({
       })
       .addCase(login.rejected, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = null;
           state.loading = false;
@@ -93,6 +95,7 @@ export const authSlice = createSlice({
       })
       .addCase(register.fulfilled, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = action.payload.user;
           state.loading = false;
@@ -110,6 +113,7 @@ export const authSlice = createSlice({
       })
       .addCase(register.rejected, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = null;
           state.loading = false;
@@ -135,6 +139,7 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.fulfilled, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = action.payload.user;
           state.loading = false;
@@ -145,6 +150,7 @@ export const authSlice = createSlice({
       })
       .addCase(getUser.rejected, (state, action) => {
         const { requestId } = action.meta;
+
         if (state.loading && state.currentRequestId === requestId) {
           state.user = null;
           state.loading = false;

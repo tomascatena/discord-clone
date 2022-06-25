@@ -1,7 +1,12 @@
+import { alertActions } from '@store/features/alert/alertSlice';
+import { authActions } from '@store/features/auth/authSlice';
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 
-const actions = {};
+const actions = {
+  ...alertActions,
+  ...authActions,
+};
 
 export const useActions = (): typeof actions => {
   const dispatch = useDispatch();

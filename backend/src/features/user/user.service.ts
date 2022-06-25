@@ -5,27 +5,11 @@ import httpStatus from 'http-status-codes';
 const getUserByEmail = async (email: string) => {
   const user = await User.findOne({ email });
 
-  if (!user) {
-    throw new ApiError({
-      statusCode: httpStatus.BAD_REQUEST,
-      message: 'User does not exists',
-      isOperational: false,
-    });
-  }
-
   return user;
 };
 
 const getUserById = async (userId: string) => {
   const user = await User.findById(userId).select('-password');
-
-  if (!user) {
-    throw new ApiError({
-      statusCode: httpStatus.BAD_REQUEST,
-      message: 'User does not exists',
-      isOperational: false,
-    });
-  }
 
   return user;
 };
