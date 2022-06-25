@@ -3,6 +3,10 @@ import { RegisterForm, RegisterPageLayout } from './RegisterPage.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { register } from '@store/features/auth/auth.thunk';
+import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { useNavigate } from 'react-router-dom';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import AuthBox from '@components/AuthBox/AuthBox';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '@components/CustomInput/CustomInput';
@@ -29,6 +33,10 @@ const schema = Joi.object<IRegisterForm>({
 });
 
 const RegisterPage:React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
+  const navigate = useNavigate();
+
   const { handleSubmit, control, formState, getValues, setValue } = useForm<IRegisterForm>({
     mode: 'all',
     reValidateMode: 'onChange',
@@ -42,12 +50,16 @@ const RegisterPage:React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<IRegisterForm> = data => {
-    console.log(data);
-
     if (formState.isValid) {
-      console.log('Form is valid');
+      dispatch(register(data));
     }
   };
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate(ROUTES.DASHBOARD);
+    }
+  }, [isAuthenticated]);
 
   return (
     <RegisterPageLayout>
@@ -74,6 +86,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.username}
             validationError={formState.errors.username}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomInput
@@ -86,6 +99,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.email}
             validationError={formState.errors.email}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomInput
@@ -98,6 +112,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.password}
             validationError={formState.errors.password}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomInput
@@ -110,10 +125,12 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.confirmPassword}
             validationError={formState.errors.confirmPassword}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomButton
             type='submit'
+            isDisabled={loading || !formState.isValid}
             sx={{
               marginTop: '0.8rem',
               marginBottom: '0.8rem'

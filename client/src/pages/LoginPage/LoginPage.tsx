@@ -3,6 +3,10 @@ import { ROUTES } from '@constants/frontEndRoutes';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { login } from '@store/features/auth/auth.thunk';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useNavigate } from 'react-router-dom';
+import { useTypedSelector } from '@hooks/useTypedSelector';
 import AuthBox from '@components/AuthBox/AuthBox';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '@components/CustomInput/CustomInput';
@@ -21,6 +25,10 @@ const schema = Joi.object<ILoginForm>({
 });
 
 const LoginPage:React.FC = () => {
+  const dispatch = useAppDispatch();
+  const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
+  const navigate = useNavigate();
+
   const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
     mode: 'all',
     reValidateMode: 'onChange',
@@ -32,12 +40,16 @@ const LoginPage:React.FC = () => {
   });
 
   const onSubmit: SubmitHandler<ILoginForm> = data => {
-    console.log(data);
-
     if (formState.isValid) {
-      console.log('Form is valid');
+      dispatch(login(data));
     }
   };
+
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate(ROUTES.DASHBOARD);
+    }
+  }, [isAuthenticated]);
 
   return (
     <LoginPageLayout>
@@ -65,6 +77,7 @@ const LoginPage:React.FC = () => {
             validationError={formState.errors.email}
             shouldShowCheckIcon={false}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomInput
@@ -78,10 +91,12 @@ const LoginPage:React.FC = () => {
             validationError={formState.errors.password}
             shouldShowCheckIcon={false}
             setValue={setValue}
+            isDisabled={loading}
           />
 
           <CustomButton
             type='submit'
+            isDisabled={loading || !formState.isValid}
             sx={{
               marginTop: '0.8rem',
               marginBottom: '0.8rem'
