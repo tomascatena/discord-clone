@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 
 export const StyledSpan = styled('span')({
   marginLeft: '0.8rem',
+
 });
 
 type StyledButtonProps = {

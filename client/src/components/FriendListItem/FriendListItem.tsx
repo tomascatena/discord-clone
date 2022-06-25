@@ -1,7 +1,7 @@
 
-import * as style from '@dicebear/pixel-art';
-import { StyledBadge, StyledButton, StyledSpan } from './FriendListItems.styled';
-import { createAvatar } from '@dicebear/avatars';
+import { StyledButton, StyledSpan } from './FriendListItems.styled';
+
+import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
 import React from 'react';
 
 type Friend = {
@@ -16,32 +16,16 @@ type Props = {
 }
 
 const FriendListItem:React.FC<Props> = ({ friend }) => {
-  const avatar = React.useMemo(() => {
-    return createAvatar(style, {
-      seed: friend.name,
-      dataUri: true,
-      size: 32,
-      backgroundColor: '#fff',
-      radius: 50,
-    });
-  }, []);
-
   return (
     <StyledButton
-      isOnline={friend.isOnline}
+      isActive={friend.isOnline}
       disabled={!friend.isOnline}
     >
-      <StyledBadge
-        overlap="circular"
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        variant="dot"
+      <CustomAvatar
         isOnline={friend.isOnline}
-      >
-        <img
-          src={avatar}
-          alt={friend.name}
-        />
-      </StyledBadge>
+        imgAltText={friend.name}
+        hasOnlineIndicator
+      />
 
       <StyledSpan>
         {friend.name}
