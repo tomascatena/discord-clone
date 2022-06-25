@@ -33,7 +33,6 @@ IUserLoginForm,
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        console.log(error.response?.data);
         return rejectWithValue(error.response?.data as AxiosError);
       }
     }

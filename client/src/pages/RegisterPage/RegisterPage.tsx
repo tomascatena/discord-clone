@@ -11,6 +11,7 @@ import AuthBox from '@components/AuthBox/AuthBox';
 import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '@components/CustomInput/CustomInput';
 import CustomLink from '@components/CustomLink/CustomLink';
+import CustomSnackbar from '../../components/CustomSnackbar/CustomSnackbar';
 import Joi from 'joi';
 import React from 'react';
 
@@ -34,7 +35,7 @@ const schema = Joi.object<IRegisterForm>({
 
 const RegisterPage:React.FC = () => {
   const dispatch = useAppDispatch();
-  const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
+  const { loading, isAuthenticated, error } = useTypedSelector(state => state.auth);
   const navigate = useNavigate();
 
   const { handleSubmit, control, formState, getValues, setValue } = useForm<IRegisterForm>({
@@ -130,7 +131,7 @@ const RegisterPage:React.FC = () => {
 
           <CustomButton
             type='submit'
-            isDisabled={loading || !formState.isValid}
+            isDisabled={loading}
             sx={{
               marginTop: '0.8rem',
               marginBottom: '0.8rem'
@@ -145,8 +146,13 @@ const RegisterPage:React.FC = () => {
             redirectText='Login'
           />
         </RegisterForm>
-
       </AuthBox>
+
+      <CustomSnackbar
+        severity='error'
+        isOpen={Boolean(error)}
+        message={error?.message!}
+      />
     </RegisterPageLayout>
   );
 };
