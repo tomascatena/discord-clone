@@ -9,6 +9,7 @@ import {
   InputLabel,
   OutlinedInput
 } from '@mui/material';
+import { SxProps } from '@mui/system';
 import CheckIcon from '@mui/icons-material/Check';
 import React from 'react';
 import Visibility from '@mui/icons-material/Visibility';
@@ -16,7 +17,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
 type Props = {
   inputValue: string;
-  labelText: string;
+  labelText?: string;
   type: 'text' | 'password' | 'email';
   name:string;
   control: any;
@@ -27,11 +28,12 @@ type Props = {
   validationError?: FieldError | undefined;
   isDisabled?: boolean;
   setValue?: UseFormSetValue<any>;
+  sx?: SxProps;
 }
 
 const CustomInput:React.FC<Props> = ({
   inputValue,
-  labelText,
+  labelText = '',
   type,
   placeholder = '',
   name,
@@ -41,7 +43,8 @@ const CustomInput:React.FC<Props> = ({
   validationError,
   shouldShowCheckIcon = true,
   isDisabled = false,
-  setValue
+  setValue,
+  sx = {},
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
 
@@ -97,7 +100,10 @@ const CustomInput:React.FC<Props> = ({
     control,
   });
 
-  /* This is necessary to update the value of the input when is set using the autofill from the browse */
+  /**
+   * This is necessary to update the value of the input when is set using the autofill
+   * from the browser.
+   */
   React.useEffect(() => {
     if (setValue && field.value) {
       setValue(name, field.value, {
@@ -110,11 +116,11 @@ const CustomInput:React.FC<Props> = ({
 
   return (
     <FormControl
-      sx={{ width: '100%', mt: 1 }}
+      sx={{ width: '100%', mt: 1, ...sx }}
       color={inputColor}
       error={Boolean(validationError)}
     >
-      <InputLabel>{labelText}</InputLabel>
+      {labelText && <InputLabel>{labelText}</InputLabel>}
 
       {React.createElement(ElementType, {
         ...props,

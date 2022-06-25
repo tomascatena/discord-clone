@@ -1,5 +1,6 @@
 import { Button, Typography } from '@mui/material';
 import { FriendsSidebarContainer, ListsContainer } from './FriendsSidebar.styled';
+import CustomDialog from '@components/CustomDialog/CustomDialog';
 import FriendsList from '@components/FriendsList/FriendsList';
 import PendingInvitations from '../PendingInvitations/PendingInvitations';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
@@ -8,7 +9,10 @@ import React from 'react';
 type Props = {}
 
 const FriendsSidebar:React.FC<Props> = () => {
+  const [isDialogOpen, setIsDialogOpen] = React.useState(false);
+
   const openAddFriendDialog = () => {
+    setIsDialogOpen(true);
     console.log('openAddFriendDialog');
   };
 
@@ -43,6 +47,11 @@ const FriendsSidebar:React.FC<Props> = () => {
 
         <PendingInvitations/>
       </ListsContainer>
+
+      <CustomDialog
+        isDialogOpen={isDialogOpen}
+        setIsDialogOpen={setIsDialogOpen}
+      />
     </FriendsSidebarContainer>
   );
 };
