@@ -1,7 +1,7 @@
 import { IUser, ValidationError } from '../../../typings/typings';
 import { PayloadAction, SerializedError, createSlice } from '@reduxjs/toolkit';
+import { clearAuthenticatedUser, persistAuthenticatedUser } from './authLocalStorage';
 import { getUser, login, register } from './auth.thunk';
-import { setAuthToken } from '@utils/setAuthToken/setAuthToken';
 
 export interface AuthState {
   user: Partial<IUser> | null;
@@ -35,7 +35,7 @@ export const authSlice = createSlice({
       state.accessToken = null;
       state.user = null;
 
-      localStorage.removeItem('accessToken');
+      clearAuthenticatedUser();
     },
   },
   extraReducers: (builder) => {
@@ -59,12 +59,7 @@ export const authSlice = createSlice({
           state.isAuthenticated = true;
           state.accessToken = action.payload.tokens?.access.token ?? null;
 
-          localStorage.setItem(
-            'accessToken',
-            JSON.stringify(state.accessToken)
-          );
-
-          setAuthToken(state.accessToken);
+          persistAuthenticatedUser(state.accessToken!, state.user);
         }
       })
       .addCase(login.rejected, (state, action) => {
@@ -79,9 +74,7 @@ export const authSlice = createSlice({
           state.isAuthenticated = false;
           state.accessToken = null;
 
-          localStorage.removeItem('accessToken');
-
-          setAuthToken(null);
+          clearAuthenticatedUser();
         }
       })
       .addCase(register.pending, (state, action) => {
@@ -103,12 +96,7 @@ export const authSlice = createSlice({
           state.isAuthenticated = true;
           state.accessToken = action.payload.tokens?.access.token ?? null;
 
-          localStorage.setItem(
-            'accessToken',
-            JSON.stringify(state.accessToken)
-          );
-
-          setAuthToken(state.accessToken);
+          persistAuthenticatedUser(state.accessToken!, state.user);
         }
       })
       .addCase(register.rejected, (state, action) => {
@@ -123,9 +111,7 @@ export const authSlice = createSlice({
           state.isAuthenticated = false;
           state.accessToken = null;
 
-          localStorage.removeItem('accessToken');
-
-          setAuthToken(null);
+          clearAuthenticatedUser();
         }
       })
       .addCase(getUser.pending, (state, action) => {

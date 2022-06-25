@@ -8,8 +8,20 @@ const api = axios.create({
   },
 });
 
-export const login = async (email: string, password: string) => {
-  const response = await api.post('/auth/login', { email, password });
+api.interceptors.request.use(
+  (config) => {
+    if (!config?.headers) {
+      throw new Error("Expected 'config' and 'config.headers' not to be undefined");
+    }
 
-  return response.data;
-};
+    const token = localStorage.getItem('accessToken');
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    } else {
+      config.headers.Authorization = '';
+    }
+
+    return config;
+  }
+);
