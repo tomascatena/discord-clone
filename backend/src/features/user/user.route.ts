@@ -6,7 +6,7 @@ import userValidation from './user.validation';
 const router = express.Router();
 
 /**
- * @route POST api/v1/auth
+ * @route POST api/v1/users/register
  * @desc Register a new user
  * @access Private
  */

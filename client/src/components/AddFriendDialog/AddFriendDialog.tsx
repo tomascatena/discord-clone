@@ -14,7 +14,6 @@ type Props = {
 
 interface IAddFriendForm {
   email: string;
-  password: string;
 }
 
 const schema = Joi.object<IAddFriendForm>({
@@ -39,10 +38,8 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   };
 
   const onSubmit: SubmitHandler<IAddFriendForm> = data => {
-    console.log('onSubmit', data);
-
     if (formState.isValid) {
-      dispatch(sendInvitation({}));
+      dispatch(sendInvitation(data));
     }
   };
 

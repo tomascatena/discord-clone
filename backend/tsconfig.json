@@ -35,6 +35,7 @@
       "@middleware/*": ["middleware/*"],
       "@auth/*": ["features/auth/*"],
       "@user/*": ["features/user/*"],
+      "@friends/*": ["features/friends/*"],
       "@token/*": ["features/token/*"],
       "@docs": ["features/docs/*"],
       "@typings": ["typings/*"],
