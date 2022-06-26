@@ -20,7 +20,7 @@ const schema = Joi.object<IAddFriendForm>({
 });
 
 const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
-  const { handleSubmit, control, formState, getValues, reset } = useForm<IAddFriendForm>({
+  const { handleSubmit, control, formState, getValues, reset, setValue } = useForm<IAddFriendForm>({
     mode: 'all',
     reValidateMode: 'onChange',
     resolver: joiResolver(schema),
@@ -79,6 +79,7 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
               inputValue={getValues().email}
               isTouched={formState.touchedFields.email}
               validationError={formState.errors.email}
+              setValue={setValue}
             />
           </DialogContent>
 

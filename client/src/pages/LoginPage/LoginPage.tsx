@@ -33,9 +33,9 @@ const LoginPage:React.FC = () => {
   const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
   const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
-  const { handleSubmit, control, formState, getValues } = useForm<ILoginForm>({
-    mode: 'all',
-    reValidateMode: 'onChange',
+  const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     resolver: joiResolver(schema),
     defaultValues: {
       email: '',
@@ -89,6 +89,7 @@ const LoginPage:React.FC = () => {
             validationError={formState.errors.email}
             shouldShowCheckIcon={false}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomInput
@@ -102,6 +103,7 @@ const LoginPage:React.FC = () => {
             validationError={formState.errors.password}
             shouldShowCheckIcon={false}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomButton

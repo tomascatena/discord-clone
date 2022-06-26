@@ -1,4 +1,4 @@
-import { FieldError, useController } from 'react-hook-form';
+import { FieldError, UseFormSetValue, useController } from 'react-hook-form';
 import {
   FilledInput,
   FormControl,
@@ -27,6 +27,7 @@ type Props = {
   variant?: 'standard' | 'outlined' | 'filled';
   validationError?: FieldError | undefined;
   isDisabled?: boolean;
+  setValue?: UseFormSetValue<any>;
   sx?: SxProps;
 }
 
@@ -42,6 +43,7 @@ const CustomInput:React.FC<Props> = ({
   validationError,
   shouldShowCheckIcon = true,
   isDisabled = false,
+  setValue,
   sx = {},
 }) => {
   const [showPassword, setShowPassword] = React.useState(false);
@@ -82,7 +84,6 @@ const CustomInput:React.FC<Props> = ({
     endAdornment: endAdornment,
     label: labelText,
     disabled: isDisabled,
-    autoComplete: 'off',
   };
 
   let ElementType = FilledInput;
@@ -98,6 +99,20 @@ const CustomInput:React.FC<Props> = ({
     name,
     control,
   });
+
+  /**
+   * This is necessary to update the value of the input when is set using the autofill
+   * from the browser.
+   */
+  React.useEffect(() => {
+    if (setValue && field.value) {
+      setValue(name, field.value, {
+        shouldValidate: true,
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+    }
+  }, [field.value]);
 
   return (
     <FormControl

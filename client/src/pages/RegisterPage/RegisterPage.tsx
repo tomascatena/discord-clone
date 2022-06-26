@@ -41,7 +41,7 @@ const RegisterPage:React.FC = () => {
   const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
   const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
-  const { handleSubmit, control, formState, getValues } = useForm<IRegisterForm>({
+  const { handleSubmit, control, formState, getValues, setValue } = useForm<IRegisterForm>({
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     resolver: joiResolver(schema),
@@ -55,7 +55,7 @@ const RegisterPage:React.FC = () => {
 
   const onSubmit: SubmitHandler<IRegisterForm> = data => {
     if (formState.isValid) {
-      dispatch(register(data)).catch((data) => {
+      dispatch(register(data)).then((data) => {
         if (data.type.includes('rejected')) {
           setAlert({
             isOpen: true,
@@ -98,6 +98,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.username}
             validationError={formState.errors.username}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomInput
@@ -110,6 +111,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.email}
             validationError={formState.errors.email}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomInput
@@ -122,6 +124,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.password}
             validationError={formState.errors.password}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomInput
@@ -134,6 +137,7 @@ const RegisterPage:React.FC = () => {
             isTouched={formState.touchedFields.confirmPassword}
             validationError={formState.errors.confirmPassword}
             isDisabled={loading}
+            setValue={setValue}
           />
 
           <CustomButton
