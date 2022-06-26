@@ -49,7 +49,8 @@ export const StyledIconButton = styled(IconButton, {
   height: '2rem',
   width: '2rem',
   color: iconColor,
-  backgroundColor: '#ddd',
+  backgroundColor: '#bbb',
+
   ':hover': {
     backgroundColor: '#fff',
   },

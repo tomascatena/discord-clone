@@ -10,6 +10,6 @@ export const AppBarContainer = styled('div')(() => ({
   width: 'calc(100% - 224px - 72px)',
   display: 'flex',
   alignItems: 'center',
-  justifyContent: 'space-between',
+  justifyContent: 'flex-end',
   padding: '0 16px',
 }));
