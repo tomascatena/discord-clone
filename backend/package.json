@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend for Discord Clone App",
-  "main": "server.ts",
+  "main": "http-server.ts",
   "license": "MIT",
   "author": {
     "name": "Tomás Catena",
@@ -10,13 +10,14 @@
   },
   "scripts": {
     "start": "pm2 start ecosystem.config.json --no-daemon",
-    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+    "dev": "cross-env NODE_ENV=development nodemon src/http-server.ts",
     "lint": "eslint . --ext .js,.ts",
     "lint:fix": "eslint . --ext .js,.ts --fix",
     "test": "jest --watchAll --coverage --detectOpenHandles",
     "postinstall": "./node_modules/.bin/pm2 install typescript"
   },
   "dependencies": {
+    "@types/socket.io": "^3.0.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "cross-env": "^7.0.3",
@@ -33,10 +34,11 @@
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.3.8",
     "mongodb-memory-server": "^8.7.1",
+    "mongoose": "^6.3.8",
     "morgan": "^1.10.0",
     "pm2": "^5.1.2",
+    "socket.io": "^4.5.1",
     "swagger-jsdoc": "^6.2.1",
     "swagger-ui-express": "^4.4.0",
     "validator": "^13.7.0",

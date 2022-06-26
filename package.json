@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "git@github.com:tomascatena/discord-clone.git",
   "scripts": {
-    "start": "ts-node ./backend/src/server.ts",
+    "start": "ts-node ./backend/src/http-server.ts",
     "dev-server": "npm run dev --prefix ./backend",
     "client": "npm run start --prefix ./client",
     "dev": "concurrently \"npm run dev-server\" \"npm run client\"",

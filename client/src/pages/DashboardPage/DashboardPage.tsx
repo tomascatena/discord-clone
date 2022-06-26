@@ -1,4 +1,5 @@
 import { DashboardPageContainer } from './DashboardPage.styled';
+import { connectWithSocketServer } from 'realtimeCommunication/socketConnection';
 import { useActions } from '../../hooks/useActions';
 import { useNavigate } from 'react-router-dom';
 import AppBar from '@components/AppBar/AppBar';
@@ -13,10 +14,13 @@ const DashboardPage:React.FC = () => {
 
   React.useEffect(() => {
     const userData = localStorage.getItem('userData');
+    const accessToken = localStorage.getItem('accessToken');
 
-    if (!userData) {
+    if (!userData || !accessToken) {
       actions.logout();
       navigate('/login');
+    } else {
+      connectWithSocketServer();
     }
   }, []);
 
