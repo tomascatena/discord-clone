@@ -1,5 +1,6 @@
 import { joiValidator } from '@middleware/joiValidator';
-import express from 'express';
+import { requireAuth } from '@middleware/requireAuth';
+import express, { RequestHandler } from 'express';
 import friendsController from './friends.controller';
 import friendsValidation from './friends.validation';
 
@@ -12,6 +13,7 @@ const router = express.Router();
  */
 router.post(
   '/sendInvitation',
+  requireAuth as RequestHandler[],
   joiValidator.body(friendsValidation.sendInvitationSchema),
   friendsController.sendInvitation
 );

@@ -2,8 +2,12 @@ import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography }
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
 import { sendInvitation } from '@store/features/friends/friends.thunk';
+import { useActions } from '@hooks/useActions';
 import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useTypedSelector } from '@hooks/useTypedSelector';
+import CustomButton from '@components/CustomButton/CustomButton';
 import CustomInput from '@components/CustomInput/CustomInput';
+import CustomSnackbar from '@components/CustomSnackbar/CustomSnackbar';
 import Joi from 'joi';
 import React from 'react';
 
@@ -22,6 +26,10 @@ const schema = Joi.object<IAddFriendForm>({
 
 const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
   const dispatch = useAppDispatch();
+  const { setAlert } = useActions();
+
+  const { loading } = useTypedSelector(state => state.friends);
+  const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
   const { handleSubmit, control, formState, getValues, reset, setValue } = useForm<IAddFriendForm>({
     mode: 'all',
@@ -39,7 +47,15 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
 
   const onSubmit: SubmitHandler<IAddFriendForm> = data => {
     if (formState.isValid) {
-      dispatch(sendInvitation(data));
+      dispatch(sendInvitation(data)).then((data) => {
+        if (data.type.includes('rejected')) {
+          setAlert({
+            isOpen: true,
+            message: data.payload?.message!,
+            severity: 'error'
+          });
+        }
+      });
     }
   };
 
@@ -90,15 +106,23 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
           >
             <Button onClick={closeDialog}>Cancel</Button>
 
-            <Button
+            <CustomButton
               variant='contained'
               type='submit'
-            >
-              Send Invitation
-            </Button>
+              text='Send Invitation'
+              loadingText='Sending Invitation...'
+              isLoading={loading}
+              isDisabled={!formState.isValid}
+            />
           </DialogActions>
         </form>
       </Dialog>
+
+      <CustomSnackbar
+        severity={severity}
+        isOpen={isOpen}
+        message={message!}
+      />
     </div>
   );
 };

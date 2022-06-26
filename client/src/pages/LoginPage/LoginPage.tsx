@@ -108,14 +108,14 @@ const LoginPage:React.FC = () => {
 
           <CustomButton
             type='submit'
-            isDisabled={loading || !formState.isValid}
+            isDisabled={!formState.isValid}
+            text='Login'
+            isLoading={loading}
             sx={{
               marginTop: '0.8rem',
               marginBottom: '0.8rem'
             }}
-          >
-              Login
-          </CustomButton>
+          />
 
           <CustomLink
             to={ROUTES.REGISTER}
