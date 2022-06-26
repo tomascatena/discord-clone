@@ -46,3 +46,5 @@ export interface AuthData {
   tokens?: Tokens;
   message: string
 }
+
+export interface IFriend {}

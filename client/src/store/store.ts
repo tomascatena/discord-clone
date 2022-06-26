@@ -2,11 +2,13 @@ import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
 import { getInitialState } from './getInitialState';
 import alertReducer from './features/alert/alertSlice';
 import authReducer from './features/auth/authSlice';
+import friendsReducer from './features/friends/friendsSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     alert: alertReducer,
+    friends: friendsReducer
   },
 });
 
