@@ -19,6 +19,11 @@ export const registerSocketServer = (server: http.Server) => {
     console.log('a user connected');
     console.log('socket id', socket.id);
 
+    // New connection from client
+    socket.on('newConnection', (data) => {
+      console.log('newConnection', data);
+    });
+
     socket.on('disconnect', () => {
       console.log('user disconnected');
     });
