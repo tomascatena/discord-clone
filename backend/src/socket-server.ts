@@ -1,5 +1,6 @@
 import { Logger } from './config/logger';
 import { Server as SocketIOServer } from 'socket.io';
+import { disconnectHandler } from './socketHandlers/disconnectHandler';
 import { newConnectionHandler } from './socketHandlers/newConnectionHandler';
 import { verifyTokenSocket } from '@middleware/authSocket';
 import http from 'http';
@@ -22,13 +23,10 @@ export const registerSocketServer = (server: http.Server) => {
 
     newConnectionHandler(socket, io);
 
-    // New connection from client
-    socket.on('newConnection', (data) => {
-      console.log('newConnection', data);
-    });
-
     socket.on('disconnect', () => {
       console.log('user disconnected');
+
+      disconnectHandler(socket);
     });
   });
 };
