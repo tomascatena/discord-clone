@@ -23,6 +23,7 @@ const loginUser = catchAsync(async (req: RequestWithBody, res: Response) => {
     tokens,
     user: {
       username: user?.username,
+      email: user?.email,
       _id: user?._id,
     },
   });

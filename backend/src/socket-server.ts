@@ -1,5 +1,6 @@
 import { Logger } from './config/logger';
 import { Server as SocketIOServer } from 'socket.io';
+import { verifyTokenSocket } from './middleware/authSocket';
 import http from 'http';
 
 export const registerSocketServer = (server: http.Server) => {
@@ -11,6 +12,8 @@ export const registerSocketServer = (server: http.Server) => {
       methods: ['GET', 'POST'],
     },
   });
+
+  io.use(verifyTokenSocket);
 
   io.on('connection', (socket) => {
     console.log('a user connected');

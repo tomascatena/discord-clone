@@ -27,6 +27,7 @@ const registerUser = catchAsync(async (req: RequestWithBody, res: Response) => {
     user: {
       username: user?.username,
       email: user?.email,
+      _id: user?._id,
     },
   });
 });

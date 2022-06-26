@@ -20,7 +20,10 @@ const DashboardPage:React.FC = () => {
       actions.logout();
       navigate('/login');
     } else {
-      connectWithSocketServer();
+      connectWithSocketServer({
+        userData: JSON.parse(userData),
+        accessToken: JSON.parse(accessToken)
+      });
     }
   }, []);
 
