@@ -50,14 +50,22 @@ const DUMMY_INVITATIONS = [
 ];
 
 const PendingInvitations:React.FC<Props> = () => {
+  const acceptInvitation = (invitationId: string) => {
+    console.log(`Accepting invitation with id ${invitationId}`);
+  };
+
+  const rejectInvitation = (invitationId: string) => {
+    console.log(`Rejecting invitation with id ${invitationId}`);
+  };
+
   return (
     <PendingInvitationsContainer>
       {DUMMY_INVITATIONS.map(invitation => (
         <PendingInvitationListItem
           key={invitation._id}
           invitation={invitation}
-          acceptInvitation={() => {}}
-          rejectInvitation={() => {}}
+          acceptInvitation={acceptInvitation}
+          rejectInvitation={rejectInvitation}
         />
       ))}
     </PendingInvitationsContainer>

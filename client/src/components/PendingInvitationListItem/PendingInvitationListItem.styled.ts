@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import { Box, IconButton } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 type StyledBoxProps = {
@@ -26,5 +26,31 @@ export const StyledBox = styled(Box, {
 
   '&:hover': {
     backgroundColor: isActive ? '#777' : '#aaa',
+  },
+}));
+
+export const IconsContainer = styled(Box)({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '.7rem',
+  position: 'absolute',
+  right: '1rem',
+  top: '50%',
+  transform: 'translateY(-50%)',
+});
+
+type StyledIconButtonProps = {
+  iconColor:string,
+}
+
+export const StyledIconButton = styled(IconButton, {
+  shouldForwardProp: props => !['iconColor'].includes(props as string),
+})<StyledIconButtonProps>(({ iconColor }) => ({
+  height: '2rem',
+  width: '2rem',
+  color: iconColor,
+  backgroundColor: '#ddd',
+  ':hover': {
+    backgroundColor: '#fff',
   },
 }));

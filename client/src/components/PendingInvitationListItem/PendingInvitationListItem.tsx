@@ -1,7 +1,6 @@
-import { Box } from '@mui/system';
 import { HtmlTooltip } from '@components/HtmlTooltip/HtmlTooltip';
-import { IconButton, Typography } from '@mui/material';
-import { StyledBox } from './PendingInvitationListItem.styled';
+import { IconsContainer, StyledBox, StyledIconButton } from './PendingInvitationListItem.styled';
+import { Typography } from '@mui/material';
 import Check from '@mui/icons-material/Check';
 import Clear from '@mui/icons-material/Clear';
 import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
@@ -17,8 +16,8 @@ type Invitation = {
 
 type Props = {
   invitation: Invitation;
-  acceptInvitation: () => void;
-  rejectInvitation: () => void;
+  acceptInvitation: (id: string) => void;
+  rejectInvitation: (id: string) => void;
 }
 
 const PendingInvitationListItem:React.FC<Props> = ({ invitation, acceptInvitation, rejectInvitation }) => {
@@ -39,47 +38,21 @@ const PendingInvitationListItem:React.FC<Props> = ({ invitation, acceptInvitatio
           hasOnlineIndicator={false}
         />
 
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '1rem',
-            position: 'absolute',
-            right: '1rem',
-            top: '50%',
-            transform: 'translateY(-50%)',
-          }}
-        >
-          <IconButton
-            onClick={acceptInvitation}
-            sx={{
-              height: '2rem',
-              width: '2rem',
-              color: 'green',
-              backgroundColor: '#ddd',
-              ':hover': {
-                backgroundColor: '#fff',
-              },
-            }}
+        <IconsContainer>
+          <StyledIconButton
+            onClick={() => acceptInvitation(invitation.senderId.username)}
+            iconColor='green'
           >
             <Check/>
-          </IconButton>
+          </StyledIconButton>
 
-          <IconButton
-            onClick={rejectInvitation}
-            sx={{
-              height: '2rem',
-              width: '2rem',
-              color: 'red',
-              backgroundColor: '#ddd',
-              ':hover': {
-                backgroundColor: '#fff',
-              },
-            }}
+          <StyledIconButton
+            onClick={() => rejectInvitation(invitation.senderId.username)}
+            iconColor='red'
           >
-            <Clear />
-          </IconButton>
-        </Box>
+            <Clear/>
+          </StyledIconButton>
+        </IconsContainer>
       </StyledBox>
     </HtmlTooltip>
   );
