@@ -48,3 +48,5 @@ export interface AuthData {
 }
 
 export interface IFriend {}
+
+export interface IInvitationData {}

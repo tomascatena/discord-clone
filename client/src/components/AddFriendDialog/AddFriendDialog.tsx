@@ -1,6 +1,8 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
+import { sendInvitation } from '@store/features/friends/friends.thunk';
+import { useAppDispatch } from '@hooks/useAppDispatch';
 import CustomInput from '@components/CustomInput/CustomInput';
 import Joi from 'joi';
 import React from 'react';
@@ -20,6 +22,8 @@ const schema = Joi.object<IAddFriendForm>({
 });
 
 const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
+  const dispatch = useAppDispatch();
+
   const { handleSubmit, control, formState, getValues, reset, setValue } = useForm<IAddFriendForm>({
     mode: 'all',
     reValidateMode: 'onChange',
@@ -29,10 +33,6 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
     },
   });
 
-  const sendInvitation = () => {
-    console.log('sendInvitation');
-  };
-
   const closeDialog = () => {
     setIsDialogOpen(false);
     reset();
@@ -40,8 +40,9 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
 
   const onSubmit: SubmitHandler<IAddFriendForm> = data => {
     console.log('onSubmit', data);
+
     if (formState.isValid) {
-      sendInvitation();
+      dispatch(sendInvitation({}));
     }
   };
 
@@ -94,8 +95,10 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
 
             <Button
               variant='contained'
-              onClick={sendInvitation}
-            >Send Invitation</Button>
+              type='submit'
+            >
+              Send Invitation
+            </Button>
           </DialogActions>
         </form>
       </Dialog>
