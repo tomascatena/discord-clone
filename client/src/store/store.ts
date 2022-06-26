@@ -1,4 +1,5 @@
 import { Action, ThunkAction, configureStore } from '@reduxjs/toolkit';
+import { getInitialState } from './getInitialState';
 import alertReducer from './features/alert/alertSlice';
 import authReducer from './features/auth/authSlice';
 
@@ -8,6 +9,8 @@ export const store = configureStore({
     alert: alertReducer,
   },
 });
+
+getInitialState();
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;

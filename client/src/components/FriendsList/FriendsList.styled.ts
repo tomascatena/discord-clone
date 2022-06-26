@@ -7,4 +7,7 @@ export const FriendsListContainer = styled('div')(() => ({
   overflow: 'hidden',
   overflowY: 'scroll',
   marginBottom: '1rem',
+  backgroundColor: '#36393F',
+  marginTop: '1rem',
+  paddingBottom: '1rem',
 }));

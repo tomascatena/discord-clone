@@ -145,6 +145,8 @@ export const authSlice = createSlice({
           state.currentRequestId = undefined;
           state.isAuthenticated = false;
           state.accessToken = null;
+
+          clearAuthenticatedUser();
         }
       });
   },
