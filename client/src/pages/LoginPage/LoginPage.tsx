@@ -33,7 +33,7 @@ const LoginPage:React.FC = () => {
   const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
   const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
-  const { handleSubmit, control, formState, getValues, setValue } = useForm<ILoginForm>({
+  const { handleSubmit, control, formState, getValues } = useForm<ILoginForm>({
     mode: 'all',
     reValidateMode: 'onChange',
     resolver: joiResolver(schema),
@@ -88,7 +88,6 @@ const LoginPage:React.FC = () => {
             isTouched={formState.touchedFields.email}
             validationError={formState.errors.email}
             shouldShowCheckIcon={false}
-            setValue={setValue}
             isDisabled={loading}
           />
 
@@ -102,7 +101,6 @@ const LoginPage:React.FC = () => {
             isTouched={formState.touchedFields.password}
             validationError={formState.errors.password}
             shouldShowCheckIcon={false}
-            setValue={setValue}
             isDisabled={loading}
           />
 

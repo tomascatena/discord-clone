@@ -41,9 +41,9 @@ const RegisterPage:React.FC = () => {
   const { loading, isAuthenticated } = useTypedSelector(state => state.auth);
   const { isOpen, message, severity } = useTypedSelector((state) => state.alert);
 
-  const { handleSubmit, control, formState, getValues, setValue } = useForm<IRegisterForm>({
-    mode: 'all',
-    reValidateMode: 'onChange',
+  const { handleSubmit, control, formState, getValues } = useForm<IRegisterForm>({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     resolver: joiResolver(schema),
     defaultValues: {
       email: '',
@@ -97,7 +97,6 @@ const RegisterPage:React.FC = () => {
             inputValue={getValues().username}
             isTouched={formState.touchedFields.username}
             validationError={formState.errors.username}
-            setValue={setValue}
             isDisabled={loading}
           />
 
@@ -110,7 +109,6 @@ const RegisterPage:React.FC = () => {
             inputValue={getValues().email}
             isTouched={formState.touchedFields.email}
             validationError={formState.errors.email}
-            setValue={setValue}
             isDisabled={loading}
           />
 
@@ -123,7 +121,6 @@ const RegisterPage:React.FC = () => {
             inputValue={getValues().password}
             isTouched={formState.touchedFields.password}
             validationError={formState.errors.password}
-            setValue={setValue}
             isDisabled={loading}
           />
 
@@ -136,7 +133,6 @@ const RegisterPage:React.FC = () => {
             inputValue={getValues().confirmPassword}
             isTouched={formState.touchedFields.confirmPassword}
             validationError={formState.errors.confirmPassword}
-            setValue={setValue}
             isDisabled={loading}
           />
 
