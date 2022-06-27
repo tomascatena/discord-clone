@@ -7,6 +7,7 @@ export interface IUser {
   username: string;
   email: string;
   password: string;
+  friends: string[];
   isPasswordMatch: (password: string) => Promise<boolean>;
 }
 
@@ -38,6 +39,12 @@ const userSchema = new mongoose.Schema<IUser, IUserModel>(
       minlength: env.PASSWORD_MIN_LENGTH,
       maxlength: env.PASSWORD_MAX_LENGTH,
     },
+    friends: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+      },
+    ],
   },
   {
     timestamps: true,

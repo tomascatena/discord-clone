@@ -36,7 +36,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"pelusa@gmail.com\",\n    \"password\": \"abc123\"\n}",
+							"raw": "{\n    \"email\": \"tomas@gmail.com\",\n    \"password\": \"abc123\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -736,7 +736,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:5000/api/v1/user/register",
+							"raw": "http://localhost:5000/api/v1/users/register",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -745,7 +745,7 @@
 							"path": [
 								"api",
 								"v1",
-								"user",
+								"users",
 								"register"
 							]
 						},
@@ -767,7 +767,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/v1/user/register",
+									"raw": "http://localhost:5000/api/v1/users/register",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -776,7 +776,7 @@
 									"path": [
 										"api",
 										"v1",
-										"user",
+										"users",
 										"register"
 									]
 								}
@@ -888,7 +888,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/v1/user/register",
+									"raw": "http://localhost:5000/api/v1/users/register",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -897,7 +897,7 @@
 									"path": [
 										"api",
 										"v1",
-										"user",
+										"users",
 										"register"
 									]
 								}
@@ -1009,7 +1009,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://localhost:5000/api/v1/user/register",
+									"raw": "http://localhost:5000/api/v1/users/register",
 									"protocol": "http",
 									"host": [
 										"localhost"
@@ -1018,7 +1018,7 @@
 									"path": [
 										"api",
 										"v1",
-										"user",
+										"users",
 										"register"
 									]
 								}
@@ -1119,6 +1119,537 @@
 				}
 			],
 			"description": "Routes related to user information."
+		},
+		{
+			"name": "Friends",
+			"item": [
+				{
+					"name": "Send Inviation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"rufo@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/v1/friends/sendInvitation",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"v1",
+								"friends",
+								"sendInvitation"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Send Inviation Token Expired",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/friends/sendInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"friends",
+										"sendInvitation"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1263"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"4ef-o/A8jLVkV+Ly1U/oOhoyJYHO6gk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 18:41:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 401,\n    \"message\": \"Unauthorized\",\n    \"stack\": \"TokenExpiredError: jwt expired\\n    at /home/tomas/Projects/discord-clonde/backend/node_modules/jsonwebtoken/verify.js:152:21\\n    at getSecret (/home/tomas/Projects/discord-clonde/backend/node_modules/jsonwebtoken/verify.js:90:14)\\n    at Object.module.exports [as verify] (/home/tomas/Projects/discord-clonde/backend/node_modules/jsonwebtoken/verify.js:94:10)\\n    at exports.requireAuth (/home/tomas/Projects/discord-clonde/backend/src/middleware/requireAuth.ts:36:27)\\n    at Layer.handle [as handle_request] (/home/tomas/Projects/discord-clonde/backend/node_modules/express/lib/router/layer.js:95:5)\\n    at next (/home/tomas/Projects/discord-clonde/backend/node_modules/express/lib/router/route.js:144:13)\\n    at expressJoiValidator (/home/tomas/Projects/discord-clonde/backend/node_modules/express-joi-validation/express-joi-validation.js:82:11)\\n    at Layer.handle [as handle_request] (/home/tomas/Projects/discord-clonde/backend/node_modules/express/lib/router/layer.js:95:5)\\n    at next (/home/tomas/Projects/discord-clonde/backend/node_modules/express/lib/router/route.js:144:13)\\n    at Route.dispatch (/home/tomas/Projects/discord-clonde/backend/node_modules/express/lib/router/route.js:114:3)\"\n}"
+						},
+						{
+							"name": "Send Inviation To Inexistent User",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"user@email.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/friends/sendInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"friends",
+										"sendInvitation"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "482"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"1e2-GDRfmBgJPrgzCbMIHMxlymI7ugo\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 18:42:11 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 404,\n    \"message\": \"User with email \\\"user@email.com\\\" not found\",\n    \"stack\": \"Error: \\u001b[31mUser with email \\\"user@email.com\\\" not found\\u001b[39m\\n    at /home/tomas/Projects/discord-clonde/backend/src/features/friends/friends.controller.ts:32:13\\n    at Generator.next (<anonymous>)\\n    at fulfilled (/home/tomas/Projects/discord-clonde/backend/src/features/friends/friends.controller.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\"\n}"
+						},
+						{
+							"name": "Inviation Already Sent",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rufo@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/friends/sendInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"friends",
+										"sendInvitation"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "518"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"206-KH+B8qPhNM3KRBEJybx42/3kIxk\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 18:42:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 409,\n    \"message\": \"Invitation already sent, please wait for the user to accept it\",\n    \"stack\": \"Error: \\u001b[31mInvitation already sent, please wait for the user to accept it\\u001b[39m\\n    at /home/tomas/Projects/discord-clonde/backend/src/features/friends/friends.controller.ts:54:13\\n    at Generator.next (<anonymous>)\\n    at fulfilled (/home/tomas/Projects/discord-clonde/backend/src/features/friends/friends.controller.ts:5:58)\\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)\"\n}"
+						},
+						{
+							"name": "Send Inviation Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"rufo@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5000/api/v1/friends/sendInvitation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5000",
+									"path": [
+										"api",
+										"v1",
+										"friends",
+										"sendInvitation"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "Cross-Origin-Embedder-Policy",
+									"value": "require-corp"
+								},
+								{
+									"key": "Cross-Origin-Opener-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "Cross-Origin-Resource-Policy",
+									"value": "same-origin"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "Origin-Agent-Cluster",
+									"value": "?1"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "60"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c-W5XidVNFmbW4a8AfQl30U6F9YgY\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 27 Jun 2022 18:43:23 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully sent invitation to rufo@gmail.com\"\n}"
+						}
+					]
+				}
+			]
 		}
 	]
 }

@@ -28,8 +28,23 @@ const createUser = async (userBody: Partial<IUser>) => {
   return user;
 };
 
+const isFriend = async ({
+  userId,
+  friendId,
+}: {
+  userId: string;
+  friendId: string;
+}) => {
+  const user = await getUserById(userId);
+
+  const friend = user!.friends.find((f) => f.toString() === friendId);
+
+  return Boolean(friend);
+};
+
 export default {
   createUser,
   getUserById,
   getUserByEmail,
+  isFriend,
 };

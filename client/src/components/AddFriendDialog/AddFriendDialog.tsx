@@ -54,6 +54,14 @@ const CustomDialog:React.FC<Props> = ({ isDialogOpen, setIsDialogOpen }) => {
             message: data.payload?.message!,
             severity: 'error'
           });
+        } else {
+          setAlert({
+            isOpen: true,
+            message: data.payload?.message!,
+            severity: 'success'
+          });
+
+          closeDialog();
         }
       });
     }
