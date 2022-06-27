@@ -30,7 +30,7 @@ const sendInvitation = catchAsync(
     if (!targetUser) {
       throw new ApiError({
         statusCode: httpStatus.NOT_FOUND,
-        message: `User with email ${email} not found`,
+        message: `User with email "${email}" not found`,
         isOperational: false,
       });
     }

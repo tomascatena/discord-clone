@@ -7,6 +7,7 @@ import {
 import { RootState } from '@store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
+import axiosInstance from '../../../axiosConfig';
 
 type RejectValue = {
   message?: string;
@@ -30,7 +31,7 @@ IInvitationData,
     console.log('thunk', invitationData);
 
     try {
-      const { data } = await axios.post(API_ENDPOINTS.SEND_INVITATION, invitationData);
+      const { data } = await axiosInstance.post(API_ENDPOINTS.SEND_INVITATION, invitationData);
 
       return data;
     } catch (error) {

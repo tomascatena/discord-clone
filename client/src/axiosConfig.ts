@@ -1,6 +1,12 @@
 import axios from 'axios';
 
-axios.interceptors.request.use(
+const axiosInstance = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+axiosInstance.interceptors.request.use(
   (config) => {
     if (!config?.headers) {
       throw new Error("Expected 'config' and 'config.headers' not to be undefined");
@@ -20,3 +26,5 @@ axios.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+export default axiosInstance;
