@@ -2,6 +2,7 @@ import { ApiError } from '@/utils/ApiError';
 import { RequestWithBody } from '../../typings/typings';
 import { Response } from 'express';
 import { catchAsync } from '@/utils/catchAsync';
+import friendsHandler from '@/socketHandlers/updates/friends';
 import friendsService from './friends.service';
 import httpStatus from 'http-status-codes';
 import userService from '@/features/user/user.service';
@@ -44,10 +45,12 @@ const sendInvitation = catchAsync(
       });
     }
 
+    const targetUserId = targetUser._id.toString();
+
     // Check if the invitation has already been sent
     const existingInvitation = await friendsService.getInvitation({
       senderId: userId,
-      receiverId: targetUser._id,
+      receiverId: targetUserId,
     });
 
     if (existingInvitation) {
@@ -61,7 +64,7 @@ const sendInvitation = catchAsync(
 
     // Check if the user is already a friend of the target user
     const isFriend = await userService.isFriend({
-      userId: targetUser._id,
+      userId: targetUserId,
       friendId: userId,
     });
 
@@ -75,8 +78,10 @@ const sendInvitation = catchAsync(
 
     await friendsService.createInvitation({
       senderId: userId,
-      receiverId: targetUser._id,
+      receiverId: targetUserId,
     });
+
+    friendsHandler.updateFriendsPendingInvitations(targetUserId);
 
     return res.status(httpStatus.CREATED).json({
       message: `Successfully sent invitation to ${targetUser.email}`,

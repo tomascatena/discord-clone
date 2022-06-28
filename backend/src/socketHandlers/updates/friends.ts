@@ -2,6 +2,9 @@ import FriendInvitation from '@/features/friends/friendInvitation.model';
 // import User from '@/features/user/user.model';
 import serverStore from '@/serverStore';
 
+/**
+ * @desc Emit friends-invitations to all the active connections of the user that should receive the invitation
+ */
 const updateFriendsPendingInvitations = async (userId: string) => {
   try {
     const pendingInvitations = await FriendInvitation.find({
