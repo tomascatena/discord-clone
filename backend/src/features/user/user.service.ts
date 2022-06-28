@@ -28,6 +28,9 @@ const createUser = async (userBody: Partial<IUser>) => {
   return user;
 };
 
+/**
+ * @desc Check if the user with id friendId is included in the friends array of the user with id userId
+ */
 const isFriend = async ({
   userId,
   friendId,

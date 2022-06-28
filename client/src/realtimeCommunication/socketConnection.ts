@@ -1,5 +1,7 @@
 import { IUser } from '../typings/typings';
 import { Socket, io } from 'socket.io-client';
+import { friendsActions } from '@store/features/friends/friendsSlice';
+import { store } from '@store/store';
 
 let socket: Socket;
 
@@ -30,6 +32,12 @@ export const connectWithSocketServer = ({
   socket.on('connect', () => {
     console.log('Connected to socket server');
     console.log('socket id', socket.id);
+  });
+
+  socket.on('friend-invitation', (data) => {
+    const { pendingInvitations } = data;
+
+    store.dispatch(friendsActions.setPendingFriendsInvitations(pendingInvitations));
   });
 
   socket.on('connect_error', (err) => {
