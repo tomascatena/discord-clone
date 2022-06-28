@@ -1,7 +1,7 @@
-import { ApiError } from '@utils/ApiError';
-import { Logger, LoggerToFile } from '@config/logger';
+import { ApiError } from '@/utils/ApiError';
+import { Logger, LoggerToFile } from '@/config/logger';
 import { NextFunction, Request, Response } from 'express';
-import { env } from '@config/config';
+import { env } from '@/config/config';
 import httpStatus, { ReasonPhrases } from 'http-status-codes';
 import mongoose from 'mongoose';
 

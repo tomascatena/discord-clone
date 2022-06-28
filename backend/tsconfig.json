@@ -28,18 +28,7 @@
     // "rootDir": "./",                                  /* Specify the root folder within your source files. */
     "baseUrl": "./src" /* Specify the base directory to resolve non-relative module names. */,
     "paths": {
-      "@/*": ["./*"],
-      "@config/*": ["config/*"],
-      "@utils/*": ["utils/*"],
-      "@routes/*": ["routes/*"],
-      "@middleware/*": ["middleware/*"],
-      "@auth/*": ["features/auth/*"],
-      "@user/*": ["features/user/*"],
-      "@friends/*": ["features/friends/*"],
-      "@token/*": ["features/token/*"],
-      "@docs": ["features/docs/*"],
-      "@typings": ["typings/*"],
-      "@socketHandlers": ["socketHandlers/*"]
+      "@/*": ["./*"]
     } /* Specify a set of entries that re-map imports to additional lookup locations. */,
     // "moduleResolution": "node",                       /* Specify how TypeScript looks up a file from a given module specifier. */
     // "baseUrl": "./",                                  /* Specify the base directory to resolve non-relative module names. */

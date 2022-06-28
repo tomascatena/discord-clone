@@ -24,10 +24,10 @@
       "@pages/*": ["pages/*"],
       "@themes/*": ["themes/*"],
       "@store/*": ["store/*"],
-      "@utils/*": ["utils/*"],
+      "@/utils/*": ["utils/*"],
       "@helpers/*": ["helpers/*"],
       "@typings": ["typings/*"],
-      "@utils": ["utils/*"]
+      "@/utils": ["utils/*"]
     }
   },
   "include": ["src/**/*"],

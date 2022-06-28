@@ -1,10 +1,10 @@
 import { RequestWithBody } from '../../typings/typings';
 import { Response } from 'express';
-import { catchAsync } from '@utils/catchAsync';
+import { catchAsync } from '@/utils/catchAsync';
 import authService from './auth.service';
 import httpStatus from 'http-status-codes';
-import tokenService from '@token/token.service';
-import userService from '@user/user.service';
+import tokenService from '@/features/token/token.service';
+import userService from '@/features/user/user.service';
 
 /**
  * @route    POST api/v1/auth/login

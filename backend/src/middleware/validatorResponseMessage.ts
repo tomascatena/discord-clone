@@ -1,5 +1,5 @@
 import { ExpressJoiError } from 'express-joi-validation';
-import { cleanData } from '@utils/cleanData';
+import { cleanData } from '@/utils/cleanData';
 import express from 'express';
 import httpStatus from 'http-status-codes';
 

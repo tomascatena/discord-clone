@@ -2,7 +2,7 @@ import { StatusCodes } from 'http-status-codes';
 import {
   getSwaggerRequestBodySchema,
   getSwaggerResponseBodySchema,
-} from '@utils/swagger/getSwaggerSchema';
+} from '@/utils/swagger/getSwaggerSchema';
 
 const registerUserRequestBody = getSwaggerRequestBodySchema({
   isRequired: true,

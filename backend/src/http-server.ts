@@ -1,11 +1,11 @@
-import { Logger } from '@config/logger';
-import { SIGTERMHandler } from '@utils/SIGTERMHandler';
+import { Logger } from '@/config/logger';
+import { SIGTERMHandler } from '@/utils/SIGTERMHandler';
 import { app } from './app';
-import { connectDB } from '@config/connectDB';
-import { env } from '@config/config';
+import { connectDB } from '@/config/connectDB';
+import { env } from '@/config/config';
 import { registerSocketServer } from './socket-server';
-import { uncaughtExceptionHandler } from '@utils/uncaughtExceptionHandler';
-import { unhandledRejectionHandler } from '@utils/unhandledRejectionHandler';
+import { uncaughtExceptionHandler } from '@/utils/uncaughtExceptionHandler';
+import { unhandledRejectionHandler } from '@/utils/unhandledRejectionHandler';
 import http from 'http';
 
 export const server = http.createServer(app);

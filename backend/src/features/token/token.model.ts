@@ -1,4 +1,4 @@
-import { PersistedTokenTypes, tokenTypes } from '@config/tokens';
+import { PersistedTokenTypes, tokenTypes } from '@/config/tokens';
 import mongoose, { ObjectId, Schema } from 'mongoose';
 
 export interface IToken {

@@ -1,5 +1,5 @@
 import { StatusCodes } from 'http-status-codes';
-import { getSwaggerResponseBodySchema } from '@utils/swagger/getSwaggerSchema';
+import { getSwaggerResponseBodySchema } from '@/utils/swagger/getSwaggerSchema';
 
 const successResponse = getSwaggerResponseBodySchema({
   description: 'Get logged in user',

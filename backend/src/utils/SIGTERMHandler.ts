@@ -1,4 +1,4 @@
-import { Logger, LoggerToFile } from '@config/logger';
+import { Logger, LoggerToFile } from '@/config/logger';
 import { exitHandler } from './exitHandler';
 import { server } from '../http-server';
 

@@ -1,4 +1,4 @@
-import { IUser } from '@user/user.model';
+import { IUser } from '@/features/user/user.model';
 import { Request } from 'express';
 
 export type Nullable<T> = T | null;

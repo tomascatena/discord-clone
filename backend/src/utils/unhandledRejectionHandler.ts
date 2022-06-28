@@ -1,5 +1,5 @@
-import { Logger, LoggerToFile } from '@config/logger';
-import { env } from '@config/config';
+import { Logger, LoggerToFile } from '@/config/logger';
+import { env } from '@/config/config';
 
 export const unhandledRejectionHandler = (
   err: Error | undefined,

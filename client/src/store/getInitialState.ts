@@ -1,6 +1,6 @@
 import { authActions } from './features/auth/authSlice';
 import { getUser } from './features/auth/auth.thunk';
-import { setAuthToken } from '@utils/setAuthToken';
+import { setAuthToken } from '@/utils/setAuthToken';
 import { store } from './store';
 import validator from 'validator';
 

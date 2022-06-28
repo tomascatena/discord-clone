@@ -1,5 +1,5 @@
-import { joiValidator } from '@middleware/joiValidator';
-import { requireAuth } from '@middleware/requireAuth';
+import { joiValidator } from '@/middleware/joiValidator';
+import { requireAuth } from '@/middleware/requireAuth';
 import express, { RequestHandler } from 'express';
 import friendsController from './friends.controller';
 import friendsValidation from './friends.validation';

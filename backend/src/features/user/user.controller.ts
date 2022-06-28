@@ -1,8 +1,8 @@
 import { RequestWithBody } from '../../typings/typings';
 import { Response } from 'express';
-import { catchAsync } from '@utils/catchAsync';
+import { catchAsync } from '@/utils/catchAsync';
 import httpStatus from 'http-status-codes';
-import tokenService from '@token/token.service';
+import tokenService from '@/features/token/token.service';
 import userService from './user.service';
 
 /**

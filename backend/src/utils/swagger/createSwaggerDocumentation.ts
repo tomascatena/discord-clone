@@ -1,5 +1,5 @@
-import { env } from '@config/config';
-import { getSwaggerRequestBodySchema } from '@utils/swagger/getSwaggerSchema';
+import { env } from '@/config/config';
+import { getSwaggerRequestBodySchema } from '@/utils/swagger/getSwaggerSchema';
 import { getSwaggerResponseBodySchema } from './getSwaggerSchema';
 
 const { version } = require('../../../package.json');

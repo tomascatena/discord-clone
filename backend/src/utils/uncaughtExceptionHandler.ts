@@ -1,5 +1,5 @@
-import { Logger, LoggerToFile } from '@config/logger';
-import { env } from '@config/config';
+import { Logger, LoggerToFile } from '@/config/logger';
+import { env } from '@/config/config';
 import { exitHandler } from './exitHandler';
 import { server } from '../http-server';
 

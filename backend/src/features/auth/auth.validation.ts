@@ -1,4 +1,4 @@
-import { env } from '@config/config';
+import { env } from '@/config/config';
 import Joi from 'joi';
 
 const loginSchema = Joi.object({

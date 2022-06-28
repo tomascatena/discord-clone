@@ -1,4 +1,4 @@
-import { Logger } from '@config/logger';
+import { Logger } from '@/config/logger';
 import { Server } from 'http';
 
 export const exitHandler = (server: Server) => {

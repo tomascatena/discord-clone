@@ -1,8 +1,8 @@
-import authRoutes from '@auth/auth.route';
+import authRoutes from '@/features/auth/auth.route';
 import docsRoutes from '../../features/docs/docs.route';
 import express from 'express';
-import friendsRoutes from '@friends/friends.route';
-import userRoutes from '@user/user.route';
+import friendsRoutes from '@/features/friends/friends.route';
+import userRoutes from '@/features/user/user.route';
 
 const router = express.Router();
 

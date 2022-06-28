@@ -1,5 +1,5 @@
-import { joiValidator } from '@middleware/joiValidator';
-import { requireAuth } from '@middleware/requireAuth';
+import { joiValidator } from '@/middleware/joiValidator';
+import { requireAuth } from '@/middleware/requireAuth';
 import authController from './auth.controller';
 import authValidation from './auth.validation';
 import express, { RequestHandler } from 'express';

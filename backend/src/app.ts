@@ -1,15 +1,15 @@
-import { env } from '@config/config';
-import { errorHandler, transformErrorToAPIError } from '@middleware/error';
+import { env } from '@/config/config';
+import { errorHandler, transformErrorToAPIError } from '@/middleware/error';
 import { expressWinstonLogger } from './config/logger';
-import { morganHttpLogger } from '@config/morgan';
-import { notFound } from '@middleware/notFound';
-import { validatorResponseMessage } from '@middleware/validatorResponseMessage';
+import { morganHttpLogger } from '@/config/morgan';
+import { notFound } from '@/middleware/notFound';
+import { validatorResponseMessage } from '@/middleware/validatorResponseMessage';
 import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import hpp from 'hpp';
 import mongoSanitize from 'express-mongo-sanitize';
-import routes from '@routes/v1';
+import routes from '@/routes/v1';
 // @ts-ignore
 import xssClean from 'xss-clean';
 

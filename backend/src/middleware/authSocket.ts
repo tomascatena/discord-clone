@@ -1,7 +1,7 @@
 import { Socket } from 'socket.io';
-import { env } from '@config/config';
+import { env } from '@/config/config';
 import JWT from 'jsonwebtoken';
-import User from '@user/user.model';
+import User from '@/features/user/user.model';
 import validatorJS from 'validator';
 
 export const verifyTokenSocket = async (socket: Socket, next: Function) => {

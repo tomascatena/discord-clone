@@ -1,4 +1,4 @@
-import { joiValidator } from '@middleware/joiValidator';
+import { joiValidator } from '@/middleware/joiValidator';
 import express from 'express';
 import userController from './user.controller';
 import userValidation from './user.validation';

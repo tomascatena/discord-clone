@@ -1,4 +1,20 @@
-const connectedUsers = new Map();
+import { Server } from 'socket.io';
+
+type ConnectedUserInfo = {
+  userId: string;
+};
+
+const connectedUsers = new Map<string, ConnectedUserInfo>();
+
+let io: Server;
+
+const setSocketServerInstance = (server: Server) => {
+  io = server;
+};
+
+const getSocketServerInstance = () => {
+  return io;
+};
 
 type AddNewConnectedUserParams = {
   socketId: string;
@@ -25,8 +41,26 @@ const removeConnectedUser = (socketId: string) => {
   connectedUsers.delete(socketId);
 };
 
+/**
+ * Get the active connections array of a user with id of userId.
+ */
+const getOnlineUsers = (userId: string) => {
+  const activeConnections: string[] = [];
+
+  connectedUsers.forEach((user, socketId) => {
+    if (user.userId === userId) {
+      activeConnections.push(socketId);
+    }
+  });
+
+  return activeConnections;
+};
+
 export default {
   connectedUsers,
   addNewConnectedUser,
   removeConnectedUser,
+  getOnlineUsers,
+  setSocketServerInstance,
+  getSocketServerInstance,
 };

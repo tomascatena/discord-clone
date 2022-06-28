@@ -1,9 +1,10 @@
-import { Logger } from './config/logger';
+import { Logger } from '@/config/logger';
 import { Server as SocketIOServer } from 'socket.io';
-import { disconnectHandler } from './socketHandlers/disconnectHandler';
-import { newConnectionHandler } from './socketHandlers/newConnectionHandler';
-import { verifyTokenSocket } from '@middleware/authSocket';
+import { disconnectHandler } from '@/socketHandlers/disconnectHandler';
+import { newConnectionHandler } from '@/socketHandlers/newConnectionHandler';
+import { verifyTokenSocket } from '@/middleware/authSocket';
 import http from 'http';
+import serverStore from './serverStore';
 
 export const registerSocketServer = (server: http.Server) => {
   Logger.info('Socket Server connected');
@@ -14,6 +15,8 @@ export const registerSocketServer = (server: http.Server) => {
       methods: ['GET', 'POST'],
     },
   });
+
+  serverStore.setSocketServerInstance(io);
 
   io.use(verifyTokenSocket);
 

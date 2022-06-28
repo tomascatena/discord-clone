@@ -34,7 +34,8 @@ export const connectWithSocketServer = ({
     console.log('socket id', socket.id);
   });
 
-  socket.on('friend-invitation', (data) => {
+  socket.on('friends-invitations', (data) => {
+    console.log('friends-invitations', data);
     const { pendingInvitations } = data;
 
     store.dispatch(friendsActions.setPendingFriendsInvitations(pendingInvitations));

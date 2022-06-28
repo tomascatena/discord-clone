@@ -1,10 +1,10 @@
-import { ApiError } from '@utils/ApiError';
+import { ApiError } from '@/utils/ApiError';
 import { RequestWithBody } from '../../typings/typings';
 import { Response } from 'express';
-import { catchAsync } from '@utils/catchAsync';
+import { catchAsync } from '@/utils/catchAsync';
 import friendsService from './friends.service';
 import httpStatus from 'http-status-codes';
-import userService from '@user/user.service';
+import userService from '@/features/user/user.service';
 
 /**
  * @route    POST api/v1/friends/sendInvitation

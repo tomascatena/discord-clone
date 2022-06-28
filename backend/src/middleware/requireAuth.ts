@@ -1,7 +1,7 @@
-import { ApiError } from '@utils/ApiError';
+import { ApiError } from '@/utils/ApiError';
 import { NextFunction, Response } from 'express';
 import { RequestWithBody } from '../typings/typings';
-import { env } from '@config/config';
+import { env } from '@/config/config';
 import { joiValidator } from './joiValidator';
 import JWT from 'jsonwebtoken';
 import Joi from 'joi';

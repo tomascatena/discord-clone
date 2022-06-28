@@ -1,5 +1,5 @@
 import { createSwaggerDocumentation } from '../../utils/swagger/createSwaggerDocumentation';
-import { env } from '@config/config';
+import { env } from '@/config/config';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 
