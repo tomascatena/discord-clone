@@ -1,4 +1,5 @@
 import { HtmlTooltip } from '@components/HtmlTooltip/HtmlTooltip';
+import { IPendingInvitation } from '../../typings/typings';
 import { IconsContainer, StyledBox, StyledIconButton } from './PendingInvitationListItem.styled';
 import { Typography } from '@mui/material';
 import Check from '@mui/icons-material/Check';
@@ -6,16 +7,8 @@ import Clear from '@mui/icons-material/Clear';
 import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
 import React from 'react';
 
-type Invitation = {
-  _id: number;
-  senderId: {
-    username: string;
-    email: string;
-  };
-}
-
 type Props = {
-  invitation: Invitation;
+  invitation: IPendingInvitation;
   acceptInvitation: (id: string) => void;
   rejectInvitation: (id: string) => void;
 }

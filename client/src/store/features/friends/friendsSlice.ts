@@ -1,10 +1,10 @@
-import { IFriend, IUser, ValidationError } from '../../../typings/typings';
+import { IFriend, IPendingInvitation, IUser, ValidationError } from '../../../typings/typings';
 import { SerializedError, createSlice } from '@reduxjs/toolkit';
 import { sendInvitation } from './friends.thunk';
 
 export interface FriendsState {
   friends: IFriend[];
-  pendingFriendsInvitations: IFriend[];
+  pendingFriendsInvitations: IPendingInvitation[];
   onlineUsers: IUser[];
   loading: boolean;
   currentRequestId: string | undefined;

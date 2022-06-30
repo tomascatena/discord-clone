@@ -22,7 +22,7 @@ type AddNewConnectedUserParams = {
 };
 
 /**
- * Add new connected user to the in-memory Map used to store connected users.
+ * @desc Add new connected user to the in-memory Map used to store connected users.
  * @param socketId - socket id of the new connected user
  * @param userId - user id of the new connected user
  */
@@ -34,7 +34,7 @@ const addNewConnectedUser = ({
 };
 
 /**
- * Remove disconnected user from the in-memory Map used to store connected users.
+ * @desc Remove disconnected user from the in-memory Map used to store connected users.
  * @param socketId - socket id of the disconnected user
  */
 const removeConnectedUser = (socketId: string) => {
@@ -42,7 +42,7 @@ const removeConnectedUser = (socketId: string) => {
 };
 
 /**
- * Get the active connections array of a user with id of userId.
+ * @desc Get the active connections array of a user with id of userId.
  */
 const getOnlineUsers = (userId: string) => {
   const activeConnections: string[] = [];

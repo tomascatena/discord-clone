@@ -49,6 +49,16 @@ export interface AuthData {
 
 export interface IFriend {}
 
+export interface IPendingInvitation {
+  _id: string;
+  senderId: {
+    _id: string;
+    username: string;
+    email: string;
+  };
+  receiverId: string
+}
+
 export interface IInvitationData {
   email: string;
 }
