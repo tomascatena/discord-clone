@@ -8,8 +8,6 @@ type Props = {}
 const PendingInvitations:React.FC<Props> = () => {
   const { pendingFriendsInvitations } = useTypedSelector((state) => state.friends);
 
-  console.log(pendingFriendsInvitations);
-
   const acceptInvitation = (invitationId: string) => {
     console.log(`Accepting invitation with id ${invitationId}`);
   };

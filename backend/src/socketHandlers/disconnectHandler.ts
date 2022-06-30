@@ -8,7 +8,4 @@ import serverStore from '../serverStore';
  */
 export const disconnectHandler = (socket: Socket) => {
   serverStore.removeConnectedUser(socket.id);
-
-  console.log('New connected users: ');
-  console.log(serverStore.connectedUsers);
 };

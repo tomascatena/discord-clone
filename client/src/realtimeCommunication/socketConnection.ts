@@ -21,7 +21,6 @@ export const connectWithSocketServer = ({
   accessToken
 }: ConnectWithSocketServerParams) => {
   console.log('userData', userData);
-  console.log('accessToken', accessToken);
 
   socket = io('http://localhost:5000', {
     auth: {
@@ -35,15 +34,12 @@ export const connectWithSocketServer = ({
   });
 
   socket.on('friends-invitations', (data) => {
-    console.log('friends-invitations', data);
     const { pendingInvitations } = data;
 
     store.dispatch(friendsActions.setPendingFriendsInvitations(pendingInvitations));
   });
 
   socket.on('connect_error', (err) => {
-    console.log(err instanceof Error); // true
-    console.log(err.message); // not authorized
-    console.log(err);
+    console.error(err);
   });
 };

@@ -13,7 +13,6 @@ const FriendsSidebar:React.FC<Props> = () => {
 
   const openAddFriendDialog = () => {
     setIsDialogOpen(true);
-    console.log('openAddFriendDialog');
   };
 
   return (

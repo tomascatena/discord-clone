@@ -1,4 +1,5 @@
 import { Server, Socket } from 'socket.io';
+import friends from './updates/friends';
 import serverStore from '../serverStore';
 
 /**
@@ -11,11 +12,13 @@ import serverStore from '../serverStore';
 export const newConnectionHandler = async (socket: Socket, io: Server) => {
   const userDetails = await socket.data.user;
 
+  const userId = userDetails._id.toString();
+
   serverStore.addNewConnectedUser({
-    userId: userDetails.id,
+    userId,
     socketId: socket.id,
   });
 
-  console.log('Connected users: ');
-  console.log(serverStore.connectedUsers);
+  // Update pending friends invitations list
+  friends.updateFriendsPendingInvitations(userId);
 };

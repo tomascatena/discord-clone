@@ -21,14 +21,9 @@ export const registerSocketServer = (server: http.Server) => {
   io.use(verifyTokenSocket);
 
   io.on('connection', (socket) => {
-    console.log('a user connected');
-    console.log('socket id', socket.id);
-
     newConnectionHandler(socket, io);
 
     socket.on('disconnect', () => {
-      console.log('user disconnected');
-
       disconnectHandler(socket);
     });
   });
