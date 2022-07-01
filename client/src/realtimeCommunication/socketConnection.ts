@@ -11,7 +11,7 @@ type ConnectWithSocketServerParams = {
 }
 
 /**
- * Connect with the socket server.
+ * @desc Connect with the socket server.
  * @param object
  * @property userData - user data of the new connected user
  * @property accessToken - access JWT of the new connected user

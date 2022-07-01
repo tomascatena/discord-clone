@@ -1,6 +1,6 @@
 import { IFriend, IPendingInvitation, IUser, ValidationError } from '../../../typings/typings';
-import { SerializedError, createSlice } from '@reduxjs/toolkit';
-import { sendInvitation } from './friends.thunk';
+import { SerializedError, createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { acceptFriendInvitation, rejectFriendInvitation, sendInvitation } from './friends.thunk';
 
 export interface FriendsState {
   friends: IFriend[];
@@ -63,7 +63,45 @@ export const friendsSlice = createSlice({
           state.error = action.payload ?? null;
           state.currentRequestId = undefined;
         }
-      });
+      })
+      .addMatcher(
+        isAnyOf(
+          acceptFriendInvitation.pending,
+          rejectFriendInvitation.pending
+        ), (state, action) => {
+          if (!state.loading) {
+            state.loading = true;
+            state.serverValidationErrors = null;
+            state.error = null;
+            state.currentRequestId = action.meta.requestId;
+          }
+        })
+      .addMatcher(
+        isAnyOf(
+          acceptFriendInvitation.fulfilled,
+          rejectFriendInvitation.fulfilled
+        ), (state, action) => {
+          const { requestId } = action.meta;
+
+          if (state.loading && state.currentRequestId === requestId) {
+            state.loading = false;
+            state.currentRequestId = undefined;
+          }
+        })
+      .addMatcher(
+        isAnyOf(
+          acceptFriendInvitation.rejected,
+          rejectFriendInvitation.rejected
+        ), (state, action) => {
+          const { requestId } = action.meta;
+
+          if (state.loading && state.currentRequestId === requestId) {
+            state.loading = false;
+            state.serverValidationErrors = action.payload?.errors ?? null;
+            state.error = action.payload ?? null;
+            state.currentRequestId = undefined;
+          }
+        });
   },
 });
 

@@ -3,8 +3,7 @@ import friends from './updates/friends';
 import serverStore from '../serverStore';
 
 /**
- * Handle the connection of a new user to the socket server.
- * Will add the new user to the connected users Map (in-memory store).
+ * @desc Handle the connection of a new user to the socket server. Will add the new user to the connected users Map (in-memory store).
  * @param socket - socket object
  * @param io - socket.io server
  */
