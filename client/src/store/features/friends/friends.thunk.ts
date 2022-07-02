@@ -2,7 +2,8 @@ import { API_ENDPOINTS } from '@constants/APIEndpoints';
 import {
   AuthData,
   IInvitationData,
-  ValidationError,
+  InvitationResponseData,
+  ValidationError
 } from '../../../typings/typings';
 import { RootState } from '@store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -42,11 +43,11 @@ IInvitationData,
 
 export const acceptFriendInvitation = createAsyncThunk<
 void,
-void,
+InvitationResponseData,
 { state: RootState; rejectValue: RejectValue }
 >(
   'friends/acceptFriendInvitation',
-  async (_, { getState, requestId, rejectWithValue }) => {
+  async (invitationResponseData, { getState, requestId, rejectWithValue }) => {
     const { loading, currentRequestId } = getState().friends;
 
     if (!loading || requestId !== currentRequestId) {
@@ -54,7 +55,7 @@ void,
     }
 
     try {
-      const { data } = await axiosInstance.post(API_ENDPOINTS.ACCEPT_FRIEND_INVITATION);
+      const { data } = await axiosInstance.post(API_ENDPOINTS.ACCEPT_FRIEND_INVITATION, invitationResponseData);
 
       return data;
     } catch (error) {
@@ -67,11 +68,11 @@ void,
 
 export const rejectFriendInvitation = createAsyncThunk<
 void,
-void,
+InvitationResponseData,
 { state: RootState; rejectValue: RejectValue }
 >(
   'friends/rejectFriendInvitation',
-  async (_, { getState, requestId, rejectWithValue }) => {
+  async (invitationResponseData, { getState, requestId, rejectWithValue }) => {
     const { loading, currentRequestId } = getState().friends;
 
     if (!loading || requestId !== currentRequestId) {
@@ -79,7 +80,7 @@ void,
     }
 
     try {
-      const { data } = await axiosInstance.post(API_ENDPOINTS.REJECT_FRIEND_INVITATION);
+      const { data } = await axiosInstance.post(API_ENDPOINTS.REJECT_FRIEND_INVITATION, invitationResponseData);
 
       return data;
     } catch (error) {

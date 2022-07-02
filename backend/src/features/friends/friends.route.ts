@@ -18,4 +18,28 @@ router.post(
   friendsController.sendInvitation
 );
 
+/**
+ * @route POST api/v1/friends/invitation/accept
+ * @desc Accept friend invitation request from user
+ * @access Private
+ */
+router.post(
+  '/invitation/accept',
+  requireAuth as RequestHandler[],
+  joiValidator.body(friendsValidation.invitationDecisionSchema),
+  friendsController.acceptInvitation
+);
+
+/**
+ * @route POST api/v1/friends/invitation/reject
+ * @desc Reject friend invitation request from user
+ * @access Private
+ */
+router.post(
+  '/invitation/reject',
+  requireAuth as RequestHandler[],
+  joiValidator.body(friendsValidation.invitationDecisionSchema),
+  friendsController.rejectInvitation
+);
+
 export default router;

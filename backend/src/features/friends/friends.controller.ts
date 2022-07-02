@@ -89,6 +89,90 @@ const sendInvitation = catchAsync(
   }
 );
 
+/**
+ * @route POST api/v1/friends/invitation/accept
+ * @desc Accept friend invitation request from user
+ * @access Private
+ */
+const acceptInvitation = catchAsync(
+  async (req: RequestWithBody, res: Response) => {
+    const { userId } = req; // User id of the user accepting the invitation
+    const invitationId = req.body.invitationId!; // Invitation id of the invitation to accept
+
+    const invitation = await friendsService.getInvitationById(invitationId);
+
+    console.log(invitation);
+
+    if (!invitation) {
+      throw new ApiError({
+        statusCode: httpStatus.NOT_FOUND,
+        message: 'Invitation not found',
+        isOperational: false,
+      });
+    }
+
+    if (invitation.receiverId._id.toString() !== userId) {
+      throw new ApiError({
+        statusCode: httpStatus.UNAUTHORIZED,
+        message: 'You are not authorized to accept this invitation',
+        isOperational: false,
+      });
+    }
+
+    await friendsService.acceptInvitation({
+      invitationId,
+      senderId: invitation.senderId._id.toString(),
+      receiverId: invitation.receiverId._id.toString(),
+    });
+
+    friendsHandler.updateFriendsPendingInvitations(userId);
+
+    return res.status(httpStatus.OK).json({
+      message: `Successfully accepted invitation from ${invitation.senderId.username}`,
+    });
+  }
+);
+
+/**
+ * @route POST api/v1/friends/invitation/reject
+ * @desc Reject friend invitation request from user
+ * @access Private
+ */
+const rejectInvitation = catchAsync(
+  async (req: RequestWithBody, res: Response) => {
+    const { userId } = req; // User id of the user accepting the invitation
+    const invitationId = req.body.invitationId!; // Invitation id of the invitation to reject
+
+    const invitation = await friendsService.getInvitationById(invitationId);
+
+    if (!invitation) {
+      throw new ApiError({
+        statusCode: httpStatus.NOT_FOUND,
+        message: 'Invitation not found',
+        isOperational: false,
+      });
+    }
+
+    if (invitation.receiverId._id.toString() !== userId) {
+      throw new ApiError({
+        statusCode: httpStatus.UNAUTHORIZED,
+        message: 'You are not authorized to reject this invitation',
+        isOperational: false,
+      });
+    }
+
+    await friendsService.rejectInvitation(invitationId);
+
+    friendsHandler.updateFriendsPendingInvitations(userId);
+
+    return res.status(httpStatus.OK).json({
+      message: `Successfully rejected invitation from ${invitation.senderId.username}`,
+    });
+  }
+);
+
 export default {
   sendInvitation,
+  acceptInvitation,
+  rejectInvitation,
 };

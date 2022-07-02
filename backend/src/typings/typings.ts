@@ -9,6 +9,7 @@ export interface RequestWithBody extends Request {
     email?: string;
     password?: string;
     confirmPassword?: string;
+    invitationId?: string;
   };
   userId: string;
   user?: Partial<IUser>;

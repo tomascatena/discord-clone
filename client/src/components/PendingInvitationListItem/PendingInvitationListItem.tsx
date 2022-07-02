@@ -33,14 +33,14 @@ const PendingInvitationListItem:React.FC<Props> = ({ invitation, acceptInvitatio
 
         <IconsContainer>
           <StyledIconButton
-            onClick={() => acceptInvitation(invitation.senderId.username)}
+            onClick={() => acceptInvitation(invitation._id)}
             iconColor='green'
           >
             <Check/>
           </StyledIconButton>
 
           <StyledIconButton
-            onClick={() => rejectInvitation(invitation.senderId.username)}
+            onClick={() => rejectInvitation(invitation._id)}
             iconColor='red'
           >
             <Clear/>

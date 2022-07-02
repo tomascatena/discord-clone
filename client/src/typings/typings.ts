@@ -62,3 +62,7 @@ export interface IPendingInvitation {
 export interface IInvitationData {
   email: string;
 }
+
+export interface InvitationResponseData {
+  invitationId: string;
+}

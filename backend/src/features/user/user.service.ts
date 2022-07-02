@@ -45,9 +45,50 @@ const isFriend = async ({
   return Boolean(friend);
 };
 
+const addFriendToUser = async ({
+  userId,
+  friendId,
+}: {
+  userId: string;
+  friendId: string;
+}) => {
+  const user = await getUserById(userId);
+
+  if (!user) {
+    throw new ApiError({
+      statusCode: httpStatus.NOT_FOUND,
+      message: 'User not found',
+      isOperational: false,
+    });
+  }
+
+  if (userId === friendId) {
+    throw new ApiError({
+      statusCode: httpStatus.BAD_REQUEST,
+      message: 'You cannot add yourself as a friend',
+      isOperational: false,
+    });
+  }
+
+  if (await isFriend({ userId, friendId })) {
+    throw new ApiError({
+      statusCode: httpStatus.CONFLICT,
+      message: 'You are already friends with this user',
+      isOperational: false,
+    });
+  }
+
+  user.friends.push(friendId);
+
+  await user.save();
+
+  return user;
+};
+
 export default {
   createUser,
   getUserById,
   getUserByEmail,
   isFriend,
+  addFriendToUser,
 };
