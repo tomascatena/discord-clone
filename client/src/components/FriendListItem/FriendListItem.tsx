@@ -6,16 +6,17 @@ import React from 'react';
 
 type Props = {
   friend: IFriend;
+  isOnline: boolean;
 }
 
-const FriendListItem:React.FC<Props> = ({ friend }) => {
+const FriendListItem:React.FC<Props> = ({ friend, isOnline }) => {
   return (
     <StyledButton
-      isActive={friend.isOnline}
-      disabled={!friend.isOnline}
+      isActive={isOnline}
+      disabled={!isOnline}
     >
       <CustomAvatar
-        isOnline={friend.isOnline}
+        isOnline={isOnline}
         imgAltText={friend.username}
         hasOnlineIndicator
       />

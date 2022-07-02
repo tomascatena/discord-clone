@@ -19,17 +19,22 @@ const sortedFriends = (friends: IFriend[]) => {
 };
 
 const FriendsList:React.FC<Props> = () => {
-  const { friends } = useTypedSelector((state) => state.friends);
+  const { friends, onlineUsers } = useTypedSelector((state) => state.friends);
+
+  const listOfOnlineUserIds = onlineUsers.map((user) => user.userId);
 
   return (
-    <FriendsListContainer>{
-      sortedFriends(friends).map(friend => (
-        <FriendListItem
-          key={friend._id}
-          friend={friend}
-        />
-      ))
-    }</FriendsListContainer>
+    <FriendsListContainer>
+      {
+        sortedFriends(friends)?.map(friend => (
+          <FriendListItem
+            key={friend._id}
+            friend={friend}
+            isOnline={listOfOnlineUserIds.includes(friend._id)}
+          />
+        ))
+      }
+    </FriendsListContainer>
   );
 };
 

@@ -8,7 +8,7 @@ export const SidebarContainer = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   backgroundColor: '#202225',
-  paddingTop: theme.spacing(2)
+  paddingTop: theme.spacing(2),
 }));
 
 export const MainButton = styled(Button)({

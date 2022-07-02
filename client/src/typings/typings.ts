@@ -54,6 +54,11 @@ export interface IFriend {
   email: string;
 }
 
+export interface IOnlineUser {
+  userId: string;
+  socketId: string;
+}
+
 export interface IPendingInvitation {
   _id: string;
   senderId: {

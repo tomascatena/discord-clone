@@ -9,7 +9,7 @@ import serverStore from '@/serverStore';
 const updateFriendsPendingInvitations = async (userId: string) => {
   try {
     // Get all active connections of the user
-    const activeConnections = serverStore.getOnlineUsers(userId);
+    const activeConnections = serverStore.getActiveConnections(userId);
 
     if (activeConnections.length === 0) {
       return;
@@ -50,7 +50,7 @@ type PopulatedUser = {
 const sendFriendsList = async (userId: string) => {
   try {
     // Get all active connections of the user
-    const activeConnections = serverStore.getOnlineUsers(userId);
+    const activeConnections = serverStore.getActiveConnections(userId);
 
     if (activeConnections.length === 0) {
       return;

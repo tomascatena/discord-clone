@@ -20,11 +20,23 @@ export const registerSocketServer = (server: http.Server) => {
 
   io.use(verifyTokenSocket);
 
+  const emitOnlineUsers = () => {
+    const onlineUsers = serverStore.getOnlineUsers();
+
+    io.emit('online-users', { onlineUsers });
+  };
+
   io.on('connection', (socket) => {
     newConnectionHandler(socket, io);
+    emitOnlineUsers();
 
     socket.on('disconnect', () => {
       disconnectHandler(socket);
     });
   });
+
+  // Emit list of online users every 5 seconds
+  setInterval(() => {
+    emitOnlineUsers();
+  }, 5000);
 };

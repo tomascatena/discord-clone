@@ -1,4 +1,4 @@
-import { IFriend, IPendingInvitation, IUser } from '../typings/typings';
+import { IFriend, IOnlineUser, IPendingInvitation, IUser } from '../typings/typings';
 import { Socket, io } from 'socket.io-client';
 import { friendsActions } from '@store/features/friends/friendsSlice';
 import { store } from '@store/store';
@@ -39,12 +39,15 @@ export const connectWithSocketServer = ({
   });
 
   socket.on('friends-list', (data) => {
-    console.log('friends-list');
-    console.log(data);
-
     const friends = data.friends as IFriend[];
 
     store.dispatch(friendsActions.setFriends(friends));
+  });
+
+  socket.on('online-users', (data) => {
+    const onlineUsers = data.onlineUsers as IOnlineUser[];
+
+    store.dispatch(friendsActions.setOnlineUsers(onlineUsers));
   });
 
   socket.on('connect_error', (err) => {

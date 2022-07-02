@@ -7,7 +7,8 @@ export const FriendsSidebarContainer = styled('div')(({ theme }) => ({
   flexDirection: 'column',
   alignItems: 'center',
   backgroundColor: '#2F3136',
-  paddingTop: theme.spacing(3)
+  paddingTop: theme.spacing(3),
+  borderRight: '1px solid #202225',
 }));
 
 export const ListsContainer = styled('div')(({ theme }) => ({
