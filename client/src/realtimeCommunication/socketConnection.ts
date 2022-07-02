@@ -17,11 +17,9 @@ type ConnectWithSocketServerParams = {
  * @property accessToken - access JWT of the new connected user
  */
 export const connectWithSocketServer = ({
-  userData,
+  userData, // eslint-disable-line @typescript-eslint/no-unused-vars
   accessToken
 }: ConnectWithSocketServerParams) => {
-  console.log('userData', userData);
-
   socket = io('http://localhost:5000', {
     auth: {
       token: accessToken

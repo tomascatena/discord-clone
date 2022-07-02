@@ -21,9 +21,7 @@ export const registerSocketServer = (server: http.Server) => {
   io.use(verifyTokenSocket);
 
   const emitOnlineUsers = () => {
-    const onlineUsers = serverStore.getOnlineUsers();
-
-    io.emit('online-users', { onlineUsers });
+    io.emit('online-users', { onlineUsers: serverStore.getOnlineUsers() });
   };
 
   io.on('connection', (socket) => {

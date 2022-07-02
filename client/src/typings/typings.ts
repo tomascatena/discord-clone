@@ -76,3 +76,7 @@ export interface IInvitationData {
 export interface InvitationResponseData {
   invitationId: string;
 }
+
+export interface IChatDetails {}
+
+export type ChatTypes = 'direct' | 'group';
