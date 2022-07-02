@@ -1,3 +1,4 @@
+import { CHAT_TYPES } from '@constants/constants';
 import { ChatTypes, IChatDetails } from '../../../typings/typings';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -10,7 +11,7 @@ export interface ChartState {
 export const initialState: ChartState = {
   chosenChatDetails: null,
   messages: [],
-  chatType: 'direct',
+  chatType: CHAT_TYPES.DIRECT,
 };
 
 export const chatSlice = createSlice({
