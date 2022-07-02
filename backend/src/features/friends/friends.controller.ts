@@ -126,6 +126,10 @@ const acceptInvitation = catchAsync(
       receiverId: invitation.receiverId._id.toString(),
     });
 
+    // Update list of friends if the users are online
+    friendsHandler.sendFriendsList(userId);
+    friendsHandler.sendFriendsList(invitation.senderId._id.toString());
+
     friendsHandler.updateFriendsPendingInvitations(userId);
 
     return res.status(httpStatus.OK).json({

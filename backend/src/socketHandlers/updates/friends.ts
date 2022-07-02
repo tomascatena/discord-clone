@@ -43,6 +43,10 @@ type PopulatedUser = {
   }>;
 };
 
+/**
+ * @desc Emit the friends list to the user's active connections
+ * @param userId The id of the user to get the friends list
+ */
 const sendFriendsList = async (userId: string) => {
   try {
     // Get all active connections of the user
@@ -62,6 +66,8 @@ const sendFriendsList = async (userId: string) => {
     }
 
     const io = serverStore.getSocketServerInstance();
+
+    console.log(`Sending friends list to user with id: ${userId}`);
 
     // Send the pending invitations to the user's active connections
     activeConnections.forEach((socketId) => {

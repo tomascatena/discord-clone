@@ -7,7 +7,7 @@ import React from 'react';
 type Props = {}
 
 const sortedFriends = (friends: IFriend[]) => {
-  return friends.sort((a, b) => {
+  return [...friends].sort((a, b) => {
     if (a.isOnline && !b.isOnline) {
       return -1;
     } else if (!a.isOnline && b.isOnline) {

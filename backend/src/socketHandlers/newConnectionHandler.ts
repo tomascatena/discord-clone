@@ -22,7 +22,7 @@ export const newConnectionHandler = async (socket: Socket, io: Server) => {
     socketId: socket.id,
   });
 
-  // Update pending friends invitations list
+  // Send updated list of pending friends invitations
   friends.updateFriendsPendingInvitations(userId);
 
   // Send friends list

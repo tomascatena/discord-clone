@@ -89,12 +89,12 @@ const acceptInvitation = async ({
   senderId,
   receiverId,
 }: AcceptFriendInvitationParam) => {
-  userService.addFriendToUser({
+  await userService.addFriendToUser({
     userId: senderId,
     friendId: receiverId,
   });
 
-  userService.addFriendToUser({
+  await userService.addFriendToUser({
     userId: receiverId,
     friendId: senderId,
   });
