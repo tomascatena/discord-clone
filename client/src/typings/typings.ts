@@ -47,7 +47,12 @@ export interface AuthData {
   message: string
 }
 
-export interface IFriend {}
+export interface IFriend {
+  _id: string;
+  username: string;
+  isOnline: boolean;
+  email: string;
+}
 
 export interface IPendingInvitation {
   _id: string;

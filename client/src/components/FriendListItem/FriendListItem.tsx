@@ -1,18 +1,11 @@
 
+import { IFriend } from '../../typings/typings';
 import { StyledButton, StyledSpan } from './FriendListItems.styled';
-
 import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
 import React from 'react';
 
-type Friend = {
-  id: number;
-  name: string;
-  email: string;
-  isOnline: boolean;
-}
-
 type Props = {
-  friend: Friend;
+  friend: IFriend;
 }
 
 const FriendListItem:React.FC<Props> = ({ friend }) => {
@@ -23,12 +16,12 @@ const FriendListItem:React.FC<Props> = ({ friend }) => {
     >
       <CustomAvatar
         isOnline={friend.isOnline}
-        imgAltText={friend.name}
+        imgAltText={friend.username}
         hasOnlineIndicator
       />
 
       <StyledSpan>
-        {friend.name}
+        {friend.username}
       </StyledSpan>
     </StyledButton>
   );

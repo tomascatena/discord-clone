@@ -101,6 +101,7 @@ const acceptInvitation = catchAsync(
 
     const invitation = await friendsService.getInvitationById(invitationId);
 
+    console.log(userId);
     console.log(invitation);
 
     if (!invitation) {

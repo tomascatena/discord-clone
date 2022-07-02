@@ -1,4 +1,4 @@
-import { IUser } from '../typings/typings';
+import { IFriend, IPendingInvitation, IUser } from '../typings/typings';
 import { Socket, io } from 'socket.io-client';
 import { friendsActions } from '@store/features/friends/friendsSlice';
 import { store } from '@store/store';
@@ -30,13 +30,21 @@ export const connectWithSocketServer = ({
 
   socket.on('connect', () => {
     console.log('Connected to socket server');
-    console.log('socket id', socket.id);
   });
 
   socket.on('friends-invitations', (data) => {
-    const { pendingInvitations } = data;
+    const pendingInvitations = data.pendingInvitations as IPendingInvitation[];
 
     store.dispatch(friendsActions.setPendingFriendsInvitations(pendingInvitations));
+  });
+
+  socket.on('friends-list', (data) => {
+    console.log('friends-list');
+    console.log(data);
+
+    const friends = data.friends as IFriend[];
+
+    store.dispatch(friendsActions.setFriends(friends));
   });
 
   socket.on('connect_error', (err) => {

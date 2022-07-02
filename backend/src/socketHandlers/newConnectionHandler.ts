@@ -11,6 +11,10 @@ import serverStore from '../serverStore';
 export const newConnectionHandler = async (socket: Socket, io: Server) => {
   const userDetails = await socket.data.user;
 
+  if (!userDetails) {
+    return;
+  }
+
   const userId = userDetails._id.toString();
 
   serverStore.addNewConnectedUser({
@@ -20,4 +24,7 @@ export const newConnectionHandler = async (socket: Socket, io: Server) => {
 
   // Update pending friends invitations list
   friends.updateFriendsPendingInvitations(userId);
+
+  // Send friends list
+  friends.sendFriendsList(userId);
 };

@@ -423,6 +423,22 @@
           }
         },
         "responses": {
+          "200": {
+            "description": "Invitation Successfully Rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully rejected invitation from 62bdf1713aa9c4a7346288e9"
+                    }
+                  }
+                }
+              }
+            }
+          },
           "201": {
             "description": "Send Inviation Success",
             "content": {
@@ -439,8 +455,56 @@
               }
             }
           },
+          "400": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "validatorErrors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "example": "\"invitationId\" is required"
+                          },
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "invitationId"
+                            }
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "any.required"
+                          },
+                          "context": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "invitationId"
+                              },
+                              "key": {
+                                "type": "string",
+                                "example": "invitationId"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "401": {
-            "description": "Send Inviation Token Expired",
+            "description": "Not Authorized To Reject Invitation",
             "content": {
               "application/json": {
                 "schema": {
@@ -452,7 +516,7 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "Unauthorized"
+                      "example": "You are not authorized to reject this invitation"
                     }
                   }
                 }
@@ -460,7 +524,7 @@
             }
           },
           "404": {
-            "description": "Send Inviation To Inexistent User",
+            "description": "Invitation Not Found",
             "content": {
               "application/json": {
                 "schema": {
@@ -472,7 +536,367 @@
                     },
                     "message": {
                       "type": "string",
-                      "example": "User with email \"user@email.com\" not found"
+                      "example": "Invitation not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Inviation Already Sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 409
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invitation already sent, please wait for the user to accept it"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friends/invitation/accept": {
+      "post": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Accept Friend Invitation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "invitationId"
+                ],
+                "properties": {
+                  "invitationId": {
+                    "type": "string",
+                    "example": "62c035f417171e636cabfa0e"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invitation Successfully Rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully rejected invitation from 62bdf1713aa9c4a7346288e9"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Send Inviation Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully sent invitation to rufo@gmail.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "validatorErrors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "example": "\"invitationId\" is required"
+                          },
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "invitationId"
+                            }
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "any.required"
+                          },
+                          "context": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "invitationId"
+                              },
+                              "key": {
+                                "type": "string",
+                                "example": "invitationId"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not Authorized To Reject Invitation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 401
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to reject this invitation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invitation Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invitation not found"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Inviation Already Sent",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 409
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invitation already sent, please wait for the user to accept it"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/friends/invitation/reject": {
+      "post": {
+        "tags": [
+          "Friends"
+        ],
+        "summary": "Reject Friend Invitation",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "required": [
+                  "invitationId"
+                ],
+                "properties": {
+                  "invitationId": {
+                    "type": "string",
+                    "example": "62c035f417171e636cabfa0e"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Invitation Successfully Rejected",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully rejected invitation from 62bdf1713aa9c4a7346288e9"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Send Inviation Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully sent invitation to rufo@gmail.com"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "validatorErrors": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "message": {
+                            "type": "string",
+                            "example": "\"invitationId\" is required"
+                          },
+                          "path": {
+                            "type": "array",
+                            "items": {
+                              "type": "string",
+                              "example": "invitationId"
+                            }
+                          },
+                          "type": {
+                            "type": "string",
+                            "example": "any.required"
+                          },
+                          "context": {
+                            "type": "object",
+                            "properties": {
+                              "label": {
+                                "type": "string",
+                                "example": "invitationId"
+                              },
+                              "key": {
+                                "type": "string",
+                                "example": "invitationId"
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Not Authorized To Reject Invitation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 401
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "You are not authorized to reject this invitation"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Invitation Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "statusCode": {
+                      "type": "number",
+                      "example": 404
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Invitation not found"
                     }
                   }
                 }
