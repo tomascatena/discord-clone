@@ -1,8 +1,7 @@
-import { MessengerContainer } from './Messenger.styled';
+import { MessengerContainer, WelcomeMessageContainer } from './Messenger.styled';
 import { Typography } from '@mui/material';
-import { WelcomeMessageContainer } from '@components/MessengerContent/MessagerContent';
 import { useTypedSelector } from '@hooks/useTypedSelector';
-import MessengerContent from '@components/MessengerContent/MessengerContent';
+import MessengerContent from '@components/Messenger/MessengerContent/MessengerContent';
 import React from 'react';
 
 type Props = {}
