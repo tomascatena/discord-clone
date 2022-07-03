@@ -1,5 +1,5 @@
 import { Alert, Snackbar, } from '@mui/material';
-import { useActions } from '@hooks/useActions';
+import { useActions } from '@/hooks/useActions';
 import Fade from '@mui/material/Fade';
 import React from 'react';
 

@@ -1,6 +1,6 @@
 import { MessengerContainer } from './Messenger.styled';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import MessengerContent from '@components/Messenger/MessengerContent/MessengerContent';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import MessengerContent from '@/components/Messenger/MessengerContent/MessengerContent';
 import React from 'react';
 import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 

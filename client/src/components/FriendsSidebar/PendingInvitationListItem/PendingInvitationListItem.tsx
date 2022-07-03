@@ -1,10 +1,10 @@
-import { HtmlTooltip } from '@components/HtmlTooltip/HtmlTooltip';
-import { IPendingInvitation } from '../../typings/typings';
+import { HtmlTooltip } from '@/components/ui-elements/HtmlTooltip/HtmlTooltip';
+import { IPendingInvitation } from '@/typings/typings';
 import { IconsContainer, StyledBox, StyledIconButton } from './PendingInvitationListItem.styled';
 import { Typography } from '@mui/material';
 import Check from '@mui/icons-material/Check';
 import Clear from '@mui/icons-material/Clear';
-import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
+import CustomAvatar from '@/components/ui-elements/CustomAvatar/CustomAvatar';
 import React from 'react';
 
 type Props = {

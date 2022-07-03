@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
-import darkTheme from '@themes/darkTheme';
+import darkTheme from '@/themes/darkTheme';
 
 export const StyledBox = styled(Box)(({ theme }) => ({
   width: 700,

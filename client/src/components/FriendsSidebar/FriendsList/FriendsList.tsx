@@ -1,7 +1,7 @@
 import { FriendsListContainer } from './FriendsList.styled';
-import { IFriend } from '../../typings/typings';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import FriendListItem from '@components/FriendListItem/FriendListItem';
+import { IFriend } from '@/typings/typings';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import FriendListItem from '@/components/FriendsSidebar/FriendListItem/FriendListItem';
 import React from 'react';
 
 type Props = {}

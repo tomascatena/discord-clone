@@ -1,9 +1,9 @@
 import { AppBarContainer } from './AppBar.styled';
 import { IconButton, Typography } from '@mui/material';
-import { useActions } from '@hooks/useActions';
-import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useActions } from '@/hooks/useActions';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '@hooks/useTypedSelector';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import MoreVertIcon from '@mui/icons-material/MoreVert';

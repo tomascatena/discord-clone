@@ -1,18 +1,18 @@
-import { ROUTES } from '@constants/frontEndRoutes';
+import { ROUTES } from '@/constants/frontEndRoutes';
 import { RegisterForm, RegisterPageLayout } from './RegisterPage.styled';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Typography } from '@mui/material';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { register } from '@store/features/auth/auth.thunk';
-import { useActions } from '../../hooks/useActions';
-import { useAppDispatch } from '../../hooks/useAppDispatch';
+import { register } from '@/store/features/auth/auth.thunk';
+import { useActions } from '@/hooks/useActions';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
 import { useNavigate } from 'react-router-dom';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import AuthBox from '@components/AuthBox/AuthBox';
-import CustomButton from '@components/CustomButton/CustomButton';
-import CustomInput from '@components/CustomInput/CustomInput';
-import CustomLink from '@components/CustomLink/CustomLink';
-import CustomSnackbar from '../../components/CustomSnackbar/CustomSnackbar';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import AuthBox from '@/components/AuthBox/AuthBox';
+import CustomButton from '@/components/ui-elements/CustomButton/CustomButton';
+import CustomInput from '@/components/ui-elements/CustomInput/CustomInput';
+import CustomLink from '@/components/ui-elements/CustomLink/CustomLink';
+import CustomSnackbar from '@/components/ui-elements/CustomSnackbar/CustomSnackbar';
 import Joi from 'joi';
 import React from 'react';
 

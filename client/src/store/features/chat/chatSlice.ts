@@ -1,4 +1,4 @@
-import { CHAT_TYPES } from '@constants/constants';
+import { CHAT_TYPES } from '@/constants/constants';
 import { ChatTypes, IChatDetails } from '../../../typings/typings';
 import { createSlice } from '@reduxjs/toolkit';
 

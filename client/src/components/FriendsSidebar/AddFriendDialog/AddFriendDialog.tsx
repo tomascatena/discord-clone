@@ -1,13 +1,13 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography } from '@mui/material';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { joiResolver } from '@hookform/resolvers/joi';
-import { sendInvitation } from '@store/features/friends/friends.thunk';
-import { useActions } from '@hooks/useActions';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import CustomButton from '@components/CustomButton/CustomButton';
-import CustomInput from '@components/CustomInput/CustomInput';
-import CustomSnackbar from '@components/CustomSnackbar/CustomSnackbar';
+import { sendInvitation } from '@/store/features/friends/friends.thunk';
+import { useActions } from '@/hooks/useActions';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import CustomButton from '@/components/ui-elements/CustomButton/CustomButton';
+import CustomInput from '@/components/ui-elements/CustomInput/CustomInput';
+import CustomSnackbar from '@/components/ui-elements/CustomSnackbar/CustomSnackbar';
 import Joi from 'joi';
 import React from 'react';
 

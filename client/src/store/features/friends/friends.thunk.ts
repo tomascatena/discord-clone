@@ -1,11 +1,11 @@
-import { API_ENDPOINTS } from '@constants/APIEndpoints';
+import { API_ENDPOINTS } from '@/constants/APIEndpoints';
 import {
   AuthData,
   IInvitationData,
   InvitationResponseData,
   ValidationError
 } from '../../../typings/typings';
-import { RootState } from '@store/store';
+import { RootState } from '@/store/store';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosError } from 'axios';
 import axiosInstance from '../../../axiosConfig';

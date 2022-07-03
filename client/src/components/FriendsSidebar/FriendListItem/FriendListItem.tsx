@@ -1,9 +1,9 @@
 
-import { CHAT_TYPES } from '@constants/constants';
-import { IFriend } from '../../typings/typings';
+import { CHAT_TYPES } from '@/constants/constants';
+import { IFriend } from '@/typings/typings';
 import { StyledButton, StyledSpan } from './FriendListItems.styled';
-import { useActions } from '@hooks/useActions';
-import CustomAvatar from '@components/CustomAvatar/CustomAvatar';
+import { useActions } from '@/hooks/useActions';
+import CustomAvatar from '@/components/ui-elements/CustomAvatar/CustomAvatar';
 import React from 'react';
 
 type Props = {

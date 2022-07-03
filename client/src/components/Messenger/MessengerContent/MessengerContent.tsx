@@ -1,6 +1,6 @@
 import { MessengerContentWrapper } from './MessengerContent.styled';
-import Messages from '../Messages/Messages';
-import NewMessageInput from '../NewMessageInput/NewMessageInput';
+import Messages from '@/components/Messenger/Messages/Messages';
+import NewMessageInput from '@/components/Messenger/NewMessageInput/NewMessageInput';
 import React from 'react';
 
 type Props = {}

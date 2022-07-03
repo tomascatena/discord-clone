@@ -1,7 +1,7 @@
 import { IFriend, IOnlineUser, IPendingInvitation, IUser } from '../typings/typings';
 import { Socket, io } from 'socket.io-client';
-import { friendsActions } from '@store/features/friends/friendsSlice';
-import { store } from '@store/store';
+import { friendsActions } from '@/store/features/friends/friendsSlice';
+import { store } from '@/store/store';
 
 let socket: Socket;
 

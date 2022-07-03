@@ -1,10 +1,10 @@
 import { PendingInvitationsContainer } from './PendingInvitations.styled';
-import { acceptFriendInvitation, rejectFriendInvitation } from '@store/features/friends/friends.thunk';
-import { useActions } from '@hooks/useActions';
-import { useAppDispatch } from '@hooks/useAppDispatch';
-import { useTypedSelector } from '@hooks/useTypedSelector';
-import CustomSnackbar from '@components/CustomSnackbar/CustomSnackbar';
-import PendingInvitationListItem from '@components/PendingInvitationListItem/PendingInvitationListItem';
+import { acceptFriendInvitation, rejectFriendInvitation } from '@/store/features/friends/friends.thunk';
+import { useActions } from '@/hooks/useActions';
+import { useAppDispatch } from '@/hooks/useAppDispatch';
+import { useTypedSelector } from '@/hooks/useTypedSelector';
+import CustomSnackbar from '@/components/ui-elements/CustomSnackbar/CustomSnackbar';
+import PendingInvitationListItem from '@/components/FriendsSidebar/PendingInvitationListItem/PendingInvitationListItem';
 import React from 'react';
 
 type Props = {}

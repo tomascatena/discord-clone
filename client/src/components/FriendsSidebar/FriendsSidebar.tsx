@@ -1,8 +1,8 @@
 import { Button, Typography } from '@mui/material';
 import { FriendsSidebarContainer, ListsContainer } from './FriendsSidebar.styled';
-import AddFriendDialog from '@components/AddFriendDialog/AddFriendDialog';
-import FriendsList from '@components/FriendsList/FriendsList';
-import PendingInvitations from '../PendingInvitations/PendingInvitations';
+import AddFriendDialog from '@/components/FriendsSidebar/AddFriendDialog/AddFriendDialog';
+import FriendsList from '@/components/FriendsSidebar/FriendsList/FriendsList';
+import PendingInvitations from './PendingInvitations/PendingInvitations';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 import React from 'react';
 
