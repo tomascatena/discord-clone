@@ -29,11 +29,7 @@ export const getMe = {
       description: 'Gets information about the currently logged in user',
       consumes: ['application/json'],
       produces: ['application/json'],
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
+      security: [{ bearerAuth: [] }],
       responses: {
         [StatusCodes.OK]: successResponse,
         [StatusCodes.UNAUTHORIZED]: tokenExpiredErrorResponse,

@@ -56,17 +56,12 @@ export const rejectFriendInvitation = {
   '/friends/invitation/reject': {
     post: {
       tags: ['Friends'],
-      summary: 'Accept friend invitation',
-      description:
-        'Removes the invitation from the database and add the user to the friend list',
+      summary: 'Reject friend invitation',
+      description: 'Removes the invitation from the database',
       consumes: ['application/json'],
       produces: ['application/json'],
       requestBody: registerUserRequestBody,
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
+      security: [{ bearerAuth: [] }],
       responses: {
         [StatusCodes.OK]: successResponse,
         [StatusCodes.BAD_REQUEST]: validationError,

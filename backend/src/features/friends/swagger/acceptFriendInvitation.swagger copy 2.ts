@@ -61,11 +61,7 @@ export const acceptFriendInvitation = {
         'Removes the invitation from the database and add the user to the friend list',
       consumes: ['application/json'],
       produces: ['application/json'],
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
+      security: [{ bearerAuth: [] }],
       requestBody: registerUserRequestBody,
       responses: {
         [StatusCodes.OK]: successResponse,

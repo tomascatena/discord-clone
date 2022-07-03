@@ -53,11 +53,7 @@ export const sendInvitation = {
       consumes: ['application/json'],
       produces: ['application/json'],
       requestBody: registerUserRequestBody,
-      security: [
-        {
-          bearerAuth: [],
-        },
-      ],
+      security: [{ bearerAuth: [] }],
       responses: {
         [StatusCodes.OK]: successResponse,
         [StatusCodes.CONFLICT]: invitationAlreadySent,
