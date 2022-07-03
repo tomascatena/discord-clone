@@ -1,3 +1,4 @@
+import { DUMMY_MESSAGES } from './DUMMY_MESSAGES';
 import { MessengerContainer } from './Messenger.styled';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import MessengerContent from '@/components/Messenger/MessengerContent/MessengerContent';
@@ -18,7 +19,10 @@ const Messenger:React.FC<Props> = () => {
     <MessengerContainer>
       {
         chosenChatDetails
-          ? <MessengerContent/>
+          ? <MessengerContent
+              messages={DUMMY_MESSAGES}
+              chosenChatDetails={chosenChatDetails}
+            />
           : <WelcomeMessage />
       }
     </MessengerContainer>

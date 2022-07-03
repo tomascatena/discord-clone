@@ -83,3 +83,12 @@ export interface IChatDetails {
 }
 
 export type ChatTypes = 'direct' | 'group';
+
+export interface IMessage {
+  _id: string;
+  content: string;
+  sameAuthor: boolean;
+  author: Partial<IUser>;
+  date: string;
+  sameDay: boolean;
+}

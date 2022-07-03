@@ -1,14 +1,21 @@
+import { IChatDetails, IMessage } from '@/typings/typings';
 import { MessengerContentWrapper } from './MessengerContent.styled';
 import Messages from '@/components/Messenger/Messages/Messages';
 import NewMessageInput from '@/components/Messenger/NewMessageInput/NewMessageInput';
 import React from 'react';
 
-type Props = {}
+type Props = {
+  messages: IMessage[];
+  chosenChatDetails: IChatDetails;
+}
 
-const MessengerContent:React.FC<Props> = () => {
+const MessengerContent:React.FC<Props> = ({ messages, chosenChatDetails }) => {
   return (
     <MessengerContentWrapper>
-      <Messages />
+      <Messages
+        messages={messages}
+        chosenChatDetails={chosenChatDetails}
+      />
 
       <NewMessageInput />
     </MessengerContentWrapper>

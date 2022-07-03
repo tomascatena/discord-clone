@@ -7,14 +7,15 @@ type Props = {
   imgAltText: string;
   hasOnlineIndicator: boolean;
   isOnline: boolean;
+  size?: number;
 }
 
-const CustomAvatar:React.FC<Props> = ({ imgAltText, hasOnlineIndicator, isOnline }) => {
+const CustomAvatar:React.FC<Props> = ({ imgAltText, hasOnlineIndicator, isOnline, size = 32 }) => {
   const avatar = React.useMemo(() => {
     return createAvatar(style, {
       seed: imgAltText,
       dataUri: true,
-      size: 32,
+      size,
       backgroundColor: '#fff',
       radius: 30,
     });
