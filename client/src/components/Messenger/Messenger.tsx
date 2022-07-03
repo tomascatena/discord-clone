@@ -12,7 +12,6 @@ const Messenger:React.FC<Props> = () => {
 
   React.useEffect(() => {
     // TODO: fetching chat history from a specific userId
-    console.log('chosenChatDetails', chosenChatDetails);
   }, [chosenChatDetails]);
 
   return (

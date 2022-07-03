@@ -88,7 +88,7 @@ export interface IMessage {
   _id: string;
   content: string;
   sameAuthor: boolean;
-  author: Partial<IUser>;
+  author: Pick<IUser, '_id' | 'username'>;
   date: string;
   sameDay: boolean;
 }

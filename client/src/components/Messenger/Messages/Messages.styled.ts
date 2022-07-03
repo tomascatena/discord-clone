@@ -1,10 +1,10 @@
 import { styled } from '@mui/system';
 
-export const MessagesWrapper = styled('div')(() => ({
+export const MessagesWrapper = styled('div')(({ theme }) => ({
   flex: 1,
   overflow: 'auto',
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'center',
-  paddingTop: '1rem',
+  padding: theme.spacing(2),
+  marginBottom: theme.spacing(1),
 }));
