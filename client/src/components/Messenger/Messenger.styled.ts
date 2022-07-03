@@ -6,11 +6,3 @@ export const MessengerContainer = styled('div')(() => ({
   marginTop: '48px',
   display: 'flex',
 }));
-
-export const WelcomeMessageContainer = styled('div')(() => ({
-  flexGrow: 1,
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
