@@ -16,7 +16,7 @@ const registerUserRequestBody = getSwaggerRequestBodySchema({
 });
 
 const successResponse = getSwaggerResponseBodySchema({
-  description: 'New user is created',
+  description: 'Create new user',
   responseBody: {
     message: 'New user successfully registered',
     tokens: {
@@ -56,6 +56,14 @@ const validationErrorResponse = getSwaggerResponseBodySchema({
   },
 });
 
+const emailTaken = getSwaggerResponseBodySchema({
+  description: 'Email already taken',
+  responseBody: {
+    statusCode: 409,
+    message: 'Email already taken',
+  },
+});
+
 export const register = {
   '/user/register': {
     post: {
@@ -68,6 +76,7 @@ export const register = {
       responses: {
         [StatusCodes.CREATED]: successResponse,
         [StatusCodes.BAD_REQUEST]: validationErrorResponse,
+        [StatusCodes.CONFLICT]: emailTaken,
       },
     },
   },

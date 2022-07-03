@@ -17,7 +17,7 @@ const getUserById = async (userId: string) => {
 const createUser = async (userBody: Partial<IUser>) => {
   if (await User.isEmailTaken(userBody.email!)) {
     throw new ApiError({
-      statusCode: httpStatus.BAD_REQUEST,
+      statusCode: httpStatus.CONFLICT,
       message: 'Email already taken',
       isOperational: false,
     });
