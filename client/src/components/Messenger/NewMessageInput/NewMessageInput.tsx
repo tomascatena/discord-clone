@@ -1,5 +1,6 @@
 import { IChatDetails } from '@/typings/typings';
 import { NewMessageContainer, StyledInput, StyledInputContainer } from './NewMessageInput.styled';
+import { sendDirectMessage } from '@/realtimeCommunication/socketConnection';
 import React from 'react';
 
 type Props = {
@@ -12,7 +13,14 @@ const NewMessageInput: React.FC<Props> = ({ chosenChatDetails }) => {
   const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      console.log('Sending message...', message);
+
+      if (message.trim().length > 0) {
+        sendDirectMessage({
+          receiverUserId: chosenChatDetails.friendId,
+          message,
+        });
+      }
+
       setMessage('');
     }
   };

@@ -52,3 +52,12 @@ export const connectWithSocketServer = ({
     console.error(err);
   });
 };
+
+type SendDirectMessageParams = {
+  message: string;
+  receiverUserId: string;
+}
+
+export const sendDirectMessage = (data: SendDirectMessageParams) => {
+  socket.emit('direct-message', data);
+};
