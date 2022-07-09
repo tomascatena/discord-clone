@@ -1,5 +1,6 @@
 import { Logger } from '@/config/logger';
 import { Server as SocketIOServer } from 'socket.io';
+import { directChatHistoryHandler } from '@/socketHandlers/directChatHistoryHandler';
 import { directMessageHandler } from './socketHandlers/directMessageHandler';
 import { disconnectHandler } from '@/socketHandlers/disconnectHandler';
 import { newConnectionHandler } from '@/socketHandlers/newConnectionHandler';
@@ -31,6 +32,10 @@ export const registerSocketServer = (server: http.Server) => {
 
     socket.on('direct-message', (data) => {
       directMessageHandler(socket, data);
+    });
+
+    socket.on('direct-chat-history', (data) => {
+      directChatHistoryHandler(socket, data);
     });
 
     socket.on('disconnect', () => {

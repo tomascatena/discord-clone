@@ -76,7 +76,7 @@ export const directMessageHandler = async (socket: Socket, data: DirectMessage) 
               stack: err.stack,
             },
           }
-        : {}),
+        : { err }),
     };
 
     LoggerToFile.error(errorToLog);

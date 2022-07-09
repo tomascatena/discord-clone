@@ -41,7 +41,7 @@ const updateFriendsPendingInvitations = async (userId: string) => {
               stack: err.stack,
             },
           }
-        : {}),
+        : { err }),
     };
 
     LoggerToFile.error(errorToLog);
@@ -104,7 +104,7 @@ const sendFriendsList = async (userId: string) => {
               stack: err.stack,
             },
           }
-        : {}),
+        : { err }),
     };
 
     LoggerToFile.error(errorToLog);

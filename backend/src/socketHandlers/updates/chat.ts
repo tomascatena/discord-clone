@@ -73,7 +73,7 @@ const updateChatHistory = async (
               stack: err.stack,
             },
           }
-        : {}),
+        : { err }),
     };
 
     LoggerToFile.error(errorToLog);
