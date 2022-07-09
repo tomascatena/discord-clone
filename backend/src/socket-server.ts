@@ -1,5 +1,6 @@
 import { Logger } from '@/config/logger';
 import { Server as SocketIOServer } from 'socket.io';
+import { directMessageHandler } from './socketHandlers/directMessageHandler';
 import { disconnectHandler } from '@/socketHandlers/disconnectHandler';
 import { newConnectionHandler } from '@/socketHandlers/newConnectionHandler';
 import { verifyTokenSocket } from '@/middleware/authSocket';
@@ -28,9 +29,18 @@ export const registerSocketServer = (server: http.Server) => {
     newConnectionHandler(socket, io);
     emitOnlineUsers();
 
+    io.on('direct-message', (data) => {
+      console.log('direct-message', data);
+      directMessageHandler(socket, data);
+    });
+
     socket.on('disconnect', () => {
       disconnectHandler(socket);
     });
+  });
+
+  io.on('error', (err) => {
+    Logger.error(err);
   });
 
   // Emit list of online users every 5 seconds
