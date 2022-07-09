@@ -1,8 +1,9 @@
-import { Logger } from '@/config/logger';
+import { Logger, LoggerToFile } from '@/config/logger';
 import { ObjectId } from 'mongoose';
 import { Socket } from 'socket.io';
 import Conversation from '@/features/conversations/conversation.model';
 import Message from '@/features/conversations/message.model';
+import chatUpdates from '@/socketHandlers/updates/chat';
 
 type DirectMessage = {
   message: string;
@@ -46,6 +47,9 @@ export const directMessageHandler = async (socket: Socket, data: DirectMessage) 
       await conversation.save();
 
       // Update to sender and receiver if they are online
+      chatUpdates.updateChatHistory({
+        conversationId: conversation._id.toString(),
+      });
     } else {
       const newConversation = await Conversation.create({
         messages: [newMessage._id],
@@ -55,8 +59,26 @@ export const directMessageHandler = async (socket: Socket, data: DirectMessage) 
       console.log('New conversation created: ', newConversation);
 
       // Update to sender and receiver if they are online
+      chatUpdates.updateChatHistory({
+        conversationId: newConversation._id.toString(),
+      });
     }
-  } catch (error) {
-    Logger.error(error);
+  } catch (err) {
+    Logger.error(err);
+
+    const errorToLog = {
+      message: 'Error occurred in directMessageHandler',
+      ...(err instanceof Error
+        ? {
+            error: {
+              message: err.message,
+              name: err.name,
+              stack: err.stack,
+            },
+          }
+        : {}),
+    };
+
+    LoggerToFile.error(errorToLog);
   }
 };

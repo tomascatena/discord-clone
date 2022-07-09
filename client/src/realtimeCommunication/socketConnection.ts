@@ -10,6 +10,23 @@ type ConnectWithSocketServerParams = {
   accessToken: string;
 }
 
+type IMessageAuthor = {
+  username: string;
+  _id: string;
+}
+
+type IDirectMessage = {
+  author: IMessageAuthor;
+  content: string;
+  date: string;
+  type: 'DIRECT'
+}
+
+type DirectChatHistory = {
+  messages: IDirectMessage[];
+  participants: string[];
+}
+
 /**
  * @desc Connect with the socket server.
  * @param object
@@ -46,6 +63,10 @@ export const connectWithSocketServer = ({
     const onlineUsers = data.onlineUsers as IOnlineUser[];
 
     store.dispatch(friendsActions.setOnlineUsers(onlineUsers));
+  });
+
+  socket.on('direct-chat-history', (data: DirectChatHistory) => {
+    console.log('direct-chat-history', data);
   });
 
   socket.on('connect_error', (err) => {

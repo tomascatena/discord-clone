@@ -1,3 +1,4 @@
+import { Logger, LoggerToFile } from '@/config/logger';
 import { ObjectId } from 'mongoose';
 import FriendInvitation from '@/features/friends/friendInvitation.model';
 import User from '@/features/user/user.model';
@@ -27,8 +28,23 @@ const updateFriendsPendingInvitations = async (userId: string) => {
         pendingInvitations,
       });
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    Logger.error(err);
+
+    const errorToLog = {
+      message: 'Error occurred in updateFriendsPendingInvitations',
+      ...(err instanceof Error
+        ? {
+            error: {
+              message: err.message,
+              name: err.name,
+              stack: err.stack,
+            },
+          }
+        : {}),
+    };
+
+    LoggerToFile.error(errorToLog);
   }
 };
 
@@ -75,8 +91,23 @@ const sendFriendsList = async (userId: string) => {
         friends: user.friends,
       });
     });
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    Logger.error(err);
+
+    const errorToLog = {
+      message: 'Error occurred in sendFriendsList',
+      ...(err instanceof Error
+        ? {
+            error: {
+              message: err.message,
+              name: err.name,
+              stack: err.stack,
+            },
+          }
+        : {}),
+    };
+
+    LoggerToFile.error(errorToLog);
   }
 };
 
