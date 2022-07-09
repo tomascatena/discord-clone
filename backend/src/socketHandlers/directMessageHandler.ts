@@ -53,12 +53,11 @@ export const directMessageHandler = async (
         conversationId: conversation._id.toString(),
       });
     } else {
+      // Create new conversation between the two users
       const newConversation = await Conversation.create({
         messages: [newMessage._id],
         participants: [userId, receiverUserId],
       });
-
-      console.log('New conversation created: ', newConversation);
 
       // Update to sender and receiver if they are online
       chatUpdates.updateChatHistory({

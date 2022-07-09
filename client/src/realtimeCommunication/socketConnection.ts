@@ -1,30 +1,14 @@
-import { IFriend, IOnlineUser, IPendingInvitation, IUser } from '../typings/typings';
+import { DirectChatHistory, IFriend, IOnlineUser, IPendingInvitation, IUser } from '@/typings/typings';
 import { Socket, io } from 'socket.io-client';
 import { friendsActions } from '@/store/features/friends/friendsSlice';
 import { store } from '@/store/store';
+import { updateDirectChatHistoryIfActive } from '@/utils/chat';
 
 let socket: Socket;
 
 type ConnectWithSocketServerParams = {
   userData: IUser;
   accessToken: string;
-}
-
-type IMessageAuthor = {
-  username: string;
-  _id: string;
-}
-
-type IDirectMessage = {
-  author: IMessageAuthor;
-  content: string;
-  date: string;
-  type: 'DIRECT'
-}
-
-type DirectChatHistory = {
-  messages: IDirectMessage[];
-  participants: string[];
 }
 
 /**
@@ -66,7 +50,7 @@ export const connectWithSocketServer = ({
   });
 
   socket.on('direct-chat-history', (data: DirectChatHistory) => {
-    console.log('direct-chat-history', data);
+    updateDirectChatHistoryIfActive(data);
   });
 
   socket.on('connect_error', (err) => {
@@ -81,4 +65,12 @@ type SendDirectMessageParams = {
 
 export const sendDirectMessage = (data: SendDirectMessageParams) => {
   socket.emit('direct-message', data);
+};
+
+type GetDirectChatHistoryParams = {
+  receiverUserId: string;
+}
+
+export const getDirectChatHistory = (data: GetDirectChatHistoryParams) => {
+  socket.emit('direct-chat-history', data);
 };

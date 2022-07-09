@@ -11,15 +11,13 @@ type Props = {
 }
 
 const CustomAvatar:React.FC<Props> = ({ imgAltText, hasOnlineIndicator, isOnline, size = 32 }) => {
-  const avatar = React.useMemo(() => {
-    return createAvatar(style, {
-      seed: imgAltText,
-      dataUri: true,
-      size,
-      backgroundColor: '#fff',
-      radius: 30,
-    });
-  }, []);
+  const avatar = createAvatar(style, {
+    seed: imgAltText,
+    dataUri: true,
+    size,
+    backgroundColor: '#fff',
+    radius: 30,
+  });
 
   return (
     <StyledBadge

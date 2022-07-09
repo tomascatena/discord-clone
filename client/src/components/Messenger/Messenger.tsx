@@ -1,5 +1,5 @@
-import { DUMMY_MESSAGES } from './DUMMY_MESSAGES';
 import { MessengerContainer } from './Messenger.styled';
+import { getDirectChatHistory } from '../../realtimeCommunication/socketConnection';
 import { useTypedSelector } from '@/hooks/useTypedSelector';
 import MessengerContent from '@/components/Messenger/MessengerContent/MessengerContent';
 import React from 'react';
@@ -8,10 +8,14 @@ import WelcomeMessage from './WelcomeMessage/WelcomeMessage';
 type Props = {}
 
 const Messenger:React.FC<Props> = () => {
-  const { chosenChatDetails } = useTypedSelector(state => state.chat);
+  const { chosenChatDetails, messages } = useTypedSelector(state => state.chat);
 
   React.useEffect(() => {
-    // TODO: fetching chat history from a specific userId
+    if (chosenChatDetails) {
+      getDirectChatHistory({
+        receiverUserId: chosenChatDetails.friendId,
+      });
+    }
   }, [chosenChatDetails]);
 
   return (
@@ -19,7 +23,7 @@ const Messenger:React.FC<Props> = () => {
       {
         chosenChatDetails
           ? <MessengerContent
-              messages={DUMMY_MESSAGES}
+              messages={messages}
               chosenChatDetails={chosenChatDetails}
             />
           : <WelcomeMessage />

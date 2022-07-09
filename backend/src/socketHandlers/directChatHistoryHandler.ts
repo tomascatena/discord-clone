@@ -37,6 +37,18 @@ export const directChatHistoryHandler = async (
         conversationId: conversation._id.toString(),
         toSpecifiedSocketId: socket.id,
       });
+    } else {
+      // Create new conversation between the two users
+      const newConversation = await Conversation.create({
+        messages: [],
+        participants: [userId, receiverUserId],
+      });
+
+      // Update to sender and receiver if they are online
+      chatUpdates.updateChatHistory({
+        conversationId: newConversation._id.toString(),
+        toSpecifiedSocketId: socket.id,
+      });
     }
   } catch (err) {
     Logger.error(err);

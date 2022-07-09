@@ -92,3 +92,21 @@ export interface IMessage {
   date: string;
   sameDay: boolean;
 }
+
+export type IMessageAuthor = {
+  username: string;
+  _id: string;
+}
+
+export type IDirectMessage = {
+  _id: string;
+  author: IMessageAuthor;
+  content: string;
+  date: string;
+  type: 'DIRECT'
+}
+
+export type DirectChatHistory = {
+  messages: IDirectMessage[];
+  participants: string[];
+}

@@ -1,19 +1,17 @@
-import { IChatDetails, IMessage } from '@/typings/typings';
+import { IChatDetails, IDirectMessage } from '@/typings/typings';
 import { MessagesWrapper } from './Messages.styled';
 import Message from '@/components/Messenger/Message/Message';
 import MessagesHeader from '@/components/Messenger/MessagesHeader/MessagesHeader';
 import React from 'react';
 import isSameDay from 'date-fns/isSameDay';
-import parse from 'date-fns/parse';
+import parseISO from 'date-fns/parseISO';
 
 type Props = {
-  messages: IMessage[];
+  messages: IDirectMessage[];
   chosenChatDetails: IChatDetails;
 }
 
 const Messages:React.FC<Props> = ({ chosenChatDetails, messages }) => {
-  const parseDate = (date: string) => parse(date, 'dd/MM/yyyy', new Date());
-
   return (
     <MessagesWrapper>
       <MessagesHeader chosenChatDetails={chosenChatDetails} />
@@ -27,8 +25,8 @@ const Messages:React.FC<Props> = ({ chosenChatDetails, messages }) => {
             message={message}
             isSameAuthor={isSameAuthor}
             isSameDay={isSameDay(
-              parseDate(messages[index > 0 ? index - 1 : index].date),
-              parseDate(messages[index].date)
+              parseISO(messages[index > 0 ? index - 1 : index].date),
+              parseISO(messages[index].date)
             )}
           />
         );
