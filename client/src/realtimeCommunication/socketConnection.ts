@@ -59,6 +59,5 @@ type SendDirectMessageParams = {
 }
 
 export const sendDirectMessage = (data: SendDirectMessageParams) => {
-  console.log('sendDirectMessage', data);
   socket.emit('direct-message', data);
 };

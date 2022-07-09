@@ -29,8 +29,7 @@ export const registerSocketServer = (server: http.Server) => {
     newConnectionHandler(socket, io);
     emitOnlineUsers();
 
-    io.on('direct-message', (data) => {
-      console.log('direct-message', data);
+    socket.on('direct-message', (data) => {
       directMessageHandler(socket, data);
     });
 

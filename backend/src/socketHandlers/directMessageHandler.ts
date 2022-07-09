@@ -1,3 +1,4 @@
+import { Logger } from '@/config/logger';
 import { ObjectId } from 'mongoose';
 import { Socket } from 'socket.io';
 import Conversation from '@/features/conversations/conversation.model';
@@ -56,6 +57,6 @@ export const directMessageHandler = async (socket: Socket, data: DirectMessage) 
       // Update to sender and receiver if they are online
     }
   } catch (error) {
-    console.log(error);
+    Logger.error(error);
   }
 };
