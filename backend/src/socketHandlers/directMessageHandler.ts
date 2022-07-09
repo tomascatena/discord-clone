@@ -15,8 +15,10 @@ type DirectMessage = {
  * @param socket - socket object
  * @param data - direct message data. @see DirectMessage.
  */
-// eslint-disable-next-line
-export const directMessageHandler = async (socket: Socket, data: DirectMessage) => {
+export const directMessageHandler = async (
+  socket: Socket,
+  data: DirectMessage
+) => {
   try {
     const userDetails = await socket.data.user;
     const { message, receiverUserId } = data;

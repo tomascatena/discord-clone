@@ -2,6 +2,11 @@ import { Logger, LoggerToFile } from '@/config/logger';
 import Conversation from '@/features/conversations/conversation.model';
 import serverStore from '@/serverStore';
 
+/**
+ * @desc Will emit the chat history to the specified socket or to all the participants of the conversation.
+ * @param param0 - conversationId
+ * @param param1 - toSpecifiedSocketId
+ */
 const updateChatHistory = async (
   {
     conversationId,

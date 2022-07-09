@@ -4,7 +4,19 @@ import { Socket } from 'socket.io';
 import Conversation from '@/features/conversations/conversation.model';
 import chatUpdates from '@/socketHandlers/updates/chat';
 
-export const directChatHistoryHandler = async (socket: Socket, data: any) => {
+type DirectChatHistoryData = {
+  receiverUserId: string;
+};
+
+/**
+ * @desc Handle the direct-chat-history event. Will find a conversation between the two users and call updateChatHistory.
+ * @param socket - socket object
+ * @param data - direct chat history data. @see DirectChatHistoryData.
+ */
+export const directChatHistoryHandler = async (
+  socket: Socket,
+  data: DirectChatHistoryData
+) => {
   const userDetails = await socket.data.user;
 
   if (!userDetails) {
