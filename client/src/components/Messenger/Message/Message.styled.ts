@@ -3,6 +3,24 @@ import { styled } from '@mui/system';
 
 export const MainContainer = styled('div')(() => ({
   display: 'flex',
+
+  '& .hidden-date': {
+    opacity: 0,
+    transition: 'all 0.2s ease-in-out 0.1s',
+  },
+
+  '&:hover .hidden-date': {
+    opacity: 1,
+  },
+
+  '& .hidden-message-time': {
+    opacity: 0.3,
+    transition: 'all 0.2s ease-in-out 0.1s',
+  },
+
+  '&:hover .hidden-message-time': {
+    opacity: 1,
+  }
 }));
 
 export const AvatarContainer = styled('div')(() => ({

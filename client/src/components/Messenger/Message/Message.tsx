@@ -47,6 +47,7 @@ const Message: React.FC<Props> = ({ message, isSameAuthor, isSameDay }) => {
       <Typography
         variant='body2'
         color='textSecondary'
+        className='hidden-date'
       >
         {formattedDate}
       </Typography>
@@ -64,7 +65,6 @@ const Message: React.FC<Props> = ({ message, isSameAuthor, isSameDay }) => {
       )}
 
       <MainContainer>
-
         <AvatarContainer>
           {isMessageFromDifferentUser && avatar}
         </AvatarContainer>
@@ -76,6 +76,7 @@ const Message: React.FC<Props> = ({ message, isSameAuthor, isSameDay }) => {
             <Typography
               variant='body2'
               color='textSecondary'
+              className='hidden-message-time'
             >
               {messageTime}:
             </Typography>
