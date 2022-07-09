@@ -2,6 +2,12 @@ import { DirectChatHistory, IDirectMessage } from '@/typings/typings';
 import { chatActions } from '../store/features/chat/chatSlice';
 import { store } from '@/store/store';
 
+/**
+ * @desc Update the chat history if the chat is active.
+ * @param param0 - participants. Array of userIds
+ * @param param1 - usersInActiveConversation. Array of userIds
+ * @param param2 - messages. Array of messages
+ */
 const updateChatHistoryIfUsersAreInSameConversation = ({
   participants,
   usersInActiveConversation,
@@ -20,6 +26,10 @@ const updateChatHistoryIfUsersAreInSameConversation = ({
   }
 };
 
+/**
+ * @desc Update the chat history if the users are in the same conversation.
+ * @param data - direct chat history. @see DirectChatHistory
+ */
 export const updateDirectChatHistoryIfActive = (
   data: DirectChatHistory
 ) => {
@@ -38,6 +48,4 @@ export const updateDirectChatHistoryIfActive = (
       messages
     });
   }
-
-  store.dispatch(chatActions.setMessages(data.messages));
 };
