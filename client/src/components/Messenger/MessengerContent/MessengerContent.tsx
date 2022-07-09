@@ -17,7 +17,7 @@ const MessengerContent:React.FC<Props> = ({ messages, chosenChatDetails }) => {
         chosenChatDetails={chosenChatDetails}
       />
 
-      <NewMessageInput />
+      <NewMessageInput chosenChatDetails={chosenChatDetails}/>
     </MessengerContentWrapper>
   );
 };
