@@ -2,13 +2,13 @@ import { CHAT_TYPES } from '@/constants/constants';
 import { ChatTypes, IChatDetails, IDirectMessage } from '@/typings/typings';
 import { createSlice } from '@reduxjs/toolkit';
 
-export interface ChartState {
+export interface ChatState {
   chosenChatDetails: IChatDetails | null;
   messages: IDirectMessage[];
   chatType: ChatTypes;
 }
 
-export const initialState: ChartState = {
+export const initialState: ChatState = {
   chosenChatDetails: null,
   messages: [],
   chatType: CHAT_TYPES.DIRECT,

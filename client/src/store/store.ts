@@ -4,6 +4,7 @@ import alertReducer from './features/alert/alertSlice';
 import authReducer from './features/auth/authSlice';
 import chatReducer from './features/chat/chatSlice';
 import friendsReducer from './features/friends/friendsSlice';
+import roomReducer from './features/room/roomSlice';
 
 export const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
     alert: alertReducer,
     friends: friendsReducer,
     chat: chatReducer,
+    room: roomReducer
   },
 });
 

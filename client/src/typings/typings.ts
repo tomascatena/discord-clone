@@ -1,6 +1,6 @@
 export type Nullable<T> = T | null;
 
-export type InputsVariant = 'outlined' | 'standard' | 'filled' | undefined
+export type InputsVariant = 'outlined' | 'standard' | 'filled' | undefined;
 
 export interface IUserRegisterForm {
   username: string;
@@ -23,12 +23,12 @@ export interface IUser {
 export type ValidationError = {
   message: string;
   path: string[];
-  type:string;
+  type: string;
   context: {
     invalids: string[];
     label: string;
     key: string;
-  }
+  };
 };
 
 type Token = {
@@ -44,7 +44,7 @@ export type Tokens = {
 export interface AuthData {
   user: IUser;
   tokens?: Tokens;
-  message: string
+  message: string;
 }
 
 export interface IFriend {
@@ -66,7 +66,7 @@ export interface IPendingInvitation {
     username: string;
     email: string;
   };
-  receiverId: string
+  receiverId: string;
 }
 
 export interface IInvitationData {
@@ -78,7 +78,7 @@ export interface InvitationResponseData {
 }
 
 export interface IChatDetails {
-  friendId: string
+  friendId: string;
   friendUsername: string;
 }
 
@@ -96,17 +96,19 @@ export interface IMessage {
 export type IMessageAuthor = {
   username: string;
   _id: string;
-}
+};
 
 export type IDirectMessage = {
   _id: string;
   author: IMessageAuthor;
   content: string;
   date: string;
-  type: 'DIRECT'
-}
+  type: 'DIRECT';
+};
 
 export type DirectChatHistory = {
   messages: IDirectMessage[];
   participants: string[];
-}
+};
+
+export type RoomDetails = {};

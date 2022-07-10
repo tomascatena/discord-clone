@@ -9,6 +9,7 @@ export const SidebarContainer = styled('div')(({ theme }) => ({
   alignItems: 'center',
   backgroundColor: '#202225',
   paddingTop: theme.spacing(2),
+  paddingRight: theme.spacing(1),
 }));
 
 export const MainButton = styled(Button)({
@@ -18,7 +19,6 @@ export const MainButton = styled(Button)({
   margin: 0,
   padding: 0,
   minWidth: 0,
-  marginTop: '10px',
   color: 'white',
   backgroundColor: '#666',
 
