@@ -13,10 +13,12 @@ export const RoomContainer = styled('div', {
   alignItems: 'center',
   justifyContent: 'center',
   backgroundColor: '#202225',
+  zIndex: 2,
+  transition: 'all 0.3s ease',
+  bottom: '0',
+  right: '0',
 
   ...(isMinimized ? {
-    bottom: '0',
-    right: '0',
     width: '30%',
     height: '40vh',
   } : {

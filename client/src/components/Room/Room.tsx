@@ -1,18 +1,26 @@
 import { RoomContainer } from './Room.styled';
 import React from 'react';
+import ResizeRoomButton from './ResizeRoomButton/ResizeRoomButton';
+import RoomButtons from './RoomButtons/RoomButtons';
+import VideosContainer from './VideosContainer/VideosContainer';
 
-type Props = {}
-
-const Room:React.FC<Props> = () => {
+const Room:React.FC = () => {
   const [isRoomMinimized, setIsRoomMinimized] = React.useState(true);
 
-  const roomResizeHandler = () => { // eslint-disable-line
+  const roomResizeHandler = () => {
     setIsRoomMinimized(!isRoomMinimized);
   };
 
   return (
     <RoomContainer isMinimized={isRoomMinimized}>
-      Room
+      <VideosContainer/>
+
+      <RoomButtons/>
+
+      <ResizeRoomButton
+        isRoomMinimized={isRoomMinimized}
+        handleRoomResize={roomResizeHandler}
+      />
     </RoomContainer>
   );
 };
