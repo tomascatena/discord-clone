@@ -29,9 +29,9 @@ export const roomSlice = createSlice({
   name: 'room',
   initialState,
   reducers: {
-    openRoom: (state, action) => {
-      state.isUserInRoom = true;
-      state.roomDetails = action.payload;
+    setOpenRoom: (state, action) => {
+      state.isUserInRoom = action.payload.isUserInRoom;
+      state.isUserRoomCreator = action.payload.isUserRoomCreator;
     },
     setRoomDetails: (state, action) => {
       state.roomDetails = action.payload;
