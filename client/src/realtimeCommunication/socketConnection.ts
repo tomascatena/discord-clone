@@ -3,6 +3,7 @@ import { Socket, io } from 'socket.io-client';
 import { friendsActions } from '@/store/features/friends/friendsSlice';
 import { store } from '@/store/store';
 import { updateDirectChatHistoryIfActive } from '@/utils/chat';
+import roomHandler from '@/realtimeCommunication/roomHandler';
 
 let socket: Socket;
 
@@ -56,7 +57,13 @@ export const connectWithSocketServer = ({
   socket.on('room-create', (data) => {
     const roomDetails = data.roomDetails as RoomDetails;
 
-    console.log('room-create', roomDetails);
+    roomHandler.newRoomCreated(roomDetails);
+  });
+
+  socket.on('active-rooms', (data) => {
+    const activeRooms = data.activeRooms as RoomDetails[];
+
+    roomHandler.updateActiveRooms(activeRooms);
   });
 
   socket.on('connect_error', (err) => {

@@ -5,7 +5,7 @@ export interface RoomState {
   isUserInRoom: boolean;
   isUserRoomCreator: boolean;
   roomDetails: RoomDetails | null;
-  activeRooms: string[];
+  activeRooms: RoomDetails[];
   localStream: MediaStream | null;
   remoteStreams: MediaStream[] | null;
   audioOnly: boolean;

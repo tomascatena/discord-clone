@@ -113,6 +113,10 @@ const addNewActiveRoom = (userId: string, socketId: string) => {
   return newActiveRoom;
 };
 
+export const getActiveRooms = () => {
+  return [...activeRooms];
+};
+
 export default {
   connectedUsers,
   addNewConnectedUser,
@@ -122,4 +126,5 @@ export default {
   getSocketServerInstance,
   getOnlineUsers,
   addNewActiveRoom,
+  getActiveRooms,
 };
