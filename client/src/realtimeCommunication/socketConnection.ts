@@ -1,4 +1,4 @@
-import { DirectChatHistory, IFriend, IOnlineUser, IPendingInvitation, IUser } from '@/typings/typings';
+import { DirectChatHistory, IFriend, IOnlineUser, IPendingInvitation, IUser, RoomDetails } from '@/typings/typings';
 import { Socket, io } from 'socket.io-client';
 import { friendsActions } from '@/store/features/friends/friendsSlice';
 import { store } from '@/store/store';
@@ -53,6 +53,12 @@ export const connectWithSocketServer = ({
     updateDirectChatHistoryIfActive(data);
   });
 
+  socket.on('room-create', (data) => {
+    const roomDetails = data.roomDetails as RoomDetails[];
+
+    console.log('room-create', roomDetails);
+  });
+
   socket.on('connect_error', (err) => {
     console.error(err);
   });
@@ -73,4 +79,8 @@ type GetDirectChatHistoryParams = {
 
 export const getDirectChatHistory = (data: GetDirectChatHistoryParams) => {
   socket.emit('direct-chat-history', data);
+};
+
+export const emitRoomCreate = () => {
+  socket.emit('room-create');
 };

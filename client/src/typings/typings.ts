@@ -111,4 +111,13 @@ export type DirectChatHistory = {
   participants: string[];
 };
 
-export type RoomDetails = {};
+export type UserInfo = {
+  userId: string;
+  socketId: string;
+};
+
+export type RoomDetails = {
+  roomCreator: UserInfo;
+  participants: UserInfo[];
+  roomId: string;
+};

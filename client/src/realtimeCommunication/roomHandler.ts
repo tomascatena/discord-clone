@@ -1,3 +1,4 @@
+import { emitRoomCreate } from './socketConnection';
 import { roomActions } from '@/store/features/room/roomSlice';
 import { store } from '@/store/store';
 
@@ -13,6 +14,8 @@ const defaultCreateNewRoomParams = {
 
 const createNewRoom = (data :CreateNewRoomParams = defaultCreateNewRoomParams) => {
   store.dispatch(roomActions.setOpenRoom(data));
+
+  emitRoomCreate();
 };
 
 export default {

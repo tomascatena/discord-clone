@@ -1,4 +1,5 @@
 import { Server } from 'socket.io';
+import { v4 as uuidv4 } from 'uuid';
 
 type ConnectedUserInfo = {
   userId: string;
@@ -7,6 +8,19 @@ type ConnectedUserInfo = {
 const connectedUsers = new Map<string, ConnectedUserInfo>();
 
 let io: Server;
+
+type UserInfo = {
+  userId: string;
+  socketId: string;
+};
+
+type ActiveRoom = {
+  roomCreator: UserInfo;
+  participants: UserInfo[];
+  roomId: string;
+};
+
+let activeRooms: ActiveRoom[] = [];
 
 const setSocketServerInstance = (server: Server) => {
   io = server;
@@ -73,6 +87,32 @@ const getOnlineUsers = () => {
   return onlineUsers;
 };
 
+/**
+ * Rooms related functions.
+ */
+
+const addNewActiveRoom = (userId: string, socketId: string) => {
+  const newActiveRoom = {
+    roomCreator: {
+      userId,
+      socketId,
+    },
+    participants: [
+      {
+        userId,
+        socketId,
+      },
+    ],
+    roomId: uuidv4(),
+  };
+
+  activeRooms = [...activeRooms, newActiveRoom];
+
+  console.log('activeRooms', activeRooms);
+
+  return newActiveRoom;
+};
+
 export default {
   connectedUsers,
   addNewConnectedUser,
@@ -81,4 +121,5 @@ export default {
   setSocketServerInstance,
   getSocketServerInstance,
   getOnlineUsers,
+  addNewActiveRoom,
 };

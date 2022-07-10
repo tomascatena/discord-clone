@@ -4,6 +4,7 @@ import { directChatHistoryHandler } from '@/socketHandlers/directChatHistoryHand
 import { directMessageHandler } from './socketHandlers/directMessageHandler';
 import { disconnectHandler } from '@/socketHandlers/disconnectHandler';
 import { newConnectionHandler } from '@/socketHandlers/newConnectionHandler';
+import { roomCreateHandler } from '@/socketHandlers/roomCreateHandler';
 import { verifyTokenSocket } from '@/middleware/authSocket';
 import http from 'http';
 import serverStore from './serverStore';
@@ -36,6 +37,10 @@ export const registerSocketServer = (server: http.Server) => {
 
     socket.on('direct-chat-history', (data) => {
       directChatHistoryHandler(socket, data);
+    });
+
+    socket.on('room-create', () => {
+      roomCreateHandler(socket);
     });
 
     socket.on('disconnect', () => {

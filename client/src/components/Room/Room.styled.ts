@@ -21,8 +21,10 @@ export const RoomContainer = styled('div', {
   ...(isMinimized ? {
     width: '30%',
     height: '40vh',
+    borderRadius: '10px',
   } : {
     width: '100%',
     height: '100vh',
+    borderRadius: 'none',
   })
 }));
