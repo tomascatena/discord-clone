@@ -12,7 +12,13 @@ export const SidebarContainer = styled('div')(({ theme }) => ({
   paddingRight: theme.spacing(1),
 }));
 
-export const MainButton = styled(Button)({
+type MainButtonProps = {
+  marginTop?: number;
+}
+
+export const MainButton = styled(Button, {
+  shouldForwardProp: prop => prop !== 'marginTop',
+})<MainButtonProps>(({ theme, marginTop = 0 }) => ({
   width: '42px',
   height: '42px',
   borderRadius: '16px',
@@ -21,8 +27,9 @@ export const MainButton = styled(Button)({
   minWidth: 0,
   color: 'white',
   backgroundColor: '#666',
+  marginTop: theme.spacing(marginTop),
 
   ':hover': {
     backgroundColor: '#888'
   }
-});
+}));
