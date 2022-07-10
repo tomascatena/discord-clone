@@ -1,3 +1,4 @@
+import { RoomDetails } from '@/typings/typings';
 import { emitRoomCreate } from './socketConnection';
 import { roomActions } from '@/store/features/room/roomSlice';
 import { store } from '@/store/store';
@@ -18,6 +19,11 @@ const createNewRoom = (data :CreateNewRoomParams = defaultCreateNewRoomParams) =
   emitRoomCreate();
 };
 
+const newRoomCreated = (roomDetails: RoomDetails) => {
+  store.dispatch(roomActions.setRoomDetails(roomDetails));
+};
+
 export default {
   createNewRoom,
+  newRoomCreated
 };

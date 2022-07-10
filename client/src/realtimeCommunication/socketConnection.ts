@@ -54,7 +54,7 @@ export const connectWithSocketServer = ({
   });
 
   socket.on('room-create', (data) => {
-    const roomDetails = data.roomDetails as RoomDetails[];
+    const roomDetails = data.roomDetails as RoomDetails;
 
     console.log('room-create', roomDetails);
   });
