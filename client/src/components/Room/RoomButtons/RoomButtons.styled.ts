@@ -10,4 +10,5 @@ export const RoomButtonsContainer = styled('div')(({ theme }) => ({
   justifyContent: 'center',
   backgroundColor: theme.palette.primary.dark,
   color: 'white',
+  gap: theme.spacing(2),
 }));
